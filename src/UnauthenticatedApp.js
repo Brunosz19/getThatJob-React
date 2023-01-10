@@ -5,7 +5,7 @@ import LoginForm from "./components/login-form";
 import SignUpForm from "./components/signUp-form";
 
 function UnauthenticatedApp() {
-  const [showLogin, setShowLogin] = useState("login");
+  const [showLogin, setShowLogin] = useState("professional");
 
   function handleLinkChange(event) {
     event.preventDefault();
@@ -14,12 +14,28 @@ function UnauthenticatedApp() {
       : setShowLogin(showLogin);
   }
 
+  function LoginProfessional(){
+    return(
+      <>
+        {showLogin === "professional" ? <LoginForm /> : <SignUpForm />}
+      </>
+    )
+  }
+
+  function LoginRecruiter(){
+    return(
+      <>
+        {showLogin === "professional" ? <LoginForm /> : <SignUpForm />}
+      </>
+    )
+  }
+
   return (
-    <Container>
+    <>
       <div>
-        {showLogin === "login" ? <LoginForm /> : <SignUpForm />}
+        {showLogin === "professional" ? <LoginProfessional /> : <LoginRecruiter />}
       </div>
-    </Container>
+    </>
   );
 }
 

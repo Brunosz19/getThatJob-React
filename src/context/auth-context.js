@@ -12,12 +12,12 @@ function AuthProvider(props) {
     getUser().then(setUser).catch(console.log);
   }, []);
 
-  function login(credentials) {
-    auth.login(credentials).then(setUser).catch(console.log);
+  function login(credentials, type) {
+    auth.login(credentials, type).then(setUser).catch(console.log);
   }
 
-  function logout() {
-    auth.logout().then(() => setUser(null));
+  function logout(type) {
+    auth.logout(type).then(() => setUser(null));
   }
 
   function signup(userData) {

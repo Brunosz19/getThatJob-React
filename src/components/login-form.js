@@ -20,13 +20,13 @@ function LoginForm(){
 
       if (!values.password) {
         errors.password = "Required";
-      } else if (values.password.length <= 6) {
+      } else if (values.password.length <= 2) {
         errors.password = "Invalid password";
       }
       return errors;
     }}
     onSubmit={(values) => {
-      login(values);
+      login(values, "professional");
     }}
   >
     {({

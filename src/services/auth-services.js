@@ -1,8 +1,8 @@
 import { tokenKey } from "../config";
 import collectionClient from "./collection-client";
 
-export async function login(credentials) {
-  const { token, ...user } = await collectionClient("/login", {
+export async function login(credentials, type) {
+  const { token, ...user } = await collectionClient(`/${type}/login`, {
     body: credentials,
   });
 
@@ -10,8 +10,8 @@ export async function login(credentials) {
   return user;
 }
 
-export async function logout() {
-  await collectionClient("/logout", {
+export async function logout(type) {
+  await collectionClient(`/${type}/login`, {
     method: "DELETE",
   });
 
