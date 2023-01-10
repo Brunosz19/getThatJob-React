@@ -1,10 +1,11 @@
+import AuthenticatedApp from "./AuthenticatedApp";
+import { useAuth } from "./context/auth-context";
+import UnauthenticatedApp from "./UnauthenticatedApp";
 
 function App() {
-  return (
-    <div>
-      <h1>hola</h1>
-    </div>
-  );
+  const { user } = useAuth();
+
+  return user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
 export default App;
