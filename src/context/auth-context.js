@@ -7,6 +7,7 @@ const AuthContext = createContext();
 function AuthProvider(props) {
   const [quantityData, setQuantityData] = useState([]);
   const [user, setUser] = useState(null);
+  const [showLogin, setShowLogin] = useState("landing");
 
   useEffect(() => {
     getUser().then(setUser).catch(console.log);
@@ -24,13 +25,19 @@ function AuthProvider(props) {
     createUser(userData).then(setUser).catch(console.log);
   }
 
+  function ChangeLandingPage(type){
+    setShowLogin(type)
+  }
+
   const value = {
     user,
+    showLogin,
+    quantityData,
     login,
     logout,
     signup,
-    quantityData,
-    setQuantityData
+    setQuantityData,
+    ChangeLandingPage,
   };
 
   return <AuthContext.Provider value={value} {...props} />;
