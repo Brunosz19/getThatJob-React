@@ -118,7 +118,6 @@ export default function LandingPage() {
             </ProgrammersProfile>
           </div>
         </section>
-        <Link to="/jobs">Job Details</Link>
       </section>
     );
   }

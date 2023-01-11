@@ -14,12 +14,6 @@ function UnauthenticatedApp() {
 
   return (
     <>
-      <Routes>
-        <Route 
-            path="jobs" 
-            element={<JobDetails/>}
-          />
-      </Routes>
       <Header />
       { showLogin === "landing" && (
         <LandingPage />
