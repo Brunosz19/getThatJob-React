@@ -1,6 +1,7 @@
 import styled from "@emotion/styled"
 import { useState } from "react";
 import LoginForm from "../components/login-form"
+import PersonWithPlant from "../styles/img/personWithPlant.svg"
 
 const LoginTypeButton = styled("button")`
     border: none;
@@ -43,7 +44,7 @@ export default function LoginPage() {
 
     return (
         <div style={{display: "flex", justifyContent: "center", alignContent: "center", height: "100vh", width: "100pvw",}}>
-            <div style={{width: "360px",}}>
+            <div style={{ display: "flex", marginTop: "50px",}}>
                 <div>
                     <LoginTitle>Welcome back</LoginTitle>
                     <LoginText>Login to you account as...</LoginText>
@@ -61,7 +62,7 @@ export default function LoginPage() {
                     )}
                     <LoginForm type={loginType}/>
                 </div>
-                <img></img>
+                <img src={PersonWithPlant} alt="person with plant"></img>
             </div>
         </div>
     )
