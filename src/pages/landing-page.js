@@ -1,5 +1,6 @@
 import { AiFillGithub, AiOutlineLinkedin } from "react-icons/ai";
 import styled from "@emotion/styled";
+import { Link } from "react-router-dom";
 
 import Group from "../styles/img/groupImg.svg";
 import Person_4 from "../styles/img/persona-4.svg";
@@ -117,6 +118,7 @@ export default function LandingPage() {
             </ProgrammersProfile>
           </div>
         </section>
+        <Link to="/jobs">Job Details</Link>
       </section>
     );
   }

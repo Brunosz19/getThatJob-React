@@ -10,7 +10,7 @@ function AuthenticatedApp() {
   return (
     <div>
       <Routes>
-        <Route index element={<Home />} />
+        <Route path="/" element={<Home />} />
       </Routes>
     </div>
   );
