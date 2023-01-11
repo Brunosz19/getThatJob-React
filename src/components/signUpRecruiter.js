@@ -1,7 +1,5 @@
 import {
-  Title,
   ContainerSignUp,
-  Container,
   StatusText,
   InformationText,
   NumberFinished,
@@ -11,7 +9,7 @@ import {
 import { Input, StyledForm, StyledButton } from "./input";
 import { Formik } from "formik";
 import Girl from "../styles/img/girlSignUp.svg";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { FiChevronRight } from "react-icons/fi";
 import { useAuth } from "../context/auth-context";
 import { useState } from "react";
 

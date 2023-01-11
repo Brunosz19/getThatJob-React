@@ -1,7 +1,5 @@
 import {
-  Title,
   ContainerSignUp,
-  Container,
   StatusText,
   InformationText,
   NumberFinished,

@@ -1,11 +1,5 @@
-import styled from "@emotion/styled";
-import { Formik } from "formik";
 import { useState } from "react";
-import { useAuth } from "../context/auth-context";
-import { Title, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen } from "./utils"
-import { Input, StyledForm, StyledButton } from "./input";
-import Girl from "../styles/img/girlSignUp.svg";
-import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
+import { Title, Container } from "./utils"
 import SignUpProfessional from "./signUpProfessional";
 import SignUpRecruiter from "./signUpRecruiter";
 
