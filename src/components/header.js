@@ -29,7 +29,7 @@ export default function Header() {
     return (
       <div style={{ display: "flex", justifyContent: "space-around", height: "64px", alignItems:"center",}}>
         <button onClick={LandingPageLink} style={{border: "none", background: "white"}}><img src={Logo} alt="Page Logo" style={{width: "126px", height:"40px",}}/></button>
-        <div style={{ display: "flex", alignItems: "center", gap: "10px"}}>LoginPageLink
+        <div style={{ display: "flex", alignItems: "center", gap: "10px"}}>
           <Button style={{ background: "white", cursor: "pointer"}} onClick={SignUpPageLink}>Sign Up</Button>
           <Button style={{ background: "white", cursor: "pointer"}} onClick={LoginPageLink}>Login</Button>
         </div>
