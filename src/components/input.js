@@ -4,6 +4,7 @@ const StyledContainer = styled("div")`
   display: flex;
   flex-direction: column;
   text-align: start;
+  gap: 4px;
 `
 
 const StyledLabel = styled("label")`
@@ -12,15 +13,16 @@ const StyledLabel = styled("label")`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: #B8B8BB;
+  color: #8E8E8E;
+  margin-top: 16px;
 `
 
 const StyledInput = styled("input")`
-  border: none;
-  border-bottom: 1px solid black;
+  border: 1px solid #F48FB1;
+  border-radius: 8px;
   background: inherit;
   ::placeholder {
-    color: black;
+    color: #8E8E8E;
   }
 `
 
@@ -34,9 +36,9 @@ const StyledForm = styled("form")`
 const StyledButton = styled("button")`
   border: none;
   border-radius: 30px;
-  width: 310px;
-  height: 70px;
-  background: #FA4A0C;
+  width: 80px;
+  height: 40px;
+  background: #F48FB1;
   cursor: pointer;
   font-family: "Source Sans Pro", sans-serif;
   font-style: normal;
@@ -44,6 +46,7 @@ const StyledButton = styled("button")`
   font-size: 18px;
   line-height: 23px;
   color: white;
+  margin-top: 16px;
 `
 
 function Input({
