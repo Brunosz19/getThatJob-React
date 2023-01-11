@@ -1,9 +1,20 @@
 import { Formik } from "formik";
 import { useAuth } from "../context/auth-context";
+import { useState } from "react";
+
 import { Input, StyledForm, StyledButton } from "./input";
 
-function LoginForm(){
+function LoginForm(type){
   const { login } = useAuth();
+  const [formData, setFormData] = useState({
+    email: "",
+    password: "",
+  });
+
+  function handleChange(event) {
+    const { name, value } = event.target;
+    setFormData({ ...formData, [name]: value });
+  }
 
   return(
     <Formik
@@ -26,7 +37,7 @@ function LoginForm(){
       return errors;
     }}
     onSubmit={(values) => {
-      login(values, "professional");
+      login(values, type);
     }}
   >
     {({
@@ -36,7 +47,7 @@ function LoginForm(){
       handleChange,
       handleSubmit,
     }) => (
-      <StyledForm style={{gap: "60px", padding: "48px 50px"}} onSubmit={handleSubmit}>
+      <StyledForm onSubmit={handleSubmit}>
         <Input
           name="email"
           type="email"
