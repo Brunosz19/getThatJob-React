@@ -1,4 +1,5 @@
 import { Route, Routes } from "react-router-dom";
+import ApplicationJob from "./pages/application-job-page";
 
 function AuthenticatedApp() {
   function Home(){
@@ -11,6 +12,7 @@ function AuthenticatedApp() {
     <div>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/jobapp" element={<ApplicationJob />} />
       </Routes>
     </div>
   );

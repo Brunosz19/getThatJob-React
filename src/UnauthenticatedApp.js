@@ -8,12 +8,16 @@ import LandingPage from "./pages/landing-page";
 import { useAuth } from "./context/auth-context";
 import LoginPage from "./pages/login-page";
 import SignUpPage from "./pages/signup-page";
+import ApplicationJob from "./pages/application-job-page";
 
 function UnauthenticatedApp() {
   const { showLogin } = useAuth();
 
   return (
     <>
+      <Routes>
+      <Route path="/jobapp" element={<ApplicationJob />} />
+      </Routes>
       <Header />
       { showLogin === "landing" && (
         <LandingPage />
