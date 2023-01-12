@@ -83,7 +83,7 @@ export default function LandingPage() {
               we got you, our Rock Star Meme Curator role is here for you.
             </Text>
           </div>
-          <div style={{width: "40vw", display: "flex", alignItems: "center", justifyContent: "center",}}>
+          <div style={{width: "40vw", display: "flex", alignItems: "center", justifyContent: "center", background: "white"}}>
             <img src={magnifyingGlass} alt="magnifying glass" style={{width: "335px",}}/>
           </div>
         </section>

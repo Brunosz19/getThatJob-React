@@ -4,7 +4,7 @@ import { useState } from "react";
 
 import { Input, StyledForm, StyledButton } from "./input";
 
-function LoginForm(type){
+function LoginForm({type}){
   const { login } = useAuth();
   const [formData, setFormData] = useState({
     email: "",
