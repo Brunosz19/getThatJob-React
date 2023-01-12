@@ -4,6 +4,7 @@ import SidebarNav from "../sidebarNav";
 import styled from "@emotion/styled";
 import { colors } from "../../styles/colors";
 import { useAuth } from "../../context/auth-context";
+import Footer from "../footer";
 
 const CustomLink = styled.a`
   cursor: pointer;
@@ -24,7 +25,7 @@ function Sidebar() {
         </div>
         <SidebarNav />
       </S.Shawarma>
-      <CustomLink onClick={() => logout()}>Logout</CustomLink>
+      <Footer />
     </S.Wrapper>
   );
 }
