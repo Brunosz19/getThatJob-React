@@ -1,11 +1,11 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 
-import LoginForm from "./components/login-form";
-import SignUpForm from "./components/signUp-form";
 import Header from "./components/header";
 import LandingPage from "./pages/landing-page";
 import { useAuth } from "./context/auth-context";
+import LoginPage from "./pages/login-page";
+import SignUpPage from "./pages/signup-page";
 
 function UnauthenticatedApp() {
   const { showLogin } = useAuth();
@@ -17,10 +17,10 @@ function UnauthenticatedApp() {
         <LandingPage />
       )}
       { showLogin === "login" && (
-        <LoginForm />
+        <LoginPage />
       )}
       { showLogin === "signup" && (
-        <SignUpForm />
+        <SignUpPage />
       )}
     </>
   );

@@ -4,6 +4,7 @@ const StyledContainer = styled("div")`
   display: flex;
   flex-direction: column;
   text-align: start;
+  gap: 4px;
 `
 
 const StyledLabel = styled("label")`
@@ -12,7 +13,8 @@ const StyledLabel = styled("label")`
   font-weight: 600;
   font-size: 14px;
   line-height: 17px;
-  color: #B8B8BB;
+  color: #8E8E8E;
+  margin-top: 16px;
 `
 
 const StyledInput = styled("input")`
