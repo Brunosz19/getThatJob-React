@@ -3,6 +3,7 @@ import { colors } from "./styles/colors";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Sidebar from "./components/sidebar";
 import JobPage from "./pages/job-page";
+import YourApplications from "./pages/your-applications"
 
 const Container = styled.div`
   display: grid;
@@ -23,6 +24,7 @@ function AuthenticatedApp() {
         <Routes>
           <Route index element={<Navigate to="find-that-job" />} />
           <Route path="/find-that-job" element={<JobPage />} />
+          <Route path="/your-applications" element={<YourApplications />} />
           {/* <Route path="/categories/:type" element={<CategoriesPage />} />
           <Route path="/transactions" element={<h1>Transactions</h1>} />
           <Route path="/budgets" element={<h1>Budgets</h1>} /> */}
