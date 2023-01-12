@@ -17,8 +17,8 @@ function AuthProvider(props) {
     auth.login(credentials, type).then(setUser).catch(console.log);
   }
 
-  function logout(type) {
-    auth.logout(type).then(() => setUser(null));
+  function logout() {
+    auth.logout().then(() => setUser(null));
   }
 
   //function signup(userData) {
