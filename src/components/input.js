@@ -18,9 +18,10 @@ const StyledLabel = styled("label")`
 `
 
 const StyledInput = styled("input")`
+  border: none;
   border: 1px solid #F48FB1;
   border-radius: 8px;
-  background: inherit;
+  background: #FFFFFF;
   ::placeholder {
     color: #8E8E8E;
   }
@@ -34,19 +35,23 @@ const StyledForm = styled("form")`
 `
 
 const StyledButton = styled("button")`
-  border: none;
-  border-radius: 30px;
-  width: 80px;
+  border: 1px solid  #F48FB1;
+  border-radius: 16px;
+  width: 129px;
   height: 40px;
-  background: #F48FB1;
   cursor: pointer;
-  font-family: "Source Sans Pro", sans-serif;
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
-  font-size: 18px;
-  line-height: 23px;
-  color: white;
-  margin-top: 16px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1.25px;
+  text-transform: uppercase;
+  color: #616161;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
 `
 
 function Input({
