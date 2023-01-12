@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
+import { Routes, Route } from "react-router-dom";
 
+import JobDetails from "./pages/job-details-page";
 import Header from "./components/header";
 import LandingPage from "./pages/landing-page";
 import { useAuth } from "./context/auth-context";
