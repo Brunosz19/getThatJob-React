@@ -20,7 +20,7 @@ export const Wrapper = styled.div`
 export const JobCover = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   gap: 0.5rem;
 `;
 
@@ -58,4 +58,5 @@ export const ButtonContainer = styled.div`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  gap: 1rem;
 `;
