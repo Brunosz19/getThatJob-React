@@ -3,7 +3,7 @@ export const fonts = {
   Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
   secondary: `"Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI",
   Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif`,
-  headerLogo: `"SF Pro Rounded"` 
+  headerLogo: `"SF Pro Rounded"`,
 };
 
 export const typography = {
