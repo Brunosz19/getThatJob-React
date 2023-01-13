@@ -1,7 +1,9 @@
 import styled from "@emotion/styled";
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { Input, StyledButton, StyledForm, StyledLabel } from "../components/input";
 import { Title } from "../components/utils";
+import { createJob } from "../services/job-services";
 
 const SubTitle = styled("h2")`
   width: 944px;
@@ -16,6 +18,8 @@ const SubTitle = styled("h2")`
 `
 
 export default function CreateJob() {
+  const navigate = useNavigate()
+
   return (
     <>
       <Title style={{width: "960px"}}>Create new job posting</Title>
@@ -27,28 +31,14 @@ export default function CreateJob() {
           min_salary: "",
           max_salary: "",
           about: "",
-          requirement: "",
-          opt_requirement: "",
-        }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-
-          if (!values.password) {
-            errors.password = "Required";
-          } else if (values.password.length <= 6) {
-            errors.password = "Invalid password";
-          }
-          return errors;
+          requeriments: "",
+          opt_requeriments: "",
         }}
         onSubmit={(values) => {
           console.log(values);
+          createJob(values)
+
+          navigate("/job-posting")
         }}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (
@@ -118,23 +108,23 @@ export default function CreateJob() {
             />
             {errors.about && touched.about && errors.about}
             <Input
-              name="requirement"
+              name="requeriments"
               type="textarea"
-              value={values.requirement}
+              value={values.requeriments}
               onChange={handleChange}
-              placeholder="List each mandatory requirement in a new line"
-              label="mandatory requirements"
+              placeholder="List each mandatory requirements in a new line"
+              label="mandatory requerimentss"
             />
-            {errors.requirement && touched.requirement && errors.requirement}
+            {errors.requeriments && touched.requeriments && errors.requeriments}
             <Input
-              name="opt_requirement"
+              name="opt_requeriments"
               type="textarea"
-              value={values.opt_requirement}
+              value={values.opt_requeriments}
               onChange={handleChange}
               placeholder="List each optional requirement in a new line"
               label="optional requirements"
             />
-            {errors.opt_requirement && touched.opt_requirement && errors.opt_requirement}
+            {errors.opt_requeriments && touched.opt_requeriments && errors.opt_requeriments}
             <StyledButton
               style={{
                 width: "165px",
