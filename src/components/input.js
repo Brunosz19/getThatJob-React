@@ -8,20 +8,24 @@ const StyledContainer = styled("div")`
 `
 
 const StyledLabel = styled("label")`
-  font-family: 'Lato', sans-serif;
+  font-family: 'Inter';
   font-style: normal;
-  font-weight: 600;
-  font-size: 14px;
-  line-height: 17px;
-  color: #8E8E8E;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #373737;
   margin-top: 16px;
 `
 
 const StyledInput = styled("input")`
-  border: none;
   border: 1px solid #F48FB1;
   border-radius: 8px;
   background: #FFFFFF;
+  width: 360px;
+  height: 36px;
+  padding: 8px;
   ::placeholder {
     color: #8E8E8E;
   }
@@ -42,10 +46,10 @@ const StyledButton = styled("button")`
   cursor: pointer;
   font-family: 'Inter';
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 14px;
-  line-height: 24px;
-  letter-spacing: 1.25px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
   text-transform: uppercase;
   color: #616161;
   display: flex;

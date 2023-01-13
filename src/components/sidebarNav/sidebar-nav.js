@@ -56,7 +56,7 @@ function SidebarNav() {
     {
       name: "Profile",
       icon: <BiUser />,
-      to: "/profile",
+      to: "/company/profile",
     },
     {
       name: "Log out",
