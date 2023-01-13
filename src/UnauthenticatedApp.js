@@ -9,14 +9,11 @@ function UnauthenticatedApp() {
     <>
       <Header />
       <Routes>
-        <Route index path="/landing" element={<LandingPage />} />
+        <Route index element={<LandingPage />} />
         <Route path="/landing" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpForm />} />
-        {/* <Route
-        path="*"
-        element={<Navigate to="/landing" replace />}
-        /> */}
+        <Route path="*" element={<LandingPage />} />
       </Routes>
     </>
   );

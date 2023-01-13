@@ -25,7 +25,6 @@ const LoginText = styled("p")`
 export default function LoginPage() {
   const [loginType, setLoginType] = useState("professional");
 
-
   return (
     <div
       style={{

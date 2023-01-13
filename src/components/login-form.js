@@ -1,9 +1,11 @@
 import { Formik } from "formik";
+import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import { Input, StyledForm, StyledButton } from "./input";
 
 function LoginForm({type}){
   const { login } = useAuth();
+  const navigate = useNavigate();
 
   return(
     <Formik
@@ -27,6 +29,8 @@ function LoginForm({type}){
     }}
     onSubmit={(values) => {
       login(values, type);
+
+      type === "professional" ? navigate("/find-that-job") : navigate("/job-posting")
     }}
   >
     {({

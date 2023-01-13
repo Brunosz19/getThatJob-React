@@ -5,12 +5,12 @@ import Sidebar from "./components/sidebar";
 import JobPage from "./pages/job-page";
 import RecruiterProfilePage from "./pages/recruiter-profile";
 import CreateJob from "./pages/create-job";
-import FollowingPage from "./pages/following-page"
-import YourApplications from "./pages/your-applications"
+import FollowingPage from "./pages/following-page";
+import YourApplications from "./pages/your-applications";
 import JobPosting from "./pages/job-posting-page";
 import JobPostingDetails from "./pages/job-posting-details";
-import RecruiterProfilePage from "./pages/recruiter-profile";
 import ProfessionalProfilePage from "./pages/professional-profile";
+import { useAuth } from "./context/auth-context";
 
 const Container = styled.div`
   display: grid;
@@ -24,28 +24,40 @@ const MainContainer = styled.main`
 `;
 
 function AuthenticatedApp() {
+  const { user } = useAuth();
+
   return (
     <Container>
       <Sidebar />
       <MainContainer>
-        <Routes>
-          <Route index path="/find-that-job" element={<JobPage />} />
-          <Route path="/find-that-job" element={<JobPage />} />
-          <Route path="/following" element={<FollowingPage />} />
-          <Route path="/job-posting" element={<JobPosting />} />
-          <Route path="/your-applications" element={<YourApplications />} />
-          <Route path="/new-job" element={<CreateJob />} />
-          <Route path="/job-posting/details" element={<JobPostingDetails />} />
-          <Route path="/recruiter/profile" element={<RecruiterProfilePage />} />
-          <Route path="/professional/profile" element={<ProfessionalProfilePage />} />
-          {/* <Route path="/categories/:type" element={<CategoriesPage />} />
-          <Route path="/transactions" element={<h1>Transactions</h1>} />
-          <Route path="/budgets" element={<h1>Budgets</h1>} /> */}
-          {/* <Route
-          path="*"
-          element={<Navigate to="/find-that-job" replace />}
-          /> */}
-        </Routes>
+        {Object.keys(user).length === 4 ? (
+          <Routes>
+            <Route index element={<JobPosting />} />
+            <Route path="/job-posting" element={<JobPosting />} />
+            <Route
+              path="/job-posting/details"
+              element={<JobPostingDetails />}
+            />
+            <Route path="/new-job" element={<CreateJob />} />
+            <Route
+              path="/recruiter/profile"
+              element={<RecruiterProfilePage />}
+            />
+            <Route path="*" element={<JobPosting />} />
+          </Routes>
+        ) : (
+          <Routes>
+            <Route index element={<JobPage />} />
+            <Route path="/find-that-job" element={<JobPage />} />
+            <Route path="/following" element={<FollowingPage />} />
+            <Route path="/your-applications" element={<YourApplications />} />
+            <Route
+              path="/professional/profile"
+              element={<ProfessionalProfilePage />}
+            />
+            <Route path="*" element={<JobPage />} />
+          </Routes>
+        )}
       </MainContainer>
     </Container>
   );
