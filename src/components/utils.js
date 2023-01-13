@@ -12,19 +12,28 @@ const Title = styled("h1")`
   margin-bottom: 32px;
 `;
 
+const LoginText = styled("p")`
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
+  margin-bottom: 23px;
+`;
+
 const ContainerSignUp = styled("div")`
   display: flex;
   align-items: center;
-  width: 1000px;
-  padding: 0 50px;
-  margin: auto;
 `;
 
 const Container = styled("div")`
   margin: auto;
   padding: 0 80px;
   background: #f5f5f6;
-  height: 1000px;
+  height: 100vh;
+  place-content: center;
+  display: flex;
+  justify-content: space-around;
 `;
 
 const StatusText = styled("h1")`
@@ -79,4 +88,4 @@ const NumberChoosen = styled("div")`
   border-radius: 66.6667px;
 `;
 
-export { Title, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen };
+export { Title, LoginText, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen };

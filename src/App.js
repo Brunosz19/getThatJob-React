@@ -4,7 +4,6 @@ import UnauthenticatedApp from "./UnauthenticatedApp";
 
 function App() {
   const { user } = useAuth();
-  
   return user ? <AuthenticatedApp /> : <UnauthenticatedApp />;
 }
 
