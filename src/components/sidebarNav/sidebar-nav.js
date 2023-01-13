@@ -66,7 +66,7 @@ function SidebarNav() {
   ];
 
   const navigation =
-    Object.keys(user).length === 8 ? navigationPro : navigationRec;
+    Object.keys(user).length === 10 ? navigationPro : navigationRec;
 
   return (
     <Wrapper>
