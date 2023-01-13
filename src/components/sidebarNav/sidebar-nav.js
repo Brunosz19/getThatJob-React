@@ -40,7 +40,7 @@ function SidebarNav() {
     {
       name: "Profile",
       icon: <BiUser />,
-      to: "/profile",
+      to: "/professional/profile",
     },
     {
       name: "Logout",
@@ -64,7 +64,7 @@ function SidebarNav() {
     {
       name: "Profile",
       icon: <BiUser />,
-      to: "/profile",
+      to: "/recruiter/profile",
     },
     {
       name: "Logout",
