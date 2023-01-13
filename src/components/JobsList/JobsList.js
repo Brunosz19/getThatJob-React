@@ -5,7 +5,7 @@ import { Wrapper } from "./styles";
 function JobsList({ props, type }) {
   return (
     <Wrapper>
-      {props.map(({ ...props }) =>
+      {props?.map(({ ...props }) =>
         type === "company" ? (
           <CompanyCard key={props.id} {...props} />
         ) : (

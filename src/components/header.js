@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 
 import Logo from "../styles/img/gtj-logo 1.svg";
-import { useAuth } from "../context/auth-context";
 import { useNavigate } from "react-router-dom";
 
 const Button = styled("button")`
@@ -12,7 +11,6 @@ const Button = styled("button")`
 `;
 
 export default function Header() {
-  const { ChangeLandingPage } = useAuth();
   const navigate = useNavigate()
 
   function LandingPageLink() {
