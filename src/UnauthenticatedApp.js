@@ -7,8 +7,7 @@ import Header from "./components/header";
 import LandingPage from "./pages/landing-page";
 import { useAuth } from "./context/auth-context";
 import LoginPage from "./pages/login-page";
-import SignUpPage from "./pages/signup-page";
-
+import SignUpForm from "./components/signUp-form"
 function UnauthenticatedApp() {
   const { showLogin } = useAuth();
 
@@ -22,7 +21,7 @@ function UnauthenticatedApp() {
         <LoginPage />
       )}
       { showLogin === "signup" && (
-        <SignUpPage />
+        <SignUpForm />
       )}
     </>
   );
