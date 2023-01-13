@@ -21,8 +21,8 @@ function AuthProvider(props) {
     auth.logout().then(() => setUser(null));
   }
 
-  function signup(userData) {
-   createUser(userData).then(setUser).catch(console.log);
+  function signup(userData, type) {
+   createUser(userData, type).then(setUser).catch(console.log);
   }
 
   function ChangeLandingPage(type){

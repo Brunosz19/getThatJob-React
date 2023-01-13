@@ -13,7 +13,7 @@ import { useAuth } from "../context/auth-context";
 import { useState } from "react";
 
 function SignUpRecruiter() {
-  const { createUser } = useAuth();
+  const { signup } = useAuth();
   const [steps, setSteps] = useState(1);
 
   return (
@@ -66,25 +66,8 @@ function SignUpRecruiter() {
             company_url: "",
             about: "",
           }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address";
-            }
-
-            if (!values.password) {
-              errors.password = "Required";
-            } else if (values.password.length <= 6) {
-              errors.password = "Invalid password";
-            }
-            return errors;
-          }}
           onSubmit={(values) => {
-            createUser(values);
+            signup(values, "recruiters");
           }}
         >
           {({
@@ -129,14 +112,14 @@ function SignUpRecruiter() {
                   />
                   {errors.password && touched.password && errors.password}
                   <Input
-                    name="password"
+                    name="password_confirmation"
                     type="password"
-                    value={values.password}
+                    value={values.password_confirmation}
                     onChange={handleChange}
                     placeholder="******"
                     label="Password Confirmation"
                   />
-                  {errors.password && touched.password && errors.password}
+                  {errors.password_confirmation && touched.password_confirmation && errors.password_confirmation}
                   <div
                     style={{
                       display: "flex",
@@ -193,9 +176,10 @@ function SignUpRecruiter() {
                     <StyledButton
                       style={{ background: "#F48FB1", color: "white" }}
                       onClick={() => setSteps(steps + 1)}
+                      type="submit"
                     >
                       {" "}
-                      next <FiChevronRight />
+                      Finish <FiChevronRight />
                     </StyledButton>
                   </div>
                 </>

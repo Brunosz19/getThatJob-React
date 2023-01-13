@@ -1,8 +1,8 @@
 import { tokenKey } from "../config";
 import collectionClient from "./collection-client";
 
-export async function createUser(userData) {
- const { token, ...user } = await collectionClient("/users", {
+export async function createUser(userData, type) {
+ const { token, ...user } = await collectionClient(`/${type}`, {
    body: userData,
  });
 
@@ -17,7 +17,7 @@ export async function getUser(type) {
 }
 
 export async function updateUser(userData) {
- const { token, ...user } = await collectionClient("/profile", {
+ const { token, ...user } = await collectionClient("/professional/profile", {
    method: "PATCH",
    body: userData,
  });

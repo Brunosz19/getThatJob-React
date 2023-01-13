@@ -40,7 +40,7 @@ const Advice = styled("div")`
 `
 
 function SignUpProfessional() {
-  const { createUser } = useAuth();
+  const { signup } = useAuth();
   const [steps, setSteps] = useState(1);
 
   return (
@@ -134,30 +134,13 @@ function SignUpProfessional() {
             name: "",
             phone: "",
             birthdate: "",
-            link_url: "",
+            link: "",
             title: "",
             experience: "",
             education: "",
           }}
-          validate={(values) => {
-            const errors = {};
-            if (!values.email) {
-              errors.email = "Required";
-            } else if (
-              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            ) {
-              errors.email = "Invalid email address";
-            }
-
-            if (!values.password) {
-              errors.password = "Required";
-            } else if (values.password.length <= 6) {
-              errors.password = "Invalid password";
-            }
-            return errors;
-          }}
           onSubmit={(values) => {
-            createUser(values);
+            signup(values, "professionals");
           }}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
@@ -191,7 +174,7 @@ function SignUpProfessional() {
                     placeholder="******"
                     label="Password Confirmation"
                   />
-                  {errors.password && touched.password && errors.password}
+                  {errors.password_confirmation && touched.password_confirmation && errors.password_confirmation}
                   <div
                     style={{
                       display: "flex",
@@ -241,14 +224,14 @@ function SignUpProfessional() {
                   />
                   {errors.birthday && touched.birthday && errors.birthday}
                   <Input
-                    name="link_url"
-                    type="link_url"
-                    value={values.link_url}
+                    name="link"
+                    type="text"
+                    value={values.link}
                     onChange={handleChange}
                     placeholder="https://www.linkedin.com/in/username"
                     label="Linkedin URL"
                   />
-                  {errors.link_url && touched.link_url && errors.link_url}
+                  {errors.link && touched.link && errors.link}
                   <div
                     style={{
                       display: "flex",
@@ -326,8 +309,8 @@ function SignUpProfessional() {
                       skip this!{" "}
                     </StyledButton>
                     <StyledButton
-                      style={{ background: "#F48FB1", color: "white" }}
                       type="submit"
+                      style={{ background: "#F48FB1", color: "white" }}
                     >
                       finish
                       <FiChevronRight />
