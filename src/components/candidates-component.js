@@ -1,6 +1,5 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { Link } from "react-router-dom";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const ApplicationsFound = styled("h2")`
@@ -56,7 +55,7 @@ const DeclineButton = styled("button")`
 `;
 
 const CVButton = styled("button")`
-    width: 116px;
+    width: 240px;
     height: 40px;
     border-radius: 16px;
     border: 1px solid  #F48FB1;
@@ -76,7 +75,7 @@ const MorDetailsButton = styled("button")`
   align-items: center;
 `;
 
-export default function JobPostingComponent(){
+export default function CandidatesComponent(){
 
     const [detailsOpen, setDetailsOpen] = useState("none");
 
@@ -90,41 +89,33 @@ export default function JobPostingComponent(){
             <div style={{display: "flex",  justifyContent: "space-between", height: "100%", widht: "100%", alignItems: "center", padding: "5px 10px"}}>
                 <div style={{display: "flex", alignItems: "center",}}>
                     <div>
-                        <ApplicationsFound>The job title</ApplicationsFound>
-                        <div style={{display: "flex",}}>
-                            <ApplicationsmmLetter style={{marginRight: "10px"}}>Manufactoring</ApplicationsmmLetter>
-                            <ApplicationsmmLetter style={{marginRight: "10px"}}>Full Time</ApplicationsmmLetter>
-                            <ApplicationsmmLetter>2.0k - 2.5k</ApplicationsmmLetter>
-                        </div>
+                        <ApplicationsFound>Ramon Valdés</ApplicationsFound>
+                        <ApplicationsmmLetter style={{marginRight: "10px"}}>Mighty Piráte</ApplicationsmmLetter>
                     </div>
+                </div>
+                <div>
+                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>guy.brush@mail.com</ApplicationsmmLetter>
+                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>+333555777</ApplicationsmmLetter>
                 </div>
                 <div style={{display: "flex", flexDirection: "column", alignItems: "center",}}>
                     <div style={{display: "flex",}}>
-                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>Open on 07/11/20</ApplicationsmmLetter>
-                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>Total Candidates</ApplicationsmmLetter>
-                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center", color: "#F48FB1"}}>Candidates on track</ApplicationsmmLetter>
+                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>Sent 1 day ago</ApplicationsmmLetter>
+                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center", color: "#F48FB1"}}>Waiting for review</ApplicationsmmLetter>
                     </div>
                 </div>
                 <div style={{display: "flex"}}>
-                    <div style={{display: "flex"}}>
-                        <Link to="/job-posting/details"><CVButton>SHOW</CVButton></Link> 
-                        <DeclineButton>CLOSE</DeclineButton>
-                    </div>
+                    <CVButton>MARK AS STARTED</CVButton>
                     <MorDetailsButton onClick={()=> {ExpandedButton("hola")}}><RiArrowDownSLine/></MorDetailsButton>
                 </div>
             </div>
             <div style={{padding: "5px 10px", display: `${(detailsOpen === "hola") ? "flex" : "none"}`, flexDirection: "column"}}>
-                <ApplicationSubTitle>About the job position</ApplicationSubTitle>
+                <ApplicationSubTitle>Professional experience</ApplicationSubTitle>
                 <ApplicationText>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat quam ut tempor maximus. Sed neque arcu, rhoncus elementum sodales a, tristique sed quam. Aliquam nibh velit, pharetra ac faucibus in, ornare eu tortor. Vestibulum lacus ligula, elementum sit amet purus ut, sagittis molestie ex. In hendrerit orci tellus. Integer pharetra porttitor nulla, nec fringilla dolor ultricies et. Integer accumsan feugiat urna, eu hendrerit dui varius sit amet. Mauris eget tristique turpis. Curabitur eget hendrerit turpis. Etiam rutrum dolor eu posuere vehicula.Pellentesque ut mauris neque. Maecenas posuere sit amet erat at placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec tempor lobortis nisl. Maecenas sit amet massa in tortor pulvinar sollicitudin. Fusce vitae feugiat felis, ut malesuada purus. Curabitur felis velit, interdum vitae viverra quis, sagittis ac nulla. Quisque tempus pharetra ornare. In sed nulla eget risus cursus facilisis vel quis nibh. Praesent euismod lectus a.</ApplicationText>
-                <ApplicationSubTitle>Mandatory Requirements</ApplicationSubTitle>
-                <ApplicationText>- Lorem ipsum dolor sit amet, consectetur adipiscing elit.</ApplicationText>
-                <ApplicationText>- Aenean aliquam turpis eget egestas porta.</ApplicationText>
-                <ApplicationText>- Quisque tristique nunc ut sem pretium bibendum.</ApplicationText>
-                <ApplicationText>- Phasellus sit amet turpis laoreet, mattis elit ut, luctus ligula.</ApplicationText>
-                <ApplicationText>- Nullam blandit arcu eget justo hendrerit finibus.</ApplicationText>
-                <ApplicationSubTitle>Optional Requirements</ApplicationSubTitle>
-                <ApplicationText>- Maecenas vel metus imperdiet, malesuada dolor a, pulvinar tellus.</ApplicationText>
-                <ApplicationText>- Lorem ipsum dolor sit amet, consectetur adipiscing elit.</ApplicationText>
+                <ApplicationSubTitle>Why are you interested in working at The company name SA</ApplicationSubTitle>
+                <ApplicationText>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat quam ut tempor maximus. Sed neque arcu, rhoncus elementum sodales a, tristique sed quam. Aliquam nibh velit, pharetra ac faucibus in, ornare eu tortor. Vestibulum lacus ligula, elementum sit amet purus ut, sagittis molestie ex. In hendrerit orci tellus. Integer pharetra porttitor nulla, nec fringilla dolor ultricies et. Integer accumsan feugiat urna, eu hendrerit dui varius sit amet. Mauris eget tristique turpis. Curabitur eget hendrerit turpis. Etiam rutrum dolor eu posuere vehicula.Pellentesque ut mauris neque. Maecenas posuere sit amet erat at placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec tempor lobortis nisl. Maecenas sit amet massa in tortor pulvinar sollicitudin. Fusce vitae feugiat felis, ut malesuada purus. Curabitur felis velit, interdum vitae viverra quis, sagittis ac nulla. Quisque tempus pharetra ornare. In sed nulla eget risus cursus facilisis vel quis nibh. Praesent euismod lectus a.</ApplicationText>
+            <div style={{marginTop: "10px", display: "flex", justifyContent: "center"}}>
+                <CVButton>DOWNLOAD CV</CVButton>
+            </div>
             </div>
         </div>        
     )
