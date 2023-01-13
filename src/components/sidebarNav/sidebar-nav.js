@@ -8,6 +8,7 @@ import { CgBriefcase } from "react-icons/cg";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import SidebarNavItem from "./sidebar-nav-item";
 import { useAuth } from "../../context/auth-context";
+import { logout } from "../../services/auth-services";
 
 const Wrapper = styled.div`
   display: flex;
@@ -18,6 +19,12 @@ const Wrapper = styled.div`
 function SidebarNav() {
   const { user } = useAuth();
 
+  function handleLogout(){
+    logout()
+
+    window.location.reload();
+  }
+
   const navigationPro = [
     {
       name: "Find that job",
@@ -25,20 +32,21 @@ function SidebarNav() {
       icon: <BsSearch />,
     },
     {
-      name: "Your aplications",
+      name: "Your applications",
       icon: <RiArticleLine />,
-      to: "/your-aplications",
+      to: "/your-applications",
     },
     { name: "Following", to: "/following", icon: <RiFocus3Line /> },
     {
       name: "Profile",
       icon: <BiUser />,
-      to: "/profile",
+      to: "/professional/profile",
     },
     {
-      name: "Log out",
+      name: "Logout",
       icon: <BiLogOutCircle />,
-      to: "/logout",
+      to: "/landing",
+      onClick: handleLogout
     },
   ];
 
@@ -56,17 +64,18 @@ function SidebarNav() {
     {
       name: "Profile",
       icon: <BiUser />,
-      to: "/company/profile",
+      to: "/recruiter/profile",
     },
     {
-      name: "Log out",
+      name: "Logout",
       icon: <BiLogOutCircle />,
-      to: "/logout",
+      to: "/landing",
+      onClick: handleLogout
     },
   ];
 
   const navigation =
-    Object.keys(user).length === 8 ? navigationPro : navigationRec;
+    Object.keys(user).length === 10 ? navigationPro : navigationRec;
 
   return (
     <Wrapper>
