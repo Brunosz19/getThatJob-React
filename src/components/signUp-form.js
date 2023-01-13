@@ -9,7 +9,7 @@ function SignUpForm() {
 
   return (
     <Container>
-      <section>
+      <div>
         <div
           style={{
             display: "flex",
@@ -73,10 +73,10 @@ function SignUpForm() {
         ) : (
           <SignUpRecruiter />
         )}
-      </section>
-      <section style={{ display: "flex", alignItems: "flex-end" }}>
+      </div>
+      <div style={{ display: "flex", alignItems: "flex-end" }}>
         <img src={Girl} alt="Girl" height={"72%"} />
-      </section>
+      </div>
     </Container>
   );
 }

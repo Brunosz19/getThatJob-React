@@ -30,7 +30,8 @@ const Container = styled("div")`
   margin: auto;
   padding: 0 80px;
   background: #f5f5f6;
-  height: 1040px;
+  height: 100vh;
+  place-content: center;
   display: flex;
   justify-content: space-around;
 `;
