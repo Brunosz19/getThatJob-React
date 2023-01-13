@@ -25,9 +25,9 @@ function SidebarNav() {
       icon: <BsSearch />,
     },
     {
-      name: "Your aplications",
+      name: "Your applications",
       icon: <RiArticleLine />,
-      to: "/your-aplications",
+      to: "/your-applications",
     },
     { name: "Following", to: "/following", icon: <RiFocus3Line /> },
     {
