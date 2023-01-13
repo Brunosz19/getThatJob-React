@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { colors } from "../../styles/colors";
 
 export const Wrapper = styled.div`
   background-color: #ffffff;
@@ -30,7 +29,7 @@ export const JobInfo = styled.div`
   align-items: flex-start;
 `;
 
-export const WrapperType = styled.div`
+export const ExtraInfo = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -44,7 +43,7 @@ export const WrapperDetails = styled.div`
   gap: 4px;
 `;
 
-export const ExtraInfo = styled.div`
+export const WrapperType = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-between;
