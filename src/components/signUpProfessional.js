@@ -7,11 +7,37 @@ import {
   NumberChoosen,
 } from "./utils";
 import { Input, StyledForm, StyledButton } from "./input";
-import { Formik } from "formik";
-import Girl from "../styles/img/girlSignUp.svg";
+import { Field, Formik } from "formik";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useAuth } from "../context/auth-context";
 import { useState } from "react";
+import styled from "@emotion/styled";
+
+const Note = styled("div")`
+  width: 380px;
+  height: 24px;
+  margin: 32px 0 0px 0;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #616161;
+`
+
+const Advice = styled("div")`
+  width: 153px;
+  height: 16px;
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  color: #8E8E8E;
+`
 
 function SignUpProfessional() {
   const { createUser } = useAuth();
@@ -136,6 +162,7 @@ function SignUpProfessional() {
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
             <StyledForm style={{ gap: "16px" }} onSubmit={handleSubmit}>
+              <Note>You can complete this information later but we reccomend you to do it now</Note>
               {steps === 1 ? (
                 <>
                   <Input
@@ -202,6 +229,7 @@ function SignUpProfessional() {
                     placeholder="+XXXXXXXXX"
                     label="phone"
                   />
+                  <Advice>+[country code][number]</Advice>
                   {errors.phone && touched.phone && errors.phone}
                   <Input
                     name="birthday"
@@ -258,16 +286,17 @@ function SignUpProfessional() {
                   {errors.title && touched.title && errors.title}
                   <Input
                     name="experience"
-                    type="text"
+                    type="textarea"
                     value={values.experience}
                     onChange={handleChange}
                     placeholder="Worked 6 years in a bitcoin farm until I decided to change my life...."
                     label="Professional experience"
+                    style={{ width: "600px", height: "76px" }}
                   />
                   {errors.experience && touched.experience && errors.experience}
                   <Input
                     name="education"
-                    type="text"
+                    type="textarea"
                     value={values.education}
                     onChange={handleChange}
                     placeholder="Major in life experiences with a PHD in procrastination..."
