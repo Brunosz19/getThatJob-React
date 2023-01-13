@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-//import { createUser, getUser } from "../services/user-service";
+import { createUser, getUser } from "../services/professional-service";
 import * as auth from "../services/auth-services";
 
 const AuthContext = createContext();
@@ -9,9 +9,9 @@ function AuthProvider(props) {
   const [user, setUser] = useState(null);
   const [showLogin, setShowLogin] = useState("landing");
 
-  //useEffect(() => {
-  //  getUser().then(setUser).catch(console.log);
-  //}, []);
+  useEffect(() => {
+   getUser("professional").then(setUser).catch(console.log);
+  }, []);
 
   function login(credentials, type) {
     auth.login(credentials, type).then(setUser).catch(console.log);
@@ -21,9 +21,9 @@ function AuthProvider(props) {
     auth.logout().then(() => setUser(null));
   }
 
-  //function signup(userData) {
-  //  createUser(userData).then(setUser).catch(console.log);
-  //}
+  function signup(userData) {
+   createUser(userData).then(setUser).catch(console.log);
+  }
 
   function ChangeLandingPage(type){
     setShowLogin(type)
@@ -35,7 +35,7 @@ function AuthProvider(props) {
     quantityData,
     login,
     logout,
-    //signup,
+    signup,
     setQuantityData,
     ChangeLandingPage,
   };

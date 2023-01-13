@@ -1,38 +1,25 @@
-import styled from "@emotion/styled";
-import { useState } from "react";
-import { Routes, Route } from "react-router-dom";
-
-import JobDetails from "./pages/job-details-page";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Header from "./components/header";
 import LandingPage from "./pages/landing-page";
-import { useAuth } from "./context/auth-context";
 import LoginPage from "./pages/login-page";
-import SignUpPage from "./pages/signup-page";
-import ApplicationJob from "./pages/application-job-page";
+import SignUpForm from "./components/signUp-form";
 
 function UnauthenticatedApp() {
-  const { showLogin } = useAuth();
-
   return (
     <>
-      <Routes>
-      <Route path="/jobapp" element={<ApplicationJob />} />
-      </Routes>
       <Header />
-      { showLogin === "landing" && (
-        <LandingPage />
-      )}
-      { showLogin === "login" && (
-        <LoginPage />
-      )}
-      { showLogin === "signup" && (
-        <SignUpPage />
-      )}
+      <Routes>
+        <Route index path="/landing" element={<LandingPage />} />
+        <Route path="/landing" element={<LandingPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/signup" element={<SignUpForm />} />
+        {/* <Route
+        path="*"
+        element={<Navigate to="/landing" replace />}
+        /> */}
+      </Routes>
     </>
   );
 }
 
-{
-  /* {showLogin === "professional" ? <LoginProfessional /> : <LoginRecruiter />} */
-}
 export default UnauthenticatedApp;

@@ -39,9 +39,10 @@ const StyledNavLink = styled(NavLink)`
   }
 `;
 
-function SidebarNavItem({ name, icon, to }) {
+function SidebarNavItem({ name, icon, to, onClick = {} }) {
   return (
     <StyledNavLink
+      onClick={onClick}
       to={to}
       style={({ isActive }) => {
         if (!isActive) return;

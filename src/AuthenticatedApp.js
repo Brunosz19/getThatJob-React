@@ -25,7 +25,7 @@ function AuthenticatedApp() {
       <Sidebar />
       <MainContainer>
         <Routes>
-          <Route index element={<Navigate to="find-that-job" />} />
+          <Route index path="/find-that-job" element={<JobPage />} />
           <Route path="/find-that-job" element={<JobPage />} />
           <Route path="/following" element={<FollowingPage />} />
           <Route path="/job-posting" element={<JobPosting />} />
@@ -34,6 +34,10 @@ function AuthenticatedApp() {
           {/* <Route path="/categories/:type" element={<CategoriesPage />} />
           <Route path="/transactions" element={<h1>Transactions</h1>} />
           <Route path="/budgets" element={<h1>Budgets</h1>} /> */}
+          {/* <Route
+          path="*"
+          element={<Navigate to="/find-that-job" replace />}
+          /> */}
         </Routes>
       </MainContainer>
     </Container>

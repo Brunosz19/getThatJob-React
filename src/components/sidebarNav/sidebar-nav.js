@@ -8,6 +8,7 @@ import { CgBriefcase } from "react-icons/cg";
 import { AiOutlineFileAdd } from "react-icons/ai";
 import SidebarNavItem from "./sidebar-nav-item";
 import { useAuth } from "../../context/auth-context";
+import { logout } from "../../services/auth-services";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,6 +18,12 @@ const Wrapper = styled.div`
 
 function SidebarNav() {
   const { user } = useAuth();
+
+  function handleLogout(){
+    logout()
+
+    window.location.reload();
+  }
 
   const navigationPro = [
     {
@@ -36,9 +43,10 @@ function SidebarNav() {
       to: "/profile",
     },
     {
-      name: "Log out",
+      name: "Logout",
       icon: <BiLogOutCircle />,
-      to: "/logout",
+      to: "/landing",
+      onClick: handleLogout
     },
   ];
 
@@ -59,9 +67,10 @@ function SidebarNav() {
       to: "/profile",
     },
     {
-      name: "Log out",
+      name: "Logout",
       icon: <BiLogOutCircle />,
-      to: "/logout",
+      to: "/landing",
+      onClick: handleLogout
     },
   ];
 
