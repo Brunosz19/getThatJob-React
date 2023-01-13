@@ -26,7 +26,7 @@ export async function updateUser(userData) {
 }
 
 export async function getJobs() {
-  const { ...jobsData } = await collectionClient(`/jobs`);
+  const jobsData = await collectionClient(`/jobs`);
  
   return jobsData;
  }

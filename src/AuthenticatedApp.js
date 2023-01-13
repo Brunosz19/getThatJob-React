@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { colors } from "./styles/colors";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import Sidebar from "./components/sidebar";
 import JobPage from "./pages/job-page";
 import FollowingPage from "./pages/following-page"
