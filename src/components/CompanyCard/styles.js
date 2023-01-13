@@ -16,14 +16,14 @@ export const Wrapper = styled.div`
   gap: 10px;
 `;
 
-export const JobCover = styled.div`
+export const CompanyCover = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
 `;
 
-export const JobInfo = styled.div`
+export const CompanyInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
