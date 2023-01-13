@@ -50,7 +50,7 @@ function SidebarNav() {
     },
     {
       name: "Create New Job",
-      to: "/create-new-job",
+      to: "/new-job",
       icon: <AiOutlineFileAdd />,
     },
     {

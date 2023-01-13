@@ -112,4 +112,4 @@ function Input({
   );
 }
 
-export { Input, StyledForm, StyledButton };
+export { Input, StyledForm, StyledButton, StyledLabel };

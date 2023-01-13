@@ -36,7 +36,7 @@ function LoginForm({type}){
       handleChange,
       handleSubmit,
     }) => (
-      <StyledForm style={{ gap: "16px", alignItems: "flex-end" }}>
+      <StyledForm style={{ gap: "16px", alignItems: "flex-end" }} onSubmit={handleSubmit}>
         <Input
           name="email"
           type="email"
