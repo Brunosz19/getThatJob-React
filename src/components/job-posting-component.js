@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 const ApplicationsFound = styled("h2")`
     font-family: 'Montserrat';
@@ -61,6 +62,20 @@ const CVButton = styled("button")`
     border: 1px solid  #F48FB1;
 `;
 
+const MorDetailsButton = styled("button")`
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1.25px;
+  color: #616161;
+  background-color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+`;
+
 export default function JobPostingComponent(){
 
     const [detailsOpen, setDetailsOpen] = useState("none");
@@ -95,7 +110,7 @@ export default function JobPostingComponent(){
                         <Link to="/job-posting/details"><CVButton>SHOW</CVButton></Link> 
                         <DeclineButton>CLOSE</DeclineButton>
                     </div>
-                    <button onClick={()=> {ExpandedButton("hola")}}>v</button>
+                    <MorDetailsButton onClick={()=> {ExpandedButton("hola")}}><RiArrowDownSLine/></MorDetailsButton>
                 </div>
             </div>
             <div style={{padding: "5px 10px", display: `${(detailsOpen === "hola") ? "flex" : "none"}`, flexDirection: "column"}}>
