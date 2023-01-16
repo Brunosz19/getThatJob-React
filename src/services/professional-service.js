@@ -25,6 +25,15 @@ export async function updateUser(userData) {
  return user;
 }
 
+export async function updateRecruiter(userData) {
+  const { token, ...user } = await collectionClient("/recruiter/profile", {
+    method: "PATCH",
+    body: userData,
+  });
+ 
+  return user;
+ }
+
 export async function getJobs() {
   const jobsData = await collectionClient(`/jobs`);
  

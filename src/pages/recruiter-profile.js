@@ -2,9 +2,23 @@ import { Formik } from "formik";
 import { Input, StyledButton, StyledForm } from "../components/input";
 import { useAuth } from "../context/auth-context";
 import { Title } from "../components/utils";
+import { updateRecruiter } from "../services/professional-service";
+import { useState } from "react";
 
 export default function RecruiterProfilePage() {
+  const [ file, setFile ] = useState();
   const { user } = useAuth();
+  function handleChangeFile(values) {
+    const formData1 = new FormData();
+    formData1.append("logo", file);
+    formData1.append("company", values.company);
+    formData1.append("email", values.email);
+    formData1.append("company_url", values.company_url);
+    formData1.append("about", values.about);
+
+    updateRecruiter(formData1);
+    // navigate("/");
+  }
   return (
     <>
       <Title>Profile</Title>
@@ -14,49 +28,22 @@ export default function RecruiterProfilePage() {
           company: user.company,
           company_url: user.company_url,
           about: user.about,
-        }}
-        validate={(values) => {
-          const errors = {};
-          if (!values.email) {
-            errors.email = "Required";
-          } else if (
-            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-          ) {
-            errors.email = "Invalid email address";
-          }
-
-          if (!values.password) {
-            errors.password = "Required";
-          } else if (values.password.length <= 6) {
-            errors.password = "Invalid password";
-          }
-          return errors;
+          file: user.logo,
         }}
         onSubmit={(values) => {
           console.log(values);
+          console.log(file)
+          handleChangeFile(values)
         }}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (
           <StyledForm style={{ gap: "8px", padding: "0 120px" }} onSubmit={handleSubmit}>
             <div style={{ display: "flex", gap: "10px" }}>
-              <div
-                style={{ width: "75px", height: "75px", background: "green" }}
-              ></div>
-              <div>
-                <h4>company logo</h4>
-                <StyledButton
-                  style={{
-                    width: "134px",
-                    height: "36px",
-                    color: "white",
-                    background: "#F48FB1",
-                  }}
-                >
-                  Choose a file
-                </StyledButton>
-                <p>PNG, JPEG, IMG</p>
-              </div>
+                <img src={user.logo_url} />
             </div>
+
+            <label for="file"> file </label>
+            <input id="file" name="file" type="file" value={values.file} onChange={(event) => setFile(event.target.files[0])}></input>
             <Input
               name="email"
               type="filename"

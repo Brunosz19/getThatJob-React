@@ -30,7 +30,7 @@ function AuthenticatedApp() {
     <Container>
       <Sidebar />
       <MainContainer>
-        {Object.keys(user).length === 4 ? (
+        {user.role === "recruiter" ? (
           <Routes>
             <Route index element={<JobPosting />} />
             <Route path="/job-posting" element={<JobPosting />} />
