@@ -75,7 +75,7 @@ function SidebarNav() {
   ];
 
   const navigation =
-    Object.keys(user).length === 10 ? navigationPro : navigationRec;
+    user.role === "professional" ? navigationPro : navigationRec;
 
   return (
     <Wrapper>
