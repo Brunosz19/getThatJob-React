@@ -6,7 +6,7 @@ import { updateRecruiter } from "../services/professional-service";
 import { useState } from "react";
 
 export default function RecruiterProfilePage() {
-  const [ file, setFile ] = useState();
+  const [file, setFile] = useState();
   const { user } = useAuth();
   function handleChangeFile(values) {
     const formData1 = new FormData();
@@ -31,19 +31,28 @@ export default function RecruiterProfilePage() {
           file: user.logo,
         }}
         onSubmit={(values) => {
-          console.log(values);
-          console.log(file)
-          handleChangeFile(values)
+          handleChangeFile(values);
         }}
       >
         {({ values, errors, touched, handleChange, handleSubmit }) => (
-          <StyledForm style={{ gap: "8px", padding: "0 120px" }} onSubmit={handleSubmit}>
+          <StyledForm
+            style={{ gap: "8px", padding: "0 120px" }}
+            onSubmit={handleSubmit}
+          >
             <div style={{ display: "flex", gap: "10px" }}>
-                <img src={user.logo_url} />
+              <img src={user.logo_url} />
             </div>
 
             <label for="file"> file </label>
-            <input id="file" name="file" type="file" value={values.file} onChange={(event) => setFile(event.target.files[0])}></input>
+            <input
+              id="file"
+              name="file"
+              type="file"
+              value={values.file}
+              onChange={(event) => setFile(event.target.files[0])}
+            ></input>
+
+            
             <Input
               name="email"
               type="filename"
