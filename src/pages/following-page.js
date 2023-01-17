@@ -3,7 +3,6 @@ import { useAuth } from "../context/auth-context";
 
 function FollowingPage() {
   const { user } = useAuth();
-  console.log(user);
   return (
     <>
       <h1>Following Page</h1>
