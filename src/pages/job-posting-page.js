@@ -49,6 +49,95 @@ const ApplicationText = styled("p")`
   margin-right: 10px;
 `;
 
+const jobs = [
+  {
+      "id": 1,
+      "title": "Community-Services Architect",
+      "category": "Advertising",
+      "job_type": "Temporary",
+      "recruiter_id": 1,
+      "min_salary": 1000,
+      "max_salary": 5000,
+      "status": null,
+      "about": null,
+      "requeriments": null,
+      "opt_requeriments": null,
+      "status": true,
+			"recruiter_id": 1,
+			"created_at": "2023-01-17T23:42:40.404Z",
+			"updated_at": "2023-01-17T23:42:40.404Z"
+  },
+  {
+      "id": 2,
+      "title": "Design Strategist",
+      "category": "Banking",
+      "job_type": "Contract",
+      "recruiter_id": 1,
+      "min_salary": 1000,
+      "max_salary": 5000,
+      "status": true,
+      "about": null,
+      "requeriments": null,
+      "opt_requeriments": null,
+      "status": null,
+			"recruiter_id": 1,
+			"created_at": "2023-01-17T23:42:40.404Z",
+			"updated_at": "2023-01-17T23:42:40.404Z"
+  },
+  {
+      "id": 3,
+      "title": "Senior Technician",
+      "category": "Advertising",
+      "job_type": "Full-time",
+      "recruiter_id": 1,
+      "min_salary": 1000,
+      "max_salary": 5000,
+      "status": true,
+      "about": null,
+      "requeriments": null,
+      "opt_requeriments": null,
+      "status": null,
+			"recruiter_id": 1,
+			"created_at": "2023-01-17T23:42:40.404Z",
+			"updated_at": "2023-01-17T23:42:40.404Z"
+  },
+  {
+      "id": 4,
+      "title": "International Healthcare Assistant",
+      "category": "Legal",
+      "job_type": "Contract",
+      "recruiter_id": 1,
+      "min_salary": 1000,
+      "max_salary": 5000,
+      "status": false,
+      "about": null,
+      "requeriments": null,
+      "opt_requeriments": null,
+      "status": null,
+			"recruiter_id": 1,
+			"created_at": "2023-01-17T23:42:40.404Z",
+			"updated_at": "2023-01-17T23:42:40.404Z"
+  },
+  {
+      "id": 5,
+      "title": "Administration Developer",
+      "category": "IT",
+      "job_type": "Contract",
+      "recruiter_id": 1,
+      "min_salary": 1000,
+      "max_salary": 5000,
+      "status": false,
+      "about": null,
+      "requeriments": null,
+      "opt_requeriments": null,
+      "status": null,
+			"recruiter_id": 1,
+			"created_at": "2023-01-17T23:42:40.404Z",
+			"updated_at": "2023-01-17T23:42:40.404Z"
+  }
+];
+
+
 export default function JobPosting() {
   return (
     <div>
@@ -71,7 +160,9 @@ export default function JobPosting() {
           4 job postings found
         </ApplicationsFound>
       </div>
-      <JobPostingComponent />
+      {jobs.map(function(job){
+        return <JobPostingComponent job={job}/>
+      })}
     </div>
   );
 }

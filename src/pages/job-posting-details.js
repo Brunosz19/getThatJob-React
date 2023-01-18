@@ -51,6 +51,25 @@ const ApplicationText = styled("p")`
     margin-right: 10px;
 `;
 
+const RadioButton = styled.input`
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border: 1px solid palevioletred;
+  border-radius: 8px;
+  &:checked {
+    height: 16px;
+    width: 16px;
+    background-color: palevioletred;
+  }
+
+  &:active,
+  &:focus {
+    outline: 1px solid palevioletred;
+    outline-offset: 3px;
+  }
+`;
+
 export default function JobPostingDetails() {
     return (
         <div>
@@ -60,13 +79,13 @@ export default function JobPostingDetails() {
             <div>
                 <ApplicationFilterTitle>FILTER YOUR JOB POSTINGS</ApplicationFilterTitle>
                 <ApplicationFilterConteiner>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>ALL</ApplicationText>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>Waiting</ApplicationText>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>In progress</ApplicationText>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>Finished</ApplicationText>
                 </ApplicationFilterConteiner>
                 <ApplicationsFound style={{marginTop: "16px"}}>4 job postings found</ApplicationsFound>
