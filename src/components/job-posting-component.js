@@ -79,12 +79,21 @@ const MorDetailsButton = styled("button")`
 
 export default function JobPostingComponent({ job }) {
   const [detailsOpen, setDetailsOpen] = useState("none");
+  const [jobStatus, setJobStatus] = useState(job.status)
 
   function ExpandedButton(id) {
     if (id === detailsOpen) {
       return setDetailsOpen("none");
     }
     setDetailsOpen(id);
+  }
+
+  function CloseJob(){
+    if (jobStatus) {
+      setJobStatus(false)
+    } else { 
+      return
+    }
   }
 
   return (
@@ -154,7 +163,12 @@ export default function JobPostingComponent({ job }) {
             <Link to="/job-posting/details">
               <CVButton>SHOW</CVButton>
             </Link>
-            <DeclineButton>CLOSE</DeclineButton>
+            <DeclineButton 
+              onClick={() => {
+              CloseJob()
+            }} style={{ backgroundColor: (jobStatus) ? "#bf5f82" :  "#E1E2E1", color: (jobStatus) ? "white" : "#8E8E8E"}}>
+              {(jobStatus) ? "CLOSE" : "CLOSED"}
+            </DeclineButton>
           </div>
           <MorDetailsButton
             onClick={() => {

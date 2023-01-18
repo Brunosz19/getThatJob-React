@@ -58,7 +58,6 @@ const jobs = [
       "recruiter_id": 1,
       "min_salary": 1000,
       "max_salary": 5000,
-      "status": null,
       "about": null,
       "requeriments": null,
       "opt_requeriments": null,
@@ -79,7 +78,6 @@ const jobs = [
       "about": null,
       "requeriments": null,
       "opt_requeriments": null,
-      "status": null,
 			"recruiter_id": 1,
 			"created_at": "2023-01-17T23:42:40.404Z",
 			"updated_at": "2023-01-17T23:42:40.404Z"
@@ -96,7 +94,6 @@ const jobs = [
       "about": null,
       "requeriments": null,
       "opt_requeriments": null,
-      "status": null,
 			"recruiter_id": 1,
 			"created_at": "2023-01-17T23:42:40.404Z",
 			"updated_at": "2023-01-17T23:42:40.404Z"
@@ -113,7 +110,6 @@ const jobs = [
       "about": null,
       "requeriments": null,
       "opt_requeriments": null,
-      "status": null,
 			"recruiter_id": 1,
 			"created_at": "2023-01-17T23:42:40.404Z",
 			"updated_at": "2023-01-17T23:42:40.404Z"
@@ -130,7 +126,6 @@ const jobs = [
       "about": null,
       "requeriments": null,
       "opt_requeriments": null,
-      "status": null,
 			"recruiter_id": 1,
 			"created_at": "2023-01-17T23:42:40.404Z",
 			"updated_at": "2023-01-17T23:42:40.404Z"
