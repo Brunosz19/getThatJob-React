@@ -111,6 +111,7 @@ export default function ApplicationJob() {
           <div style={{ display: "flex" }}>
             <img
               src={LogoCompany}
+              alt="Logo company"
               style={{
                 boxShadow: "2px 3px 5px 4px rgba(0, 0, 0, 0.2)",
                 borderRadius: "8px",
