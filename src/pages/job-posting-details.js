@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import CandidatesComponent from "../components/candidates-component";
 import JobPostingComponent from "../components/job-posting-component";
+import { getJob } from "../services/job-services";
 
 const ApplicationFilterTitle = styled("p")`
     font-family: 'Inter';
@@ -51,22 +54,47 @@ const ApplicationText = styled("p")`
     margin-right: 10px;
 `;
 
+const RadioButton = styled.input`
+  appearance: none;
+  height: 18px;
+  width: 18px;
+  border: 1px solid palevioletred;
+  border-radius: 8px;
+  &:checked {
+    height: 16px;
+    width: 16px;
+    background-color: palevioletred;
+  }
+
+  &:active,
+  &:focus {
+    outline: 1px solid palevioletred;
+    outline-offset: 3px;
+  }
+`;
+
 export default function JobPostingDetails() {
+    const [job, setJob] = useState();
+    const { id } = useParams();
+
+    useEffect(() => {
+        getJob(id).then(setJob).catch(console.log)
+    }, []);
     return (
         <div>
-            <ApplicationsTitle>Job Postings</ApplicationsTitle>
-            <JobPostingComponent/>
+            <ApplicationsTitle>Show Job Postings</ApplicationsTitle>
+            <JobPostingComponent job={job}/>
             <ApplicationsTitle>5 candidates found</ApplicationsTitle>
             <div>
                 <ApplicationFilterTitle>FILTER YOUR JOB POSTINGS</ApplicationFilterTitle>
                 <ApplicationFilterConteiner>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>ALL</ApplicationText>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>Waiting</ApplicationText>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>In progress</ApplicationText>
-                    <input type="checkbox"/>
+                    <RadioButton/>
                     <ApplicationText style={{color: "#616161"}}>Finished</ApplicationText>
                 </ApplicationFilterConteiner>
                 <ApplicationsFound style={{marginTop: "16px"}}>4 job postings found</ApplicationsFound>
@@ -75,3 +103,5 @@ export default function JobPostingDetails() {
         </div>
     )
 }
+
+//<JobPostingComponent/>

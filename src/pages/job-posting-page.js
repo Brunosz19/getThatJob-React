@@ -1,5 +1,7 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
 import JobPostingComponent from "../components/job-posting-component";
+import { getJobs } from "../services/professional-service";
 
 const ApplicationFilterTitle = styled("p")`
   font-family: "Inter";
@@ -50,6 +52,10 @@ const ApplicationText = styled("p")`
 `;
 
 export default function JobPosting() {
+  const [jobs, setJobs] = useState();
+  useEffect(() => {
+    getJobs().then(setJobs).catch(console.log)
+  }, []);
   return (
     <div>
       <ApplicationsTitle>Job Postings</ApplicationsTitle>
@@ -71,7 +77,9 @@ export default function JobPosting() {
           4 job postings found
         </ApplicationsFound>
       </div>
-      <JobPostingComponent />
+      {jobs?.map(function(job){
+        return <JobPostingComponent key={`${job.id}${job}`} job={job} />
+      })}
     </div>
   );
 }
