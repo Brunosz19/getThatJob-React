@@ -24,18 +24,18 @@ const InfoText = styled.p`
   gap: 4px;
 `;
 
-function CompanyCard({ company }) {
+function CompanyCard({ company, total_jobs, logo }) {
   
   return (
     <S.Wrapper>
       <S.CompanyCover>
-        <p>Imagen</p>
+        <img src={logo} alt={company} />
         <S.CompanyInfo>
           <Title>{company}</Title>
           <S.WrapperType>
             <InfoText>
               <RiBriefcaseLine />
-               jobs opening
+               {total_jobs} jobs opening
             </InfoText>
           </S.WrapperType>
         </S.CompanyInfo>
