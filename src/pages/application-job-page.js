@@ -10,7 +10,9 @@ import {
   RiMoneyDollarCircleLine,
 } from "react-icons/ri";
 import { AiOutlineClockCircle } from "react-icons/ai";
-import { StyledButton } from "../components/input";
+import { useParams } from "react-router";
+import { getJob } from "../services/job-services";
+import { useEffect, useState } from "react";
 
 const BackButton = styled("button")`
   font-family: "Inter";
@@ -93,6 +95,14 @@ const FileButton = styled("file")`
 
 export default function ApplicationJob() {
 
+  const [job, setJob] = useState();
+  const { id } = useParams();
+
+  useEffect(() => {
+    getJob(id).then(setJob).catch(console.log)
+  }, []);
+
+
   return (
     <div>
       <BackButton>
@@ -110,17 +120,19 @@ export default function ApplicationJob() {
         >
           <div style={{ display: "flex" }}>
             <img
-              src={LogoCompany}
+              src={job?.company_info.logo}
               style={{
                 boxShadow: "2px 3px 5px 4px rgba(0, 0, 0, 0.2)",
                 borderRadius: "8px",
                 marginRight: "20px",
                 marginTop: "10px",
+                width: "60px",
+                height: "60px",
               }}
             ></img>
             <div>
               <JobSubTitle style={{ color: "#373737", marginBottom: "0" }}>
-                The company name SA
+                {job?.company_info.name}
               </JobSubTitle>
               <div style={{ display: "flex", alignItems: "center" }}>
                 <div
@@ -154,7 +166,7 @@ export default function ApplicationJob() {
           alignItems: "center",
         }}
       >
-        <JobTitle>The Job Title</JobTitle>
+        <JobTitle>{job?.title}</JobTitle>
         <JobCreateDate>
           <AiOutlineClockCircle />
           Posted 2 days ago
@@ -172,7 +184,7 @@ export default function ApplicationJob() {
             <JobData style={{ paddingTop: "8px" }}>Category</JobData>
             <JobSubTitle style={{ color: "#373737", padding: "0 32px" }}>
               <RiBuilding3Line style={{ marginRight: "10px" }} />
-              Manufacturing
+              {job?.category}
             </JobSubTitle>
           </div>
           <div
@@ -187,7 +199,7 @@ export default function ApplicationJob() {
             <JobData style={{ paddingTop: "8px" }}>Type</JobData>
             <JobSubTitle style={{ color: "#373737", padding: "0 32px" }}>
               <RiCalendar2Line style={{ marginRight: "10px" }} />
-              Full time
+              {job?.job_type}
             </JobSubTitle>
           </div>
           <div
@@ -209,7 +221,7 @@ export default function ApplicationJob() {
               }}
             >
               <RiMoneyDollarCircleLine style={{ marginRight: "10px" }} />
-              2,000 - 2,500
+              {job?.min_salary} - {job?.max_salary}
             </JobSubTitle>
           </div>
         </div>

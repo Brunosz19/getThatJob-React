@@ -11,6 +11,8 @@ import JobPosting from "./pages/job-posting-page";
 import JobPostingDetails from "./pages/job-posting-details";
 import ProfessionalProfilePage from "./pages/professional-profile";
 import { useAuth } from "./context/auth-context";
+import JobDetails from "./pages/job-details-page";
+import ApplicationJob from "./pages/application-job-page";
 
 const Container = styled.div`
   display: grid;
@@ -44,6 +46,8 @@ function AuthenticatedApp() {
           </Routes>
         ) : (
           <Routes>
+            <Route path="/professional/job/appli/:id" element={< ApplicationJob />} />
+            <Route path="/professional/job/:id" element={< JobDetails />} />
             <Route index element={<JobPage />} />
             <Route path="/find-that-job" element={<JobPage />} />
             <Route path="/following" element={<FollowingPage />} />
