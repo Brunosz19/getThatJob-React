@@ -1,6 +1,9 @@
 import styled from "@emotion/styled";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import CandidatesComponent from "../components/candidates-component";
 import JobPostingComponent from "../components/job-posting-component";
+import { getJob } from "../services/job-services";
 
 const ApplicationFilterTitle = styled("p")`
     font-family: 'Inter';
@@ -71,10 +74,16 @@ const RadioButton = styled.input`
 `;
 
 export default function JobPostingDetails() {
+    const [job, setJob] = useState();
+    const { id } = useParams();
+
+    useEffect(() => {
+        getJob(id).then(setJob).catch(console.log)
+    }, []);
     return (
         <div>
-            <ApplicationsTitle>Job Postings</ApplicationsTitle>
-            <JobPostingComponent/>
+            <ApplicationsTitle>Show Job Postings</ApplicationsTitle>
+            <JobPostingComponent job={job}/>
             <ApplicationsTitle>5 candidates found</ApplicationsTitle>
             <div>
                 <ApplicationFilterTitle>FILTER YOUR JOB POSTINGS</ApplicationFilterTitle>
@@ -94,3 +103,5 @@ export default function JobPostingDetails() {
         </div>
     )
 }
+
+//<JobPostingComponent/>

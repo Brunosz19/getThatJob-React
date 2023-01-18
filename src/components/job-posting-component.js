@@ -1,6 +1,6 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { format } from 'date-fns';
 
@@ -79,7 +79,7 @@ const MorDetailsButton = styled("button")`
 
 export default function JobPostingComponent({ job }) {
   const [detailsOpen, setDetailsOpen] = useState("none");
-  const [jobStatus, setJobStatus] = useState(job.status)
+  //const [jobStatus, setJobStatus] = useState(job.status)
 
   function ExpandedButton(id) {
     if (id === detailsOpen) {
@@ -88,12 +88,17 @@ export default function JobPostingComponent({ job }) {
     setDetailsOpen(id);
   }
 
-  function CloseJob(){
-    if (jobStatus) {
-      setJobStatus(false)
-    } else { 
-      return
-    }
+  //function CloseJob(){
+  //  if (jobStatus) {
+  //    setJobStatus(false)
+  //  } else { 
+  //    return
+  //  }
+  //}
+  const navigate = useNavigate();
+
+  function showJobDetails(job){
+    navigate(`/professional/job/${job.id}`)
   }
 
   return (
@@ -118,16 +123,16 @@ export default function JobPostingComponent({ job }) {
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <div>
-            <ApplicationsFound>{job.title}</ApplicationsFound>
+            <ApplicationsFound>{job?.title}</ApplicationsFound>
             <div style={{ display: "flex" }}>
               <ApplicationsmmLetter style={{ marginRight: "10px" }}>
-                {job.category}
+                {job?.category}
               </ApplicationsmmLetter>
               <ApplicationsmmLetter style={{ marginRight: "10px" }}>
-                {job.job_type}
+                {job?.job_type}
               </ApplicationsmmLetter>
               <ApplicationsmmLetter>
-                {job.min_salary} - {job.max_salary}
+                {job?.min_salary} - {job?.max_salary}
               </ApplicationsmmLetter>
             </div>
           </div>
@@ -144,7 +149,6 @@ export default function JobPostingComponent({ job }) {
               style={{ width: "80px", textAlign: "center" }}
             >
               Open on<br/>
-              {format(new Date(job.created_at), 'dd/MM/yy')}
             </ApplicationsmmLetter>
             <ApplicationsmmLetter
               style={{ width: "80px", textAlign: "center" }}
@@ -160,19 +164,11 @@ export default function JobPostingComponent({ job }) {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ display: "flex" }}>
-            <Link to="/job-posting/details">
-              <CVButton>SHOW</CVButton>
-            </Link>
-            <DeclineButton 
-              onClick={() => {
-              CloseJob()
-            }} style={{ backgroundColor: (jobStatus) ? "#bf5f82" :  "#E1E2E1", color: (jobStatus) ? "white" : "#8E8E8E"}}>
-              {(jobStatus) ? "CLOSE" : "CLOSED"}
-            </DeclineButton>
+            <CVButton onClick={()=> {showJobDetails(job)}}>SHOW</CVButton>
           </div>
           <MorDetailsButton
             onClick={() => {
-              ExpandedButton(job.id);
+              ExpandedButton(job?.id);
             }}
           >
             <RiArrowDownSLine />
@@ -182,23 +178,32 @@ export default function JobPostingComponent({ job }) {
       <div
         style={{
           padding: "5px 10px",
-          display: `${detailsOpen === job.id ? "flex" : "none"}`,
+          display: `${detailsOpen === job?.id ? "flex" : "none"}`,
           flexDirection: "column",
         }}
       >
         <ApplicationSubTitle>About the job position</ApplicationSubTitle>
         <ApplicationText>
-          {job.about}
+          {job?.about}
         </ApplicationText>
         <ApplicationSubTitle>Mandatory Requirements</ApplicationSubTitle>
         <ApplicationText>
-          {job.requeriments}
+          {job?.requeriments}
         </ApplicationText>
         <ApplicationSubTitle>Optional Requirements</ApplicationSubTitle>
         <ApplicationText>
-          {job.opt_requeriments}
+          {job?.opt_requeriments}
         </ApplicationText>
       </div>
     </div>
   );
 }
+
+//<DeclineButton 
+//onClick={() => {
+//CloseJob()
+//}} style={{ backgroundColor: (jobStatus) ? "#bf5f82" :  "#E1E2E1", color: (jobStatus) ? "white" : "#8E8E8E"}}>
+//{(jobStatus) ? "CLOSE" : "CLOSED"}
+//</DeclineButton>
+
+//{format(new Date(job?.created_at), 'dd/MM/yy')}
