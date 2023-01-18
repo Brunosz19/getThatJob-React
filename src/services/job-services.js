@@ -9,3 +9,15 @@ export async function createJob(data) {
  sessionStorage.setItem(tokenKey, token);
  return job;
 }
+
+export async function getJob(id) {
+  const { ...job } = await collectionClient(`/jobs/${id}`);
+ 
+  return job;
+}
+
+export async function getJobs() {
+  const { ...job } = await collectionClient(`/jobs`);
+ 
+  return job;
+}

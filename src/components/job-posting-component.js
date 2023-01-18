@@ -1,7 +1,8 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { format } from 'date-fns';
 
 const ApplicationsFound = styled("h2")`
   font-family: "Montserrat";
@@ -76,14 +77,28 @@ const MorDetailsButton = styled("button")`
   align-items: center;
 `;
 
-export default function JobPostingComponent() {
+export default function JobPostingComponent({ job }) {
   const [detailsOpen, setDetailsOpen] = useState("none");
+  //const [jobStatus, setJobStatus] = useState(job.status)
 
-  function ExpandedButton(selected) {
-    if (selected === detailsOpen) {
+  function ExpandedButton(id) {
+    if (id === detailsOpen) {
       return setDetailsOpen("none");
     }
-    setDetailsOpen(selected);
+    setDetailsOpen(id);
+  }
+
+  //function CloseJob(){
+  //  if (jobStatus) {
+  //    setJobStatus(false)
+  //  } else { 
+  //    return
+  //  }
+  //}
+  const navigate = useNavigate();
+
+  function showJobDetails(job){
+    navigate(`/professional/job/${job.id}`)
   }
 
   return (
@@ -108,15 +123,17 @@ export default function JobPostingComponent() {
       >
         <div style={{ display: "flex", alignItems: "center" }}>
           <div>
-            <ApplicationsFound>The job title</ApplicationsFound>
+            <ApplicationsFound>{job?.title}</ApplicationsFound>
             <div style={{ display: "flex" }}>
               <ApplicationsmmLetter style={{ marginRight: "10px" }}>
-                Manufactoring
+                {job?.category}
               </ApplicationsmmLetter>
               <ApplicationsmmLetter style={{ marginRight: "10px" }}>
-                Full Time
+                {job?.job_type}
               </ApplicationsmmLetter>
-              <ApplicationsmmLetter>2.0k - 2.5k</ApplicationsmmLetter>
+              <ApplicationsmmLetter>
+                {job?.min_salary} - {job?.max_salary}
+              </ApplicationsmmLetter>
             </div>
           </div>
         </div>
@@ -131,7 +148,7 @@ export default function JobPostingComponent() {
             <ApplicationsmmLetter
               style={{ width: "80px", textAlign: "center" }}
             >
-              Open on 07/11/20
+              Open on<br/>
             </ApplicationsmmLetter>
             <ApplicationsmmLetter
               style={{ width: "80px", textAlign: "center" }}
@@ -147,14 +164,11 @@ export default function JobPostingComponent() {
         </div>
         <div style={{ display: "flex" }}>
           <div style={{ display: "flex" }}>
-            <Link to="/job-posting/details">
-              <CVButton>SHOW</CVButton>
-            </Link>
-            <DeclineButton>CLOSE</DeclineButton>
+            <CVButton onClick={()=> {showJobDetails(job)}}>SHOW</CVButton>
           </div>
           <MorDetailsButton
             onClick={() => {
-              ExpandedButton("hola");
+              ExpandedButton(job?.id);
             }}
           >
             <RiArrowDownSLine />
@@ -164,52 +178,32 @@ export default function JobPostingComponent() {
       <div
         style={{
           padding: "5px 10px",
-          display: `${detailsOpen === "hola" ? "flex" : "none"}`,
+          display: `${detailsOpen === job?.id ? "flex" : "none"}`,
           flexDirection: "column",
         }}
       >
         <ApplicationSubTitle>About the job position</ApplicationSubTitle>
         <ApplicationText>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat
-          quam ut tempor maximus. Sed neque arcu, rhoncus elementum sodales a,
-          tristique sed quam. Aliquam nibh velit, pharetra ac faucibus in,
-          ornare eu tortor. Vestibulum lacus ligula, elementum sit amet purus
-          ut, sagittis molestie ex. In hendrerit orci tellus. Integer pharetra
-          porttitor nulla, nec fringilla dolor ultricies et. Integer accumsan
-          feugiat urna, eu hendrerit dui varius sit amet. Mauris eget tristique
-          turpis. Curabitur eget hendrerit turpis. Etiam rutrum dolor eu posuere
-          vehicula.Pellentesque ut mauris neque. Maecenas posuere sit amet erat
-          at placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Suspendisse potenti. Donec tempor lobortis nisl. Maecenas sit amet
-          massa in tortor pulvinar sollicitudin. Fusce vitae feugiat felis, ut
-          malesuada purus. Curabitur felis velit, interdum vitae viverra quis,
-          sagittis ac nulla. Quisque tempus pharetra ornare. In sed nulla eget
-          risus cursus facilisis vel quis nibh. Praesent euismod lectus a.
+          {job?.about}
         </ApplicationText>
         <ApplicationSubTitle>Mandatory Requirements</ApplicationSubTitle>
         <ApplicationText>
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        </ApplicationText>
-        <ApplicationText>
-          - Aenean aliquam turpis eget egestas porta.
-        </ApplicationText>
-        <ApplicationText>
-          - Quisque tristique nunc ut sem pretium bibendum.
-        </ApplicationText>
-        <ApplicationText>
-          - Phasellus sit amet turpis laoreet, mattis elit ut, luctus ligula.
-        </ApplicationText>
-        <ApplicationText>
-          - Nullam blandit arcu eget justo hendrerit finibus.
+          {job?.requeriments}
         </ApplicationText>
         <ApplicationSubTitle>Optional Requirements</ApplicationSubTitle>
         <ApplicationText>
-          - Maecenas vel metus imperdiet, malesuada dolor a, pulvinar tellus.
-        </ApplicationText>
-        <ApplicationText>
-          - Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          {job?.opt_requeriments}
         </ApplicationText>
       </div>
     </div>
   );
 }
+
+//<DeclineButton 
+//onClick={() => {
+//CloseJob()
+//}} style={{ backgroundColor: (jobStatus) ? "#bf5f82" :  "#E1E2E1", color: (jobStatus) ? "white" : "#8E8E8E"}}>
+//{(jobStatus) ? "CLOSE" : "CLOSED"}
+//</DeclineButton>
+
+//{format(new Date(job?.created_at), 'dd/MM/yy')}
