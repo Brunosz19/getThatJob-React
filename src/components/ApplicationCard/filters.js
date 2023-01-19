@@ -1,24 +1,31 @@
 import * as S from "./styles";
 import styled from "@emotion/styled";
 
-// const RadioButton = styled.input`
-//   appearance: none;
-//   height: 18px;
-//   width: 18px;
-//   border: 1px solid palevioletred;
-//   border-radius: 8px;
-//   &:checked {
-//     height: 16px;
-//     width: 16px;
-//     background-color: palevioletred;
-//   }
+const StyledRadio = styled("input")`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border: 2px solid #f48fb1;
+  transition: 0.2s all linear;
 
-//   &:active,
-//   &:focus {
-//     outline: 1px solid palevioletred;
-//     outline-offset: 3px;
-//   }
-// `;
+  &:checked {
+    border: 6px solid #f48fb1;
+  }
+
+  &:focus {
+    color: #f48fb1;
+  }
+
+  &:active {
+  background-color: white;
+  color: black;
+  outline: 1px solid black;
+}
+`;
 
 function FilterCheckboxs() {
   return (
@@ -27,21 +34,21 @@ function FilterCheckboxs() {
         FILTER YOUR APPLICATIONS
       </S.ApplicationFilterTitle>
       <S.ApplicationFilterConteiner>
-        <input type="checkbox" />
+        <StyledRadio type="checkbox" />
         <S.ApplicationText style={{ color: "#616161" }}>ALL</S.ApplicationText>
-        <input type="checkbox" />
+        <StyledRadio type="checkbox" />
         <S.ApplicationText style={{ color: "#616161" }}>
           Waiting
         </S.ApplicationText>
-        <input type="checkbox" />
+        <StyledRadio type="checkbox" />
         <S.ApplicationText style={{ color: "#616161" }}>
           In progress
         </S.ApplicationText>
-        <input type="checkbox" />
+        <StyledRadio type="checkbox" />
         <S.ApplicationText style={{ color: "#616161" }}>
           Finished
         </S.ApplicationText>
-        <input type="checkbox" />
+        <StyledRadio type="checkbox" />
         <S.ApplicationText style={{ color: "#616161" }}>
           Declined
         </S.ApplicationText>
