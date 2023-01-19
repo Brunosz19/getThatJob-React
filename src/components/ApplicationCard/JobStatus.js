@@ -1,4 +1,20 @@
 import * as S from "./styles"
+import { RiArrowDownSLine } from "react-icons/ri";
+import styled from "@emotion/styled";
+
+const MorDetailsButton = styled("button")`
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 24px;
+  letter-spacing: 1.25px;
+  color: #616161;
+  background-color: white;
+  border: none;
+  display: flex;
+  align-items: center;
+`;
 
 export default function JobStatus({onClick}){
   return (<div style={{ display: "flex" }}>
@@ -12,10 +28,10 @@ export default function JobStatus({onClick}){
   >
     Waiting for review
   </S.ApplicationsmmLetter>
-  <button
-    onClick={onClick}
+  <MorDetailsButton
+      onClick={onClick}
   >
-    v
-  </button>
+    <RiArrowDownSLine />
+  </MorDetailsButton>
 </div>)
 }
