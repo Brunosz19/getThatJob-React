@@ -5,6 +5,8 @@ import { RiCalendar2Line } from "react-icons/ri";
 import { BiDollarCircle } from "react-icons/bi";
 import { RiBuilding3Line } from "react-icons/ri";
 import { RiFocus3Line } from "react-icons/ri";
+import { useEffect, useState } from "react";
+import { createFollow, getFollowings } from "../../services/following-services";
 
 const Title = styled.h1`
   font-family: ${fonts.secondary};
@@ -31,7 +33,9 @@ const InfoText = styled.p`
   gap: 4px;
 `;
 
+
 function JobCard({
+  id,
   category,
   company_info,
   title,
@@ -39,6 +43,20 @@ function JobCard({
   min_salary,
   max_salary,
 }) {
+
+  const [followingsJobs, setFollowingJobs] = useState();
+
+  useEffect(() => {
+    getFollowings().then(setFollowingJobs)
+  }, []);
+  //console.log(followingsJobs)
+  const isFollow = followingsJobs?.some(follows => follows.job_id === id)
+
+  function HandleButton(type){
+    createFollow({"job_id": type})
+  }
+
+
   return (
     <S.Wrapper>
       <S.JobCover>
@@ -64,9 +82,9 @@ function JobCard({
         </S.JobInfo>
       </S.JobCover>
       <S.ButtonContainer>
-        <p>
-          <RiFocus3Line /> Follow
-        </p>
+        <div onClick={()=>{HandleButton(id)}} style={{display: "flex", alignItems: "center", gap: "5px" }}>
+          <div style={{borderRadius: "50%", width: "20px", height: "20px", background: (isFollow) ? "#F48FB1" : "white", display: "flex", alignItems: "center", justifyContent: "center", color: (isFollow) ? "white" : "#616161",}}><RiFocus3Line/></div>Follow
+        </div>
         <p>See More</p>
       </S.ButtonContainer>
     </S.Wrapper>
