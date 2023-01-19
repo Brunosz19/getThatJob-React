@@ -113,7 +113,7 @@ function Input({
   return (
     <StyledContainer>
       {label && <StyledLabel htmlFor={id || name}>{label}</StyledLabel>}
-      {type === "textarea" && (
+      {type === "textarea" ? (
         <StyledTextArea
           id={id || name}
           name={name}
@@ -123,8 +123,8 @@ function Input({
           placeholder={placeholder}
           cols={60}
           rows={3}
-        />)}
-      {type === "number" ? (
+        />) :
+        type === "number" ? (
           <StyledInputNumber
             id={id || name}
             name={name}
