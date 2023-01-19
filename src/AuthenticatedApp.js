@@ -10,6 +10,8 @@ import RecruiterProfilePage from "./pages/recruiter-profile";
 import FollowingPage from "./pages/following-page";
 import JobPage from "./pages/job-page";
 import ProfessionalProfilePage from "./pages/professional-profile";
+import JobDetails from "./pages/job-details-page";
+import ApplicationJob from "./pages/application-job-page";
 import YourApplications from "./pages/your-applications";
 
 const Container = styled.div`
@@ -44,6 +46,8 @@ export default function AuthenticatedApp() {
           </Routes>
         ) : (
           <Routes>
+            <Route path="/professional/job/appli/:id" element={< ApplicationJob />} />
+            <Route path="/professional/job/:id" element={< JobDetails />} />
             <Route index element={<JobPage />} />
             <Route path="/find-that-job" element={<JobPage />} />
             <Route path="/following" element={<FollowingPage />} />
