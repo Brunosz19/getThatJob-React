@@ -12,6 +12,15 @@ const Title = styled("h1")`
   margin-bottom: 32px;
 `;
 
+const SubTitle = styled("h1")`
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 29px;
+  color: #373737;
+`;
+
 const LoginText = styled("p")`
   font-family: "Montserrat";
   font-style: normal;
@@ -133,4 +142,4 @@ const StyledFileButton = styled("div")`
   justify-content: center;
   gap: 16px;
 `
-export { Title, StyledFileButton, Advice, Note, LoginText, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen };
+export { Title, SubTitle, StyledFileButton, Advice, Note, LoginText, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen };
