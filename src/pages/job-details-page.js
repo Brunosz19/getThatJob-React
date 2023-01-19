@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import LogoCompany from "../styles/img/LogoCompany.svg";
 import { IoIosArrowBack } from "react-icons/io";
 import { RiFocus3Line, RiNavigationLine, RiBuilding3Line, RiCalendar2Line, RiMoneyDollarCircleLine } from "react-icons/ri"
 import { AiOutlineClockCircle } from "react-icons/ai"
@@ -103,7 +102,7 @@ export default function JobDetails(){
             <div style={{display: "flex", justifyContent: "center"}}>
                 <div style={{display: "flex", alignItems: "center", justifyContent: "space-between", width: "80vw",}}>
                     <div style={{display: "flex"}}>
-                        <img src={job?.company_info.logo} style={{boxShadow: "2px 3px 5px 4px rgba(0, 0, 0, 0.2)", borderRadius: "8px", marginRight: "20px", marginTop: "10px", width: "60px", height: "60px"}}></img>
+                        <img src={job?.company_info.logo} alt={job?.company_info.name} style={{boxShadow: "2px 3px 5px 4px rgba(0, 0, 0, 0.2)", borderRadius: "8px", marginRight: "20px", marginTop: "10px", width: "60px", height: "60px"}}></img>
                         <div>
                             <JobSubTitle style={{color: "#373737", marginBottom: "0",}}>{job?.company_info.name}</JobSubTitle>
                             <div style={{display: "flex", alignItems: "center"}}>
