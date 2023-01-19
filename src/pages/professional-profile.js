@@ -1,10 +1,11 @@
 import { Formik } from "formik";
-import { Input, StyledForm } from "../components/input";
+import { Input, StyledButton, StyledForm } from "../components/input";
 import { useAuth } from "../context/auth-context";
 import { Advice, Note, StyledFileButton, SubTitle, Title } from "../components/utils";
 import { RiUploadLine } from "react-icons/ri";
 import { updateUser } from "../services/professional-service";
 import { useState } from "react";
+
 // import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 export default function ProfessionalProfilePage() {

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import ApplicationCard from "../components/ApplicationCard";
 import { GetAppliedJobs } from "../services/job-services";
+import styled from "@emotion/styled";
 
 const RadioButton = styled.input`
   appearance: none;
