@@ -8,6 +8,7 @@ export const Wrapper = styled.div`
   flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
+  min-height: 100vh;
   gap: 10px;
 `;
 
