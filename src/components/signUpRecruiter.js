@@ -21,7 +21,9 @@ function SignUpRecruiter() {
 
   function handleChangeFile(values, type) {
     const formData = new FormData();
-    formData.append("logo", file);
+    if (file) {
+      formData.append("logo", file);
+    }
     formData.append("company", values.company);
     formData.append("email", values.email);
     formData.append("company_url", values.company_url);
@@ -214,7 +216,7 @@ function SignUpRecruiter() {
                       {file ? (
                         <Note style={{ margin: "0" }}>{file.name}</Note>
                       ) : (
-                        <Note style={{ margin: "0" }}>No choosen file</Note>
+                        <Note style={{ margin: "0" }}>No file choosen</Note>
                       )}
                     </label>
                     <Advice style={{ marginTop: "8px" }}>Max size 5MB</Advice>
