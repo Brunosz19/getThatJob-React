@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import styled from "@emotion/styled";
 import { colors } from "../../styles/colors";
 import { typography } from "../../styles/typography";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 // const currentStyles = (current) => {
 //   if (current) {
@@ -19,20 +19,17 @@ import { NavLink } from "react-router-dom";
 const StyledNavLink = styled(NavLink)`
   padding: 0.5rem;
   display: flex;
+  border: none;
   gap: 0.75rem;
   text-decoration: none;
   ${typography.text.md};
   color: ${colors.gray[600]};
   font-weight: 500;
   align-items: center;
-  border-radius: 0.375rem;
   cursor: pointer;
   text-decoration: none;
   &:hover {
     background-color: ${colors.pink[100]};
-  }
-  &:focus {
-    outline: 1px solid ${colors.pink[500]};
   }
   &:visited {
     color: ${colors.gray[600]};
@@ -41,26 +38,30 @@ const StyledNavLink = styled(NavLink)`
 
 function SidebarNavItem({ name, icon, to, onClick = {} }) {
   return (
-    <StyledNavLink
-      onClick={onClick}
-      to={to}
-      style={({ isActive }) => {
-        if (!isActive) return;
-        return {
-          backgroundColor: colors.pink[400],
-          color: colors.white,
-          "&:hover": {
-            backgroundColor: colors.pink[400],
-          },
-          "&:visited": {
-            color: colors.white,
-          },
-        };
-      }}
-    >
-      {icon}
-      {name}
-    </StyledNavLink>
+    <div>
+      <Link to={to} style={{textDecoration: "none",}}>
+        <StyledNavLink
+          onClick={onClick}
+          to={to}
+          style={({ isActive }) => {
+            if (!isActive) return;
+            return {
+              backgroundColor: "#F5F5F6",
+              color: "#373737",
+              "&:hover": {
+                backgroundColor: "#F48FB1",
+              },
+              "&:visited": {
+                color: colors.white,
+              },
+            };
+          }}
+          >
+          {icon}
+          {name}
+        </StyledNavLink>
+      </Link>
+    </div>
   );
 }
 

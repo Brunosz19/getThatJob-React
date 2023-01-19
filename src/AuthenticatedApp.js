@@ -1,18 +1,18 @@
 import styled from "@emotion/styled";
 import { colors } from "./styles/colors";
-import { Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Sidebar from "./components/sidebar";
-import JobPage from "./pages/job-page";
-import RecruiterProfilePage from "./pages/recruiter-profile";
-import CreateJob from "./pages/create-job";
-import FollowingPage from "./pages/following-page";
-import YourApplications from "./pages/your-applications";
-import JobPosting from "./pages/job-posting-page";
-import JobPostingDetails from "./pages/job-posting-details";
-import ProfessionalProfilePage from "./pages/professional-profile";
 import { useAuth } from "./context/auth-context";
+import CreateJob from "./pages/create-job";
+import JobPostingDetails from "./pages/job-posting-details";
+import JobPosting from "./pages/job-posting-page";
+import RecruiterProfilePage from "./pages/recruiter-profile";
+import FollowingPage from "./pages/following-page";
+import JobPage from "./pages/job-page";
+import ProfessionalProfilePage from "./pages/professional-profile";
 import JobDetails from "./pages/job-details-page";
 import ApplicationJob from "./pages/application-job-page";
+import YourApplications from "./pages/your-applications";
 
 const Container = styled.div`
   display: grid;
@@ -25,7 +25,7 @@ const MainContainer = styled.main`
   padding: 1.5rem 2rem;
 `;
 
-function AuthenticatedApp() {
+export default function AuthenticatedApp() {
   const { user } = useAuth();
 
   return (
@@ -64,4 +64,4 @@ function AuthenticatedApp() {
   );
 }
 
-export default AuthenticatedApp;
+//export default AuthenticatedApp;

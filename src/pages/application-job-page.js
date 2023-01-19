@@ -121,19 +121,13 @@ const StyledRadio = styled("input")`
 `;
 
 export default function ApplicationJob() {
-  //const [ cvSelect, setCvSelect ] = useState("myCV");
   const [job, setJob] = useState();
   const { id } = useParams();
   const { user } = useAuth();
-
-
   useEffect(() => {
     getJob(id).then(setJob).catch(console.log)
   }, []);
-
-  console.log(user)
-
-
+  
   return (
     <div>
       <BackButton>
@@ -152,6 +146,7 @@ export default function ApplicationJob() {
           <div style={{ display: "flex" }}>
             <img
               src={job?.company_info.logo}
+              alt="Logo company"
               style={{
                 boxShadow: "2px 3px 5px 4px rgba(0, 0, 0, 0.2)",
                 borderRadius: "8px",
@@ -263,23 +258,6 @@ export default function ApplicationJob() {
               experience: user.experience,
               cv: user.cv_url
             }}
-            //validate={(values) => {
-            //  const errors = {};
-            //  if (!values.email) {
-            //    errors.email = "Required";
-            //  } else if (
-            //    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-            //  ) {
-            //    errors.email = "Invalid email address";
-            //  }
-            //
-            //  if (!values.password) {
-            //    errors.password = "Required";
-            //  } else if (values.password.length <= 6) {
-            //    errors.password = "Invalid password";
-            //  }
-            //  return errors;
-            //}}
             onSubmit={(values) => {
               console.log(values);
             }}
@@ -348,85 +326,3 @@ export default function ApplicationJob() {
     </div>
   );
 }
-
-//<div style={{display: "flex"}}>
-//<MyCVRadioButton onClick={() => {setCvSelect("myCV")}} style={{marginRight: "20px"}}></MyCVRadioButton>
-//<NewCVRadioButton onClick={() => {setCvSelect("newCV")}}></NewCVRadioButton>
-//</div>
-
-//const NewCVRadioButton = styled("div")`
-//appearance: none;
-//height: 18px;
-//width: 18px;
-//border: ${(cvSelect === "newCV") ? "1px solid palevioletred" : "none"};
-//border-radius: 8px;
-//height: 16px;
-//width: 16px;
-//background-color: ${(cvSelect === "newCV") ? "palevioletred" : "white"};
-//outline: 1px solid palevioletred;
-//outline-offset: 3px;
-//`;
-//
-//const MyCVRadioButton = styled("div")`
-//appearance: none;
-//height: 18px;
-//width: 18px;
-//border: ${(cvSelect === "myCV") ? "1px solid palevioletred" : "none"};
-//border-radius: 8px;
-//height: 16px;
-//width: 16px;
-//background-color: ${(cvSelect === "myCV") ? "palevioletred" : "white"};
-//outline: 1px solid palevioletred;
-//outline-offset: 3px;
-//`;
-
-//<JobCreateDate>SEND YOUR CV UPDATE</JobCreateDate>
-//<div
-//  style={{
-//    display: "flex",
-//    alignItems: "center",
-//    marginBottom: "10px",
-//  }}
-//>
-//  <input type="checkbox" />
-//  <JobCreateDate>Use current CV</JobCreateDate>
-//  <input type="checkbox" />
-//  <JobCreateDate>Upload new CV</JobCreateDate>
-//</div>
-//<FileButton>
-//  <RiUploadLine />
-//  Choosen File
-//</FileButton>
-//<input type="file" style={{ display: "none" }} />
-//<JobCreateDate style={{ marginTop: "10px" }}>
-//  Only PDF. Max size 5MB
-//</JobCreateDate>
-//<JobCreateDate style={{ marginBottom: "5px", marginTop: "10px" }}>
-//  Professional experience (taken from your profile)
-//</JobCreateDate>
-//<input
-//  type="text"
-//  style={{
-//    border: "1px solid #F48FB1",
-//    width: "744px",
-//    height: "70px",
-//    outline: "none",
-//  }}
-///>
-//<JobCreateDate>Between 50 and 1000 characters</JobCreateDate>
-//<JobCreateDate style={{ marginBottom: "5px", marginTop: "10px" }}>
-//  Why are you interested in working at The company name SA
-//</JobCreateDate>
-//<input
-//  type="text"
-//  style={{
-//    width: "744px",
-//    border: "1px solid #F48FB1",
-//    outline: "none",
-//  }}
-///>
-//<JobCreateDate>Between 50 and 1000 characters</JobCreateDate>
-//<ApplyButton style={{ marginTop: "10px", width: "233px" }}>
-//  <RiMailLine style={{ width: "20px", height: "20px" }} />
-//  SEND APPLICATION
-//</ApplyButton>
