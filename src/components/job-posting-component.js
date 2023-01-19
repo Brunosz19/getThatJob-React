@@ -2,7 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RiArrowDownSLine } from "react-icons/ri";
-import { format } from 'date-fns';
+// import { format } from 'date-fns';
 
 const ApplicationsFound = styled("h2")`
   font-family: "Montserrat";
@@ -116,7 +116,7 @@ export default function JobPostingComponent({ job }) {
           display: "flex",
           justifyContent: "space-between",
           height: "100%",
-          widht: "100%",
+          width: "100%",
           alignItems: "center",
           padding: "5px 10px",
         }}
