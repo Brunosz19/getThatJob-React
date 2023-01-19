@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import AuthenticatedApp from "./AuthenticatedApp";
 import { useAuth } from "./context/auth-context";
 import UnauthenticatedApp from "./UnauthenticatedApp";
