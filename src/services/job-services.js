@@ -10,6 +10,11 @@ export async function createJob(data) {
  return job;
 }
 
+export async function GetAppliedJobs(){
+  const appliedJobs = await collectionClient("/professional/jobs/applied");
+  return appliedJobs
+}
+
 export async function getJob(id) {
   const { ...job } = await collectionClient(`/jobs/${id}`);
  

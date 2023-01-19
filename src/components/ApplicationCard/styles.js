@@ -36,6 +36,7 @@ export const ApplicationsFound = styled("h2")`
   font-weight: 500;
   font-size: 20px;
   line-height: 28px;
+  margin-top: 16px
 `;
 
 export const ApplicationsSmLetter = styled("p")`
@@ -97,4 +98,32 @@ export const CVButton = styled("button")`
   height: 40px;
   border-radius: 16px;
   border: 1px solid #f48fb1;
+`;
+
+export const ShadowBox = styled("div")`
+  margin-top: 8px;
+  margin-bottom: 16px;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid #E1E2E1;
+  border-radius: 8px;
+`;
+
+export const InfoContainer = styled("div")`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  widht: 100%;
+  align-items: center;
+  padding: 5px 10px;
+`;
+
+export const JobAndCompany = styled("div")`
+  display: flex;
+  alignItems: center;
+`;
+
+export const JobDataAndSalary = styled("div")`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;

@@ -1,4 +1,6 @@
+import { useEffect, useState } from "react";
 import ApplicationCard from "../components/ApplicationCard";
+import { GetAppliedJobs } from "../services/job-services";
 
 const RadioButton = styled.input`
   appearance: none;
@@ -20,5 +22,10 @@ const RadioButton = styled.input`
 `;
 
 export default function YourApplications() {
-  return <ApplicationCard />
+  const [appliedJobs, setAppliedJobs] = useState(null)
+  useEffect(() => {
+    GetAppliedJobs().then(setAppliedJobs).catch(console.log)
+  }, []);
+  return <ApplicationCard appliedJobs={appliedJobs?.at(0)}/>
 }
+
