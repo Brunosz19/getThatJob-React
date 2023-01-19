@@ -5,15 +5,20 @@ import {
   NumberFinished,
   NumberDisable,
   NumberChoosen,
+  Note,
+  Advice,
+  StyledFileButton,
 } from "./utils";
 import { Input, StyledForm, StyledButton } from "./input";
 import { Formik } from "formik";
 import { FiChevronRight } from "react-icons/fi";
 import { useAuth } from "../context/auth-context";
 import { useState } from "react";
+import { RiUploadLine } from "react-icons/ri";
 
 function SignUpRecruiter() {
   const [file, setFile] = useState();
+
   function handleChangeFile(values, type) {
     const formData = new FormData();
     formData.append("logo", file);
@@ -92,6 +97,10 @@ function SignUpRecruiter() {
             /* and other goodies */
           }) => (
             <StyledForm style={{ gap: "16px" }} onSubmit={handleSubmit}>
+              <Note>
+                You can complete this information later but we reccomend you to
+                do it now
+              </Note>
               {steps === 1 ? (
                 <>
                   <Input
@@ -161,23 +170,66 @@ function SignUpRecruiter() {
                     label="Company Website"
                   />
                   {errors.name && touched.name && errors.name}
-                  <Input
-                    name="about"
-                    type="text"
-                    value={values.about}
-                    onChange={handleChange}
-                    placeholder="+XXXXXXXXX"
-                    label="My Company SA has the vision to change thw way how..."
-                  />
-                  {errors.phone && touched.phone && errors.phone}
-                  <label for="file"> file </label>
-                  <input
-                    id="file"
-                    name="file"
-                    type="file"
-                    value={values.file}
-                    onChange={(event) => setFile(event.target.files[0])}
-                  ></input>
+                  <div>
+                    <Input
+                      name="about"
+                      type="text"
+                      value={values.about}
+                      onChange={handleChange}
+                      placeholder="My Company SA has the vision to change thw way how..."
+                      label="About the company"
+                    />
+                    {errors.phone && touched.phone && errors.phone}
+                    <Advice style={{ width: "100%", margin: "4px" }}>
+                      Between 100 and 2000 characters
+                    </Advice>
+                  </div>
+
+                  <div>
+                    <Note style={{ margin: "0", height: "18px" }}>Upload the company logo</Note>
+                    <label
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "16px",
+                        alignItems: "flex-end",
+                      }}
+                      for="file"
+                    >
+                      <StyledFileButton
+                        style={{
+                          background: "#F48FB1",
+                          color: "white",
+                          width: "164px",
+                          height: "36px",
+                          borderRadius: "8px",
+                          padding: "10px",
+                        }}
+                        type="button"
+                        onClick={(event) => console.log(event)}
+                      >
+                        <RiUploadLine />
+                        Choose a file
+                      </StyledFileButton>
+                      {file ? (
+                        <Note style={{ margin: "0" }}>{file.name}</Note>
+                      ) : (
+                        <Note style={{ margin: "0" }}>No choosen file</Note>
+                      )}
+                    </label>
+                    <Advice style={{ marginTop: "8px" }}>Max size 5MB</Advice>
+
+                    <input
+                      style={{ display: "none" }}
+                      id="file"
+                      name="file"
+                      type="file"
+                      for="file"
+                      value={values.file}
+                      onChange={(event) => setFile(event.target.files[0])}
+                    ></input>
+                  </div>
+
                   <div
                     style={{
                       display: "flex",
