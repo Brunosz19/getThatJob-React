@@ -1,4 +1,3 @@
-import { tokenKey } from "../config";
 import collectionClient from "./collection-client";
 
 export async function getFollowings() {
