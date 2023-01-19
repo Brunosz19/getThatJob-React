@@ -88,4 +88,49 @@ const NumberChoosen = styled("div")`
   border-radius: 66.6667px;
 `;
 
-export { Title, LoginText, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen };
+const Note = styled("div")`
+  width: 380px;
+  height: 24px;
+  margin: 32px 0 0px 0;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #616161;
+`;
+
+const Advice = styled("div")`
+  width: 153px;
+  height: 16px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  color: #8e8e8e;
+`;
+
+const StyledFileButton = styled("div")`
+  border: 1px solid #f48fb1;
+  border-radius: 16px;
+  width: 129px;
+  height: 40px;
+  cursor: pointer;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  text-transform: uppercase;
+  color: #616161;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+`
+export { Title, StyledFileButton, Advice, Note, LoginText, ContainerSignUp, Container, StatusText, InformationText, NumberFinished, NumberDisable, NumberChoosen };
