@@ -9,3 +9,8 @@ export async function createJob(data) {
  sessionStorage.setItem(tokenKey, token);
  return job;
 }
+
+export async function GetAppliedJobs(){
+  const appliedJobs = await collectionClient("/professional/jobs/applied");
+  return appliedJobs
+}
