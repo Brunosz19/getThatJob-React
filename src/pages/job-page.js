@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { StyledSearchInput, Input, StyledLabel } from "../components/input";
+import { Input, StyledLabel } from "../components/input";
 import JobsList from "../components/JobsList";
 import { getJobs } from "../services/professional-service";
-import { FiSearch } from "react-icons/fi";
 
 function JobPage() {
   const [jobData, setJobData] = useState();
