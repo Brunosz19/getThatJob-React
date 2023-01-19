@@ -23,7 +23,9 @@ function SignUpProfessional() {
   const [file, setFile] = useState();
   function handleSignUp(values, type) {
     const formData1 = new FormData();
-    formData1.append("cv", file);
+    if (file) {
+      formData1.append("cv", file);
+    }
     formData1.append("email", values.email);
     formData1.append("password", values.password);
     formData1.append("password_confirmation", values.password_confirmation);
@@ -207,7 +209,7 @@ function SignUpProfessional() {
                   <div>
                     <Input
                       name="phone"
-                      type="number"
+                      type="tel"
                       value={values.phone}
                       onChange={handleChange}
                       placeholder="+XXXXXXXXX"
@@ -332,7 +334,7 @@ function SignUpProfessional() {
                       {file ? (
                         <Note style={{ margin: "0" }}>{file.name}</Note>
                       ) : (
-                        <Note style={{ margin: "0" }}>No choosen file</Note>
+                        <Note style={{ margin: "0" }}>No file choosen</Note>
                       )}
                     </label>
                     <Advice style={{ marginTop: "8px" }}>
