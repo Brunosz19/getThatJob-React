@@ -5,43 +5,40 @@ import {
   NumberFinished,
   NumberDisable,
   NumberChoosen,
+  Advice,
+  Note,
+  StyledFileButton,
 } from "./utils";
 import { Input, StyledForm, StyledButton } from "./input";
-import { Field, Formik } from "formik";
+import { Formik } from "formik";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { useAuth } from "../context/auth-context";
 import { useState } from "react";
-import styled from "@emotion/styled";
-
-const Note = styled("div")`
-  width: 380px;
-  height: 24px;
-  margin: 32px 0 0px 0;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 10px;
-  line-height: 12px;
-  letter-spacing: 1.5px;
-  text-transform: uppercase;
-  color: #616161;
-`
-
-const Advice = styled("div")`
-  width: 153px;
-  height: 16px;
-  font-family: 'Inter';
-  font-style: normal;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 16px;
-  letter-spacing: 0.4px;
-  color: #8E8E8E;
-`
+import { RiUploadLine } from "react-icons/ri";
 
 function SignUpProfessional() {
   const { signup } = useAuth();
   const [steps, setSteps] = useState(1);
+
+  const [file, setFile] = useState();
+  function handleSignUp(values, type) {
+    const formData1 = new FormData();
+    if (file) {
+      formData1.append("cv", file);
+    }
+    formData1.append("email", values.email);
+    formData1.append("password", values.password);
+    formData1.append("password_confirmation", values.password_confirmation);
+    formData1.append("name", values.name);
+    formData1.append("phone", values.phone);
+    formData1.append("birthdate", values.birthdate);
+    formData1.append("link", values.link);
+    formData1.append("title", values.title);
+    formData1.append("experience", values.experience);
+    formData1.append("education", values.education);
+
+    signup(formData1, type);
+  }
 
   return (
     <>
@@ -133,19 +130,22 @@ function SignUpProfessional() {
             password_confirmation: "",
             name: "",
             phone: "",
-            birthdate: "",
+            birthday: "",
             link: "",
             title: "",
             experience: "",
             education: "",
           }}
           onSubmit={(values) => {
-            signup(values, "professionals");
+            handleSignUp(values, "professionals");
           }}
         >
           {({ values, errors, touched, handleChange, handleSubmit }) => (
             <StyledForm style={{ gap: "16px" }} onSubmit={handleSubmit}>
-              <Note>You can complete this information later but we reccomend you to do it now</Note>
+              <Note>
+                You can complete this information later but we reccomend you to
+                do it now
+              </Note>
               {steps === 1 ? (
                 <>
                   <Input
@@ -174,7 +174,9 @@ function SignUpProfessional() {
                     placeholder="******"
                     label="Password Confirmation"
                   />
-                  {errors.password_confirmation && touched.password_confirmation && errors.password_confirmation}
+                  {errors.password_confirmation &&
+                    touched.password_confirmation &&
+                    errors.password_confirmation}
                   <div
                     style={{
                       display: "flex",
@@ -204,16 +206,18 @@ function SignUpProfessional() {
                     label="name"
                   />
                   {errors.name && touched.name && errors.name}
-                  <Input
-                    name="phone"
-                    type="number"
-                    value={values.phone}
-                    onChange={handleChange}
-                    placeholder="+XXXXXXXXX"
-                    label="phone"
-                  />
-                  <Advice>+[country code][number]</Advice>
-                  {errors.phone && touched.phone && errors.phone}
+                  <div>
+                    <Input
+                      name="phone"
+                      type="tel"
+                      value={values.phone}
+                      onChange={handleChange}
+                      placeholder="+XXXXXXXXX"
+                      label="phone"
+                    />
+                    <Advice style={{ marginTop: "6px" }} >+[country code][number]</Advice>
+                    {errors.phone && touched.phone && errors.phone}
+                  </div>
                   <Input
                     name="birthday"
                     type="date"
@@ -267,25 +271,86 @@ function SignUpProfessional() {
                     label="title"
                   />
                   {errors.title && touched.title && errors.title}
-                  <Input
-                    name="experience"
-                    type="textarea"
-                    value={values.experience}
-                    onChange={handleChange}
-                    placeholder="Worked 6 years in a bitcoin farm until I decided to change my life...."
-                    label="Professional experience"
-                    style={{ width: "600px", height: "76px" }}
-                  />
-                  {errors.experience && touched.experience && errors.experience}
-                  <Input
-                    name="education"
-                    type="textarea"
-                    value={values.education}
-                    onChange={handleChange}
-                    placeholder="Major in life experiences with a PHD in procrastination..."
-                    label="Education"
-                  />
-                  {errors.education && touched.education && errors.education}
+                  <div>
+                    <Input
+                      name="experience"
+                      type="textarea"
+                      value={values.experience}
+                      onChange={handleChange}
+                      placeholder="Worked 6 years in a bitcoin farm until I decided to change my life...."
+                      label="Professional experience"
+                      style={{ width: "600px", height: "76px" }}
+                    />
+                    {errors.experience &&
+                      touched.experience &&
+                      errors.experience}
+                    <Advice style={{ width: "100%", margin: "4px" }}>
+                      Between 100 and 2000 characters
+                    </Advice>
+                  </div>
+                  <div>
+                    <Input
+                      name="education"
+                      type="textarea"
+                      value={values.education}
+                      onChange={handleChange}
+                      placeholder="Major in life experiences with a PHD in procrastination..."
+                      label="Education"
+                    />
+                    {errors.education && touched.education && errors.education}
+                    <Advice style={{ width: "100%", margin: "4px" }}>
+                      Between 100 and 2000 characters
+                    </Advice>
+                  </div>
+
+                  <div>
+                    <Note style={{ margin: "0", height: "18px" }}>
+                      Upload/Update your CV
+                    </Note>
+                    <label
+                      style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "16px",
+                        alignItems: "flex-end",
+                      }}
+                      for="file"
+                    >
+                      <StyledFileButton
+                        style={{
+                          background: "#F48FB1",
+                          color: "white",
+                          width: "164px",
+                          height: "36px",
+                          borderRadius: "8px",
+                          padding: "10px",
+                        }}
+                        type="button"
+                        onClick={(event) => console.log(event)}
+                      >
+                        <RiUploadLine />
+                        Choose a file
+                      </StyledFileButton>
+                      {file ? (
+                        <Note style={{ margin: "0" }}>{file.name}</Note>
+                      ) : (
+                        <Note style={{ margin: "0" }}>No file choosen</Note>
+                      )}
+                    </label>
+                    <Advice style={{ marginTop: "8px" }}>
+                      Only PDF. Max size 5MB
+                    </Advice>
+
+                    <input
+                      style={{ display: "none" }}
+                      id="file"
+                      name="file"
+                      type="file"
+                      for="file"
+                      value={values.file}
+                      onChange={(event) => setFile(event.target.files[0])}
+                    ></input>
+                  </div>
                   <div
                     style={{
                       display: "flex",
