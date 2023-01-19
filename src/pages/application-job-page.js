@@ -14,6 +14,8 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../context/auth-context";
 import { Formik } from "formik";
 import { Input, StyledButton, StyledForm } from "../components/input";
+import { getFollowings } from "../services/following-services";
+import { Navigate, useNavigate } from "react-router";
 
 const BackButton = styled("button")`
   font-family: "Inter";
@@ -122,15 +124,23 @@ const StyledRadio = styled("input")`
 
 export default function ApplicationJob() {
   const [job, setJob] = useState();
+  const [followings, setFollowings] = useState();
   const { id } = useParams();
   const { user } = useAuth();
   useEffect(() => {
+    getFollowings().then(setFollowings)
     getJob(id).then(setJob).catch(console.log)
   }, []);
   
+  const isFollow = followings?.some(follows => follows.job_id === job?.id)
+  const navigate = useNavigate();
+  function HandleNavigate(id){
+    navigate(`/professional/job/${id}`)
+  }
+
   return (
     <div>
-      <BackButton>
+      <BackButton onClick={()=> {HandleNavigate(job.id)}}>
         <IoIosArrowBack />
         BACK
       </BackButton>
@@ -166,11 +176,11 @@ export default function ApplicationJob() {
                     borderRadius: "50%",
                     width: "20px",
                     height: "20px",
-                    background: "#F48FB1",
+                    background: (isFollow) ? "#F48FB1" : "white",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: "white",
+                    color: (isFollow) ? "white" : "#616161",
                   }}
                 >
                   <RiFocus3Line />

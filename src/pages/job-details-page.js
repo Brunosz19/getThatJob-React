@@ -86,7 +86,7 @@ export default function JobDetails(){
     const { id } = useParams();
 
     function ApplicationJon(job){
-      navigate(`/professional/job/appli/${job.id}`)
+      navigate(`/professional/job/application/${job.id}`)
     }
 
     useEffect(() => {

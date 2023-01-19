@@ -7,6 +7,7 @@ import { RiBuilding3Line } from "react-icons/ri";
 import { RiFocus3Line } from "react-icons/ri";
 import { useEffect, useState } from "react";
 import { createFollow, getFollowings } from "../../services/following-services";
+import { Navigate, useNavigate } from "react-router";
 
 const Title = styled.h1`
   font-family: ${fonts.secondary};
@@ -45,7 +46,7 @@ function JobCard({
 }) {
 
   const [followingsJobs, setFollowingJobs] = useState();
-
+  const navigate = useNavigate();
   useEffect(() => {
     getFollowings().then(setFollowingJobs)
   }, []);
@@ -54,7 +55,10 @@ function JobCard({
 
   function HandleButton(type){
     createFollow({"job_id": type})
-    window.location.reload();
+  }
+
+  function HandleNavigate(id){
+    navigate(`/professional/job/${id}`)
   }
 
 
@@ -83,10 +87,10 @@ function JobCard({
         </S.JobInfo>
       </S.JobCover>
       <S.ButtonContainer>
-        <div onClick={()=>{HandleButton(id)}} style={{display: "flex", alignItems: "center", gap: "5px" }}>
+        <div onClick={()=>{HandleButton(id)}} style={{cursor: "pointer" , display: "flex", alignItems: "center", gap: "5px" }}>
           <div style={{borderRadius: "50%", width: "20px", height: "20px", background: (isFollow) ? "#F48FB1" : "white", display: "flex", alignItems: "center", justifyContent: "center", color: (isFollow) ? "white" : "#616161",}}><RiFocus3Line/></div>Follow
         </div>
-        <p>See More</p>
+        <p onClick={()=>{HandleNavigate(id)}} style={{cursor: "pointer"}}>See More</p>
       </S.ButtonContainer>
     </S.Wrapper>
   );
