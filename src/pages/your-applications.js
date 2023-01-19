@@ -1,25 +1,26 @@
 import { useEffect, useState } from "react";
-import ApplicationCard from "../components/ApplicationCard";
+// import ApplicationCard from "../components/ApplicationCard";
 import { GetAppliedJobs } from "../services/job-services";
+import FilterCheckboxs from "../components/ApplicationCard/filters";
 import styled from "@emotion/styled";
+import ApplicationList from "../components/ApplicationList";
 
-const RadioButton = styled.input`
-  appearance: none;
-  height: 18px;
-  width: 18px;
-  border: 1px solid palevioletred;
-  border-radius: 8px;
-  &:checked {
-    height: 16px;
-    width: 16px;
-    background-color: palevioletred;
-  }
+const ApplicationsTitle = styled("h1")`
+font-family: "Montserrat";
+font-style: normal;
+font-weight: 400;
+font-size: 34px;
+line-height: 41px;
+letter-spacing: 0.25px;
+`;
 
-  &:active,
-  &:focus {
-    outline: 1px solid palevioletred;
-    outline-offset: 3px;
-  }
+const ApplicationsFound = styled("h2")`
+font-family: "Montserrat";
+font-style: normal;
+font-weight: 500;
+font-size: 20px;
+line-height: 28px;
+margin-top: 16px
 `;
 
 export default function YourApplications() {
@@ -27,6 +28,14 @@ export default function YourApplications() {
   useEffect(() => {
     GetAppliedJobs().then(setAppliedJobs).catch(console.log)
   }, []);
-  return <ApplicationCard appliedJobs={appliedJobs?.at(0)}/>
+  return (
+    <>
+    <ApplicationsTitle>Your Applications</ApplicationsTitle>
+      <FilterCheckboxs />
+      <ApplicationsFound>
+        {appliedJobs?.length} applications found
+      </ApplicationsFound>
+  <ApplicationList props={appliedJobs}/>
+  </>)
 }
 
