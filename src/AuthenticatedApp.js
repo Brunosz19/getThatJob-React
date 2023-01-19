@@ -46,7 +46,7 @@ export default function AuthenticatedApp() {
           </Routes>
         ) : (
           <Routes>
-            <Route path="/professional/job/appli/:id" element={< ApplicationJob />} />
+            <Route path="/professional/job/application/:id" element={< ApplicationJob />} />
             <Route path="/professional/job/:id" element={< JobDetails />} />
             <Route index element={<JobPage />} />
             <Route path="/find-that-job" element={<JobPage />} />
