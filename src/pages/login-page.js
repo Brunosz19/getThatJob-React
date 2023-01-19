@@ -36,7 +36,7 @@ export default function LoginPage() {
         background: "#f5f5f6"
       }}
     >
-      <div style={{ display: "flex", marginTop: "50px" }}>
+      <div style={{ display: "flex", marginTop: "50px", marginLeft: "50px" }}>
         <div>
           <LoginTitle>Welcome back</LoginTitle>
           <LoginText>Login to you account as...</LoginText>
