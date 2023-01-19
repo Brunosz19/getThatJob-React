@@ -13,6 +13,19 @@ import { useAuth } from "../context/auth-context";
 import { useState } from "react";
 
 function SignUpRecruiter() {
+  const [file, setFile] = useState();
+  function handleChangeFile(values, type) {
+    const formData = new FormData();
+    formData.append("logo", file);
+    formData.append("company", values.company);
+    formData.append("email", values.email);
+    formData.append("company_url", values.company_url);
+    formData.append("about", values.about);
+    formData.append("password", values.password);
+    formData.append("password_confirmation", values.password_confirmation);
+
+    signup(formData, type);
+  }
   const { signup } = useAuth();
   const [steps, setSteps] = useState(1);
 
@@ -67,7 +80,7 @@ function SignUpRecruiter() {
             about: "",
           }}
           onSubmit={(values) => {
-            signup(values, "recruiters");
+            handleChangeFile(values, "recruiters");
           }}
         >
           {({
@@ -78,10 +91,7 @@ function SignUpRecruiter() {
             handleSubmit,
             /* and other goodies */
           }) => (
-            <StyledForm
-              style={{ gap: "16px" }}
-              onSubmit={handleSubmit}
-            >
+            <StyledForm style={{ gap: "16px" }} onSubmit={handleSubmit}>
               {steps === 1 ? (
                 <>
                   <Input
@@ -119,7 +129,9 @@ function SignUpRecruiter() {
                     placeholder="******"
                     label="Password Confirmation"
                   />
-                  {errors.password_confirmation && touched.password_confirmation && errors.password_confirmation}
+                  {errors.password_confirmation &&
+                    touched.password_confirmation &&
+                    errors.password_confirmation}
                   <div
                     style={{
                       display: "flex",
@@ -158,6 +170,14 @@ function SignUpRecruiter() {
                     label="My Company SA has the vision to change thw way how..."
                   />
                   {errors.phone && touched.phone && errors.phone}
+                  <label for="file"> file </label>
+                  <input
+                    id="file"
+                    name="file"
+                    type="file"
+                    value={values.file}
+                    onChange={(event) => setFile(event.target.files[0])}
+                  ></input>
                   <div
                     style={{
                       display: "flex",

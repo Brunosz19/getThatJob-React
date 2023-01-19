@@ -32,12 +32,9 @@ function AuthenticatedApp() {
       <MainContainer>
         {user.role === "recruiter" ? (
           <Routes>
+            <Route path="/professional/job/:id" element={< JobPostingDetails />} />
             <Route index element={<JobPosting />} />
             <Route path="/job-posting" element={<JobPosting />} />
-            <Route
-              path="/job-posting/details"
-              element={<JobPostingDetails />}
-            />
             <Route path="/new-job" element={<CreateJob />} />
             <Route
               path="/recruiter/profile"
