@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import JobPostingComponent from "../components/job-posting-component";
+import { GetAppliedJobs } from "../services/job-services";
 import { getJobs } from "../services/professional-service";
 
 const ApplicationFilterTitle = styled("p")`
@@ -31,6 +32,7 @@ const ApplicationFilterConteiner = styled("div")`
   font-size: 10px;
   line-height: 12px;
   letter-spacing: 1.5px;
+  gap: 5px;
 `;
 
 const ApplicationsFound = styled("h2")`
@@ -51,11 +53,39 @@ const ApplicationText = styled("p")`
   margin-right: 10px;
 `;
 
+const StyledRadio = styled("input")`
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border-radius: 50%;
+  width: 15px;
+  height: 15px;
+  margin: 0;
+  border: 2px solid #f48fb1;
+  transition: 0.2s all linear;
+
+  &:checked {
+    border: 6px solid #f48fb1;
+  }
+
+  &:focus {
+    color: #f48fb1;
+  }
+
+  &:active {
+  background-color: white;
+  color: black;
+  outline: 1px solid black;
+}
+`;
+
 export default function JobPosting() {
   const [jobs, setJobs] = useState();
+
   useEffect(() => {
     getJobs().then(setJobs).catch(console.log)
   }, []);
+
   return (
     <div>
       <ApplicationsTitle>Job Postings</ApplicationsTitle>
@@ -64,13 +94,13 @@ export default function JobPosting() {
           FILTER YOUR JOB POSTINGS
         </ApplicationFilterTitle>
         <ApplicationFilterConteiner>
-          <input type="checkbox" />
+          <StyledRadio type="checkbox"/>
           <ApplicationText style={{ color: "#616161" }}>ALL</ApplicationText>
-          <input type="checkbox" />
+          <StyledRadio type="checkbox"/>
           <ApplicationText style={{ color: "#616161" }}>
             Whit candidates on track
           </ApplicationText>
-          <input type="checkbox" />
+          <StyledRadio type="checkbox"/>
           <ApplicationText style={{ color: "#616161" }}>Closed</ApplicationText>
         </ApplicationFilterConteiner>
         <ApplicationsFound style={{ marginTop: "16px" }}>

@@ -5,6 +5,7 @@ import FilterCheckboxs from "../components/ApplicationCard/filters";
 import styled from "@emotion/styled";
 import ApplicationList from "../components/ApplicationList";
 
+
 const ApplicationsTitle = styled("h1")`
 font-family: "Montserrat";
 font-style: normal;
