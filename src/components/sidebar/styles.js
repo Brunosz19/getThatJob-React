@@ -3,7 +3,7 @@ import { colors } from "../../styles/colors";
 
 export const Wrapper = styled.div`
   padding: 32px 0px;
-  background-color: ${colors.gray[100]};
+  background-color: #E1E2E1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
