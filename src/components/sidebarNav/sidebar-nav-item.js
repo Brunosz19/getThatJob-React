@@ -20,6 +20,7 @@ const StyledNavLink = styled(NavLink)`
   padding: 0.5rem;
   display: flex;
   border: none;
+  width: 240px;
   gap: 0.75rem;
   text-decoration: none;
   ${typography.text.md};
