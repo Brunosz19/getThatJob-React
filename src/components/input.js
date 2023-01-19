@@ -32,6 +32,20 @@ const StyledInput = styled("input")`
   }
 `;
 
+const StyledSearchInput = styled("input")`
+  border: 1px solid #f48fb1;
+  border-radius: 8px;
+  background: #ffffff;
+  width: 380px;
+  height: 36px;
+  padding: 8px;
+  display: flex;
+  ::placeholder {
+    color: #8e8e8e;
+    margin-left: 15px;
+  }
+`;
+
 const StyledTextArea = styled("textarea")`
   border: 1px solid #f48fb1;
   border-radius: 8px;
@@ -112,4 +126,4 @@ function Input({
   );
 }
 
-export { Input, StyledForm, StyledButton, StyledLabel };
+export { Input, StyledForm, StyledButton, StyledLabel, StyledSearchInput };
