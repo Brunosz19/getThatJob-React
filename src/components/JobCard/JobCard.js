@@ -54,6 +54,7 @@ function JobCard({
 
   function HandleButton(type){
     createFollow({"job_id": type})
+    window.location.reload();
   }
 
 
