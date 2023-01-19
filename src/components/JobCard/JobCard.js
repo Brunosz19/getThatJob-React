@@ -65,7 +65,7 @@ function JobCard({
   return (
     <S.Wrapper>
       <S.JobCover>
-        <img src={company_info?.logo} alt={title}></img>
+        <img src={company_info?.logo} alt={title} style={{width: "80px", height: "80px",}}></img>
         <S.JobInfo>
           <InfoText>
             <RiBuilding3Line />
