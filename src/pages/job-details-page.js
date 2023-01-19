@@ -112,7 +112,7 @@ export default function JobDetails(){
                             </div>
                         </div>
                     </div>
-                    <ApplyButton><RiNavigationLine style={{width: "20px", height: "20px"}}/>APPLY NOW</ApplyButton>
+                    <ApplyButton onClick={()=>{ApplicationJon(job)}}><RiNavigationLine style={{width: "20px", height: "20px"}}/>APPLY NOW</ApplyButton>
                 </div>
             </div>
             <section style={{display: "flex", flexDirection: "column", alignItems: "center"}}>

@@ -79,7 +79,7 @@ const MorDetailsButton = styled("button")`
 
 export default function JobPostingComponent({ job }) {
   const [detailsOpen, setDetailsOpen] = useState("none");
-  //const [jobStatus, setJobStatus] = useState(job.status)
+  const [jobStatus, setJobStatus] = useState(job?.status)
 
   function ExpandedButton(id) {
     if (id === detailsOpen) {
@@ -88,13 +88,13 @@ export default function JobPostingComponent({ job }) {
     setDetailsOpen(id);
   }
 
-  //function CloseJob(){
-  //  if (jobStatus) {
-  //    setJobStatus(false)
-  //  } else { 
-  //    return
-  //  }
-  //}
+  function CloseJob(){
+    if (jobStatus) {
+      setJobStatus(false)
+    } else { 
+      return
+    }
+  }
   const navigate = useNavigate();
 
   function showJobDetails(job){
@@ -165,6 +165,12 @@ export default function JobPostingComponent({ job }) {
         <div style={{ display: "flex" }}>
           <div style={{ display: "flex" }}>
             <CVButton onClick={()=> {showJobDetails(job)}}>SHOW</CVButton>
+            <DeclineButton 
+              onClick={() => {
+                CloseJob()
+              }} style={{ backgroundColor: (jobStatus) ? "#bf5f82" :  "#E1E2E1", color: (jobStatus) ? "white" : "#8E8E8E"}}>
+                {(jobStatus) ? "CLOSE" : "CLOSED"}
+            </DeclineButton>
           </div>
           <MorDetailsButton
             onClick={() => {
@@ -198,12 +204,5 @@ export default function JobPostingComponent({ job }) {
     </div>
   );
 }
-
-//<DeclineButton 
-//onClick={() => {
-//CloseJob()
-//}} style={{ backgroundColor: (jobStatus) ? "#bf5f82" :  "#E1E2E1", color: (jobStatus) ? "white" : "#8E8E8E"}}>
-//{(jobStatus) ? "CLOSE" : "CLOSED"}
-//</DeclineButton>
 
 //{format(new Date(job?.created_at), 'dd/MM/yy')}
