@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { Input, StyledButton, StyledForm, StyledLabel } from "../components/input";
 import { Title } from "../components/utils";
 import { createJob } from "../services/job-services";
+import { RiMoneyDollarCircleFill } from "react-icons/ri";
 
 const SubTitle = styled("h2")`
   width: 944px;
@@ -72,7 +73,9 @@ export default function CreateJob() {
             />
             {errors.job_type && touched.job_type && errors.job_type}
             <StyledLabel>salary range</StyledLabel>
+            {console.log(values.min_salary)}
             <div style={{ display: "flex", alignItems: "center" }}>
+              <RiMoneyDollarCircleFill style={{position: "absolute", marginLeft: "10px"}}/>
               <Input
                 name="min_salary"
                 type="number"
@@ -85,17 +88,20 @@ export default function CreateJob() {
               />
               {errors.min_salary && touched.min_salary && errors.min_salary}
               <h1 style={{color: "#8E8E8E", margin: "0 8px"}} >{" "}-{" "}</h1>
-              <Input
-                name="max_salary"
-                type="number"
-                value={values.max_salary}
-                onChange={handleChange}
-                placeholder="max"
-                label=""
-                width={"102px"}
-                height={"36px"}
-              />
-              {errors.max_salary && touched.max_salary && errors.max_salary}
+              <div style={{display: "flex", alignItems: "center"}}>
+                <RiMoneyDollarCircleFill style={{position: "absolute", marginLeft: "10px"}}/>
+                <Input
+                  name="max_salary"
+                  type="number"
+                  value={values.max_salary}
+                  onChange={handleChange}
+                  placeholder="max"
+                  label=""
+                  width={"102px"}
+                  height={"36px"}
+                />
+                {errors.max_salary && touched.max_salary && errors.max_salary}
+              </div>
             </div>
             <SubTitle>Additional information</SubTitle>
             <Input
@@ -144,3 +150,5 @@ export default function CreateJob() {
     </>
   );
 }
+
+//{(values.min_salary)? `${<RiMoneyDollarCircleFill/>} min` : `${<RiMoneyDollarCircleFill/>} ${values.min_salary}`}

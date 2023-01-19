@@ -72,6 +72,19 @@ const StyledButton = styled("button")`
   gap: 16px;
 `;
 
+const StyledInputNumber = styled("input")`
+  border: 1px solid #f48fb1;
+  border-radius: 8px;
+  background: #ffffff;
+  width: 500px;
+  height: 36px;
+  padding-left: 30px;
+  display: flex;
+  ::placeholder {
+    color: #8e8e8e;
+  }
+`;
+
 function Input({
   id,
   name,
@@ -86,7 +99,7 @@ function Input({
   return (
     <StyledContainer>
       {label && <StyledLabel htmlFor={id || name}>{label}</StyledLabel>}
-      {type === "textarea" ? (
+      {type === "textarea" && (
         <StyledTextArea
           id={id || name}
           name={name}
@@ -96,8 +109,18 @@ function Input({
           placeholder={placeholder}
           cols={60}
           rows={3}
-        />
-      ) : (
+        />)}
+      {type === "number" ? (
+          <StyledInputNumber
+            id={id || name}
+            name={name}
+            type={type}
+            value={value}
+            onChange={onChange}
+            placeholder={placeholder}
+            style={{ width, height }}
+          />
+        ) : (
         <StyledInput
           id={id || name}
           name={name}
