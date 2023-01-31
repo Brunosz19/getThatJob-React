@@ -6,7 +6,7 @@ import { LoginText } from "../utils";
 function JobsList({ props, type }) {
   return (
     <>
-      <LoginText style={{marginTop: "24px", marginBottom: "8px"}}> {props?.length} jobs for you </LoginText>
+      <LoginText style={{marginTop: "24px", marginBottom: "8px"}}> you are following {props?.length} {(type === "company") ? (props?.length === 1) ? "company" : "companies" : (props?.length === 1) ? "job" : "jobs"} </LoginText>
       <Wrapper>
         {props?.map(({ ...props }) =>
           type === "company" ? (
