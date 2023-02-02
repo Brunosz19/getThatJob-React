@@ -75,7 +75,7 @@ const MorDetailsButton = styled("button")`
   align-items: center;
 `;
 
-export default function CandidatesComponent(){
+export default function CandidatesComponent({candidate}){
 
     const [detailsOpen, setDetailsOpen] = useState("none");
 
@@ -89,13 +89,13 @@ export default function CandidatesComponent(){
             <div style={{display: "flex",  justifyContent: "space-between", height: "100%", widht: "100%", alignItems: "center", padding: "5px 10px"}}>
                 <div style={{display: "flex", alignItems: "center",}}>
                     <div>
-                        <ApplicationsFound>Ramon Valdés</ApplicationsFound>
-                        <ApplicationsmmLetter style={{marginRight: "10px"}}>Mighty Piráte</ApplicationsmmLetter>
+                        <ApplicationsFound>{candidate?.name}</ApplicationsFound>
+                        <ApplicationsmmLetter style={{marginRight: "10px"}}>{candidate?.job_type}</ApplicationsmmLetter>
                     </div>
                 </div>
                 <div>
-                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>guy.brush@mail.com</ApplicationsmmLetter>
-                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>+333555777</ApplicationsmmLetter>
+                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>{candidate?.email}</ApplicationsmmLetter>
+                        <ApplicationsmmLetter style={{width: "80px", textAlign: "center"}}>{candidate?.phone}</ApplicationsmmLetter>
                 </div>
                 <div style={{display: "flex", flexDirection: "column", alignItems: "center",}}>
                     <div style={{display: "flex",}}>
@@ -110,9 +110,9 @@ export default function CandidatesComponent(){
             </div>
             <div style={{padding: "5px 10px", display: `${(detailsOpen === "hola") ? "flex" : "none"}`, flexDirection: "column"}}>
                 <ApplicationSubTitle>Professional experience</ApplicationSubTitle>
-                <ApplicationText>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat quam ut tempor maximus. Sed neque arcu, rhoncus elementum sodales a, tristique sed quam. Aliquam nibh velit, pharetra ac faucibus in, ornare eu tortor. Vestibulum lacus ligula, elementum sit amet purus ut, sagittis molestie ex. In hendrerit orci tellus. Integer pharetra porttitor nulla, nec fringilla dolor ultricies et. Integer accumsan feugiat urna, eu hendrerit dui varius sit amet. Mauris eget tristique turpis. Curabitur eget hendrerit turpis. Etiam rutrum dolor eu posuere vehicula.Pellentesque ut mauris neque. Maecenas posuere sit amet erat at placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec tempor lobortis nisl. Maecenas sit amet massa in tortor pulvinar sollicitudin. Fusce vitae feugiat felis, ut malesuada purus. Curabitur felis velit, interdum vitae viverra quis, sagittis ac nulla. Quisque tempus pharetra ornare. In sed nulla eget risus cursus facilisis vel quis nibh. Praesent euismod lectus a.</ApplicationText>
+                <ApplicationText>{candidate?.experience}</ApplicationText>
                 <ApplicationSubTitle>Why are you interested in working at The company name SA</ApplicationSubTitle>
-                <ApplicationText>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In feugiat quam ut tempor maximus. Sed neque arcu, rhoncus elementum sodales a, tristique sed quam. Aliquam nibh velit, pharetra ac faucibus in, ornare eu tortor. Vestibulum lacus ligula, elementum sit amet purus ut, sagittis molestie ex. In hendrerit orci tellus. Integer pharetra porttitor nulla, nec fringilla dolor ultricies et. Integer accumsan feugiat urna, eu hendrerit dui varius sit amet. Mauris eget tristique turpis. Curabitur eget hendrerit turpis. Etiam rutrum dolor eu posuere vehicula.Pellentesque ut mauris neque. Maecenas posuere sit amet erat at placerat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse potenti. Donec tempor lobortis nisl. Maecenas sit amet massa in tortor pulvinar sollicitudin. Fusce vitae feugiat felis, ut malesuada purus. Curabitur felis velit, interdum vitae viverra quis, sagittis ac nulla. Quisque tempus pharetra ornare. In sed nulla eget risus cursus facilisis vel quis nibh. Praesent euismod lectus a.</ApplicationText>
+                <ApplicationText>candidate?.why</ApplicationText>
             <div style={{marginTop: "10px", display: "flex", justifyContent: "center"}}>
                 <CVButton>DOWNLOAD CV</CVButton>
             </div>
