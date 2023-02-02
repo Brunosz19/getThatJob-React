@@ -17,9 +17,14 @@ import { useState } from "react";
 import { RiUploadLine } from "react-icons/ri";
 
 function SignUpProfessional() {
-  const { signup } = useAuth();
+  const { signup, signUpError } = useAuth();
   const [steps, setSteps] = useState(1);
 
+  console.log(signUpError)
+  console.log(signUpError?.email)
+  console.log(signUpError?.errors)
+
+  
   const [file, setFile] = useState();
   function handleSignUp(values, type) {
     const formData1 = new FormData();
@@ -136,47 +141,101 @@ function SignUpProfessional() {
             experience: "",
             education: "",
           }}
+          validate={(values) => {
+            const errors = {};
+            if (!values.email) {
+              errors.email = "Required";
+            } else if (
+              !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+            ) {
+              errors.email = "Invalid email address";
+            }
+
+            if (!values.password) {
+              errors.password = "Required";
+            } else if (values.password.length <= 5) {
+              errors.password = "Password must have more than 5 characters";
+            } else if (values.password.length > 15) {
+              errors.password = "Password must have less than 15 characters";
+            }
+
+            if (!values.password_confirmation) {
+              errors.password_confirmation = "Required";
+            } else if (values.password_confirmation.length <= 5) {
+              errors.password_confirmation = "Invalid password";
+            } else if (values.password !== values.password_confirmation) {
+              errors.password_confirmation = "Password do not match";
+            }
+
+            if (values.phone && /\s/i.test(values.phone)) {
+              errors.phone = "Whitespace is not allowed";
+            } else if (values.phone && !/^\+?\d{8,15}$/i.test(values.phone)) {
+              errors.phone = "Invalid phone";
+            }
+
+            return errors;
+          }}
           onSubmit={(values) => {
             handleSignUp(values, "professionals");
           }}
         >
-          {({ values, errors, touched, handleChange, handleSubmit }) => (
+          {({
+            values,
+            errors,
+            touched,
+            handleChange,
+            handleSubmit,
+            handleBlur,
+          }) => (
             <StyledForm style={{ gap: "16px" }} onSubmit={handleSubmit}>
-              <Note>
-                You can complete this information later but we reccomend you to
-                do it now
-              </Note>
+              {steps !== 1 && (
+                <Note>
+                  You can complete this information later but we recommend you
+                  to do it now
+                </Note>
+              )}
               {steps === 1 ? (
                 <>
                   <Input
                     name="email"
                     type="email"
+                    onBlur={handleBlur}
                     value={values.email}
                     onChange={handleChange}
                     placeholder="some_user@mail.com"
                     label="Email"
                   />
-                  {errors.email && touched.email && errors.email}
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.email && touched.email && errors.email}
+                  </span>
                   <Input
                     name="password"
                     type="password"
+                    onBlur={handleBlur}
                     value={values.password}
                     onChange={handleChange}
                     placeholder="******"
                     label="Password"
                   />
-                  {errors.password && touched.password && errors.password}
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.password && touched.password && errors.password}
+                  </span>
+
                   <Input
                     name="password_confirmation"
                     type="password"
+                    onBlur={handleBlur}
                     value={values.password_confirmation}
                     onChange={handleChange}
                     placeholder="******"
                     label="Password Confirmation"
                   />
-                  {errors.password_confirmation &&
-                    touched.password_confirmation &&
-                    errors.password_confirmation}
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.password_confirmation &&
+                      touched.password_confirmation &&
+                      errors.password_confirmation}
+                  </span>
+
                   <div
                     style={{
                       display: "flex",
@@ -185,14 +244,30 @@ function SignUpProfessional() {
                       gap: "16px",
                     }}
                   >
-                    <StyledButton
-                      style={{ background: "#F48FB1", color: "white" }}
-                      onClick={() => setSteps(steps + 1)}
-                    >
-                      {" "}
-                      next
-                      <FiChevronRight />
-                    </StyledButton>
+                    {values.email &&
+                    values.password &&
+                    values.password_confirmation &&
+                    !errors.password_confirmation ? (
+                      <StyledButton
+                        style={{ background: "#F48FB1", color: "white" }}
+                        onClick={() => setSteps(steps + 1)}
+                      >
+                        {" "}
+                        next
+                        <FiChevronRight />
+                      </StyledButton>
+                    ) : (
+                      <span style={{ opacity: "65%" }}>
+                        <StyledButton
+                          style={{ background: "#F48FB1", color: "white" }}
+                          type="button"
+                        >
+                          {" "}
+                          next
+                          <FiChevronRight />
+                        </StyledButton>
+                      </span>
+                    )}
                   </div>
                 </>
               ) : steps === 2 ? (
@@ -205,19 +280,23 @@ function SignUpProfessional() {
                     placeholder="John Doe"
                     label="name"
                   />
-                  {errors.name && touched.name && errors.name}
                   <div>
                     <Input
                       name="phone"
-                      type="tel"
+                      type="text"
+                      onBlur={handleBlur}
                       value={values.phone}
                       onChange={handleChange}
                       placeholder="+XXXXXXXXX"
                       label="phone"
                     />
-                    <Advice style={{ marginTop: "6px" }} >+[country code][number]</Advice>
-                    {errors.phone && touched.phone && errors.phone}
+                    <Advice style={{ marginTop: "6px" }}>
+                      +[country code][number]
+                    </Advice>
                   </div>
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.phone && touched.phone && errors.phone}
+                  </span>
                   <Input
                     name="birthday"
                     type="date"
@@ -246,18 +325,38 @@ function SignUpProfessional() {
                   >
                     <StyledButton
                       style={{ background: "inherit" }}
-                      onClick={() => setSteps(steps + 1)}
+                      onClick={() => {
+                        setSteps(steps + 1);
+                        values.name = "";
+                        values.phone = "";
+                        values.birthday = "";
+                        values.link = "";
+                      }}
                     >
                       {" "}
                       skip this{" "}
                     </StyledButton>
-                    <StyledButton
-                      style={{ background: "#F48FB1", color: "white" }}
-                      onClick={() => setSteps(steps + 1)}
-                    >
-                      {" "}
-                      next <FiChevronRight />
-                    </StyledButton>
+                    { values.name || values.birthday || (values.phone && !errors.phone) ? (
+                      <StyledButton
+                        style={{ background: "#F48FB1", color: "white" }}
+                        onClick={() => setSteps(steps + 1)}
+                      >
+                        {" "}
+                        next
+                        <FiChevronRight />
+                      </StyledButton>
+                    ) : (
+                      <span style={{ opacity: "65%" }}>
+                        <StyledButton
+                          style={{ background: "#F48FB1", color: "white" }}
+                          type="button"
+                        >
+                          {" "}
+                          next
+                          <FiChevronRight />
+                        </StyledButton>
+                      </span>
+                    )}
                   </div>
                 </>
               ) : (
@@ -351,6 +450,7 @@ function SignUpProfessional() {
                       onChange={(event) => setFile(event.target.files[0])}
                     ></input>
                   </div>
+
                   <div
                     style={{
                       display: "flex",
@@ -361,6 +461,7 @@ function SignUpProfessional() {
                   >
                     <StyledButton
                       style={{ background: "#F48FB1", color: "white" }}
+                      type="button"
                       onClick={() => setSteps(steps - 1)}
                     >
                       <FiChevronLeft />
@@ -369,17 +470,37 @@ function SignUpProfessional() {
                     <StyledButton
                       style={{ background: "inherit" }}
                       type="submit"
+                      onClick={() => {
+                        values.title = "";
+                        values.experience = "";
+                        values.education = "";
+                      }}
                     >
                       {" "}
-                      skip this!{" "}
+                      skip this{" "}
                     </StyledButton>
-                    <StyledButton
-                      type="submit"
-                      style={{ background: "#F48FB1", color: "white" }}
-                    >
-                      finish
-                      <FiChevronRight />
-                    </StyledButton>
+                    { values.title || values.experience || values.education ? (
+                      <StyledButton
+                        style={{ background: "#F48FB1", color: "white" }}
+                        onClick={() => setSteps(steps + 1)}
+                        type="submit"
+                      >
+                        {" "}
+                        next
+                        <FiChevronRight />
+                      </StyledButton>
+                    ) : (
+                      <span style={{ opacity: "65%" }}>
+                        <StyledButton
+                          style={{ background: "#F48FB1", color: "white" }}
+                          type="button"
+                        >
+                          {" "}
+                          finish
+                          <FiChevronRight />
+                        </StyledButton>
+                      </span>
+                    )}
                   </div>
                 </>
               )}
