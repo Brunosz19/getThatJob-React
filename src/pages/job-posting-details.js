@@ -85,6 +85,7 @@ export default function JobPostingDetails() {
 
   useEffect(() => {
     getJob(id).then(setJob).catch(console.log);
+    // eslint-disable-next-line
   }, []);
   return (
     <div>

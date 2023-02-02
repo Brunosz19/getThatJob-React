@@ -56,7 +56,7 @@ const StyledTextArea = styled("textarea")`
   padding: 8px;
   ::placeholder {
     color: #8e8e8e;
-  };
+  }
 `;
 
 const StyledForm = styled("form")`
@@ -105,6 +105,7 @@ function Input({
   type = "text",
   value,
   onChange,
+  onBlur,
   placeholder,
   label,
   width,
@@ -120,26 +121,29 @@ function Input({
           type={type}
           value={value}
           onChange={onChange}
+          onBlur={onBlur}
           placeholder={placeholder}
           cols={60}
           rows={3}
-        />) :
-        type === "number" ? (
-          <StyledInputNumber
-            id={id || name}
-            name={name}
-            type={type}
-            value={value}
-            onChange={onChange}
-            placeholder={placeholder}
-            style={{ width, height }}
-          />
-        ) : (
+        />
+      ) : type === "number" ? (
+        <StyledInputNumber
+          id={id || name}
+          name={name}
+          type={type}
+          value={value}
+          onBlur={onBlur}
+          onChange={onChange}
+          placeholder={placeholder}
+          style={{ width, height }}
+        />
+      ) : (
         <StyledInput
           id={id || name}
           name={name}
           type={type}
           value={value}
+          onBlur={onBlur}
           onChange={onChange}
           placeholder={placeholder}
           style={{ width, height }}
