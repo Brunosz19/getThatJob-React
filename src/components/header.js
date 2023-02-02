@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 
 import Logo from "../styles/img/gtj-logo 1.svg";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../context/auth-context";
 
 const Button = styled("button")`
   width: 129px;
@@ -11,17 +12,21 @@ const Button = styled("button")`
 `;
 
 export default function Header() {
+  const { setLoginError } = useAuth();
   const navigate = useNavigate()
 
   function LandingPageLink() {
+    setLoginError(null);
     navigate("/landing");
   }
 
   function LoginPageLink() {
+    setLoginError(null);
     navigate("/login");
   }
 
   function SignUpPageLink() {
+    setLoginError(null);
     navigate("/signup");
   }
 

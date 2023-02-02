@@ -11,7 +11,7 @@ function AuthProvider(props) {
   const [showLogin, setShowLogin] = useState("landing");
 
   useEffect(() => {
-   getUser("professional").then(setUser).catch(console.log);
+    getUser("professional").then(setUser).catch(console.log);
   }, []);
 
   function login(credentials, type) {
@@ -23,11 +23,11 @@ function AuthProvider(props) {
   }
 
   function signup(userData, type) {
-   createUser(userData, type).then(setUser).catch(console.log);
+    createUser(userData, type).then(setUser).catch(console.log);
   }
 
-  function ChangeLandingPage(type){
-    setShowLogin(type)
+  function ChangeLandingPage(type) {
+    setShowLogin(type);
   }
 
   const value = {
@@ -39,6 +39,7 @@ function AuthProvider(props) {
     signup,
     setQuantityData,
     loginError,
+    setLoginError,
     ChangeLandingPage,
   };
 

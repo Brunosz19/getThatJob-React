@@ -2,12 +2,11 @@ import { Formik } from "formik";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../context/auth-context";
 import { Input, StyledForm, StyledButton } from "./input";
+import { Note } from "./utils";
 
 function LoginForm({ type }) {
   const { login, loginError } = useAuth();
   const navigate = useNavigate();
-
-  console.log(loginError)
 
   return (
     <Formik
@@ -30,12 +29,15 @@ function LoginForm({ type }) {
         return errors;
       }}
       onSubmit={(values) => {
-        login(values, type).catch(console.log);
+        login(values, type);
 
-
-        type === "professional"
-          ? navigate("/find-that-job")
-          : navigate("/job-posting");
+        if (loginError) {
+          setTimeout(() => {
+            type === "professional"
+            ? navigate("/find-that-job")
+            : navigate("/job-posting");
+          }, 1000)
+        }
       }}
     >
       {({
@@ -46,12 +48,23 @@ function LoginForm({ type }) {
         handleChange,
         handleSubmit,
       }) => (
-
         <StyledForm
-        style={{ gap: "16px", alignItems: "flex-end" }}
-        onSubmit={handleSubmit}
+          style={{ gap: "16px", alignItems: "flex-end" }}
+          onSubmit={handleSubmit}
         >
-          {/* <h1>{loginError?.message}</h1> */}
+          {loginError && (
+            <Note
+              style={{
+                color: "#BF5F82",
+                margin: "0",
+                height: "auto",
+                fontWeight: "400",
+                fontSize: "18px",
+              }}
+            >
+              {loginError?.message}
+            </Note>
+          )}
           <Input
             id="email"
             name="email"
@@ -62,7 +75,9 @@ function LoginForm({ type }) {
             label="Email"
             placeholder="my_mail@mail.com"
           />
-          {errors.email && touched.email && errors.email}
+          <span style={{ color: "#BF5F82" }}>
+            {errors.email && touched.email && errors.email}
+          </span>
           <Input
             id="password"
             name="password"
@@ -73,7 +88,10 @@ function LoginForm({ type }) {
             placeholder="**********"
             label="Password"
           />
-          {errors.password && touched.password && errors.password}
+          <span style={{ color: "#BF5F82" }}>
+            {errors.password && touched.password && errors.password}
+          </span>
+
           <StyledButton
             type="submit"
             style={{ background: "#F48FB1", color: "white" }}
