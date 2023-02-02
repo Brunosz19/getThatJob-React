@@ -8,6 +8,7 @@ function AuthProvider(props) {
   const [quantityData, setQuantityData] = useState([]);
   const [user, setUser] = useState(null);
   const [loginError, setLoginError] = useState(null);
+  const [signUpError, setSignUpError] = useState(null);
   const [showLogin, setShowLogin] = useState("landing");
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function AuthProvider(props) {
   }
 
   function signup(userData, type) {
-    createUser(userData, type).then(setUser).catch(console.log);
+    createUser(userData, type).then(setUser).catch(setSignUpError);
   }
 
   function ChangeLandingPage(type) {
@@ -31,6 +32,8 @@ function AuthProvider(props) {
   }
 
   const value = {
+    setSignUpError,
+    signUpError,
     user,
     showLogin,
     quantityData,
