@@ -19,11 +19,6 @@ import { RiUploadLine } from "react-icons/ri";
 function SignUpProfessional() {
   const { signup, signUpError } = useAuth();
   const [steps, setSteps] = useState(1);
-
-  console.log(signUpError)
-  console.log(signUpError?.email)
-  console.log(signUpError?.errors)
-
   
   const [file, setFile] = useState();
   function handleSignUp(values, type) {
