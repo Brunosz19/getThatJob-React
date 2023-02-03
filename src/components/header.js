@@ -12,21 +12,24 @@ const Button = styled("button")`
 `;
 
 export default function Header() {
-  const { setLoginError } = useAuth();
+  const { setLoginError, setSignUpError } = useAuth();
   const navigate = useNavigate()
 
   function LandingPageLink() {
     setLoginError(null);
+    setSignUpError(null);
     navigate("/landing");
   }
 
   function LoginPageLink() {
     setLoginError(null);
+    setSignUpError(null);
     navigate("/login");
   }
 
   function SignUpPageLink() {
     setLoginError(null);
+    setSignUpError(null);
     navigate("/signup");
   }
 
