@@ -19,7 +19,7 @@ import { RiUploadLine } from "react-icons/ri";
 function SignUpProfessional() {
   const { signup, signUpError } = useAuth();
   const [steps, setSteps] = useState(1);
-  
+
   const [file, setFile] = useState();
   function handleSignUp(values, type) {
     const formData1 = new FormData();
@@ -164,13 +164,15 @@ function SignUpProfessional() {
 
             if (values.phone && /\s/i.test(values.phone)) {
               errors.phone = "Whitespace is not allowed";
-            } else if (values.phone && !/^\+?\d{8,15}$/i.test(values.phone)) {
+            } else if (values.phone && !/^\+\d{8,15}$/i.test(values.phone)) {
               errors.phone = "Invalid phone";
             }
 
             return errors;
           }}
           onSubmit={(values) => {
+            setSteps(1);
+
             handleSignUp(values, "professionals");
           }}
         >
@@ -189,6 +191,21 @@ function SignUpProfessional() {
                   to do it now
                 </Note>
               )}
+              {signUpError ? (
+                <Note
+                  style={{
+                    color: "#BF5F82",
+                    margin: "25px 0 0 0",
+                    height: "auto",
+                    fontWeight: "400",
+                    fontSize: "18px",
+                    width: "auto"
+                  }}
+                >
+                  {signUpError?.message + ", try again"}
+                </Note>
+              ) : null}
+
               {steps === 1 ? (
                 <>
                   <Input
@@ -331,7 +348,9 @@ function SignUpProfessional() {
                       {" "}
                       skip this{" "}
                     </StyledButton>
-                    { values.name || values.birthday || (values.phone && !errors.phone) ? (
+                    {values.name ||
+                    values.birthday ||
+                    (values.phone && !errors.phone) ? (
                       <StyledButton
                         style={{ background: "#F48FB1", color: "white" }}
                         onClick={() => setSteps(steps + 1)}
@@ -474,7 +493,7 @@ function SignUpProfessional() {
                       {" "}
                       skip this{" "}
                     </StyledButton>
-                    { values.title || values.experience || values.education ? (
+                    {values.title || values.experience || values.education ? (
                       <StyledButton
                         style={{ background: "#F48FB1", color: "white" }}
                         onClick={() => setSteps(steps + 1)}
