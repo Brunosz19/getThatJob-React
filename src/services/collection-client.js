@@ -48,7 +48,11 @@ export default async function collectionClient(
     } catch (error) {
       throw new Error(response.statusText);
     }
-    throw new Error(data.errors);
+    if (data.errors.email) {
+      throw new Error("Email " + data.errors.email);
+    } else {
+      throw new Error(data.errors);
+      }
   }
 
   try {
