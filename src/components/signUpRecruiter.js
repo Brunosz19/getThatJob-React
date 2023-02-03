@@ -33,7 +33,7 @@ function SignUpRecruiter() {
 
     signup(formData, type);
   }
-  const { signup } = useAuth();
+  const { signup, signUpError } = useAuth();
   const [steps, setSteps] = useState(1);
 
   return (
@@ -92,7 +92,7 @@ function SignUpRecruiter() {
             if (!values.company) {
               errors.company = "Required";
             }
-            
+
             if (!values.email) {
               errors.email = "Required";
             } else if (
@@ -120,6 +120,8 @@ function SignUpRecruiter() {
             return errors;
           }}
           onSubmit={(values) => {
+            setSteps(1);
+
             handleChangeFile(values, "recruiters");
           }}
         >
@@ -139,6 +141,22 @@ function SignUpRecruiter() {
                   to do it now
                 </Note>
               )}
+
+              {signUpError ? (
+                <Note
+                  style={{
+                    color: "#BF5F82",
+                    margin: "25px 0 0 0",
+                    height: "auto",
+                    fontWeight: "400",
+                    fontSize: "18px",
+                    width: "auto"
+                  }}
+                >
+                  {signUpError?.message + ", try again"}
+                </Note>
+              ) : null}
+
               {steps === 1 ? (
                 <>
                   <Input
@@ -150,8 +168,8 @@ function SignUpRecruiter() {
                     placeholder="My Company S.A"
                     label="Company name"
                   />
-                                    <span style={{ color: "#BF5F82", textAlign: "end" }}>
-                  {errors.company && touched.company && errors.company}
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.company && touched.company && errors.company}
                   </span>
                   <Input
                     name="email"
@@ -162,8 +180,8 @@ function SignUpRecruiter() {
                     placeholder="some.company@email.com"
                     label="Email"
                   />
-                                    <span style={{ color: "#BF5F82", textAlign: "end" }}>
-                  {errors.email && touched.email && errors.email}
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.email && touched.email && errors.email}
                   </span>
                   <Input
                     name="password"
@@ -174,8 +192,8 @@ function SignUpRecruiter() {
                     placeholder="******"
                     label="Password"
                   />
-                                    <span style={{ color: "#BF5F82", textAlign: "end" }}>
-                  {errors.password && touched.password && errors.password}
+                  <span style={{ color: "#BF5F82", textAlign: "end" }}>
+                    {errors.password && touched.password && errors.password}
                   </span>
                   <Input
                     name="password_confirmation"
@@ -306,21 +324,19 @@ function SignUpRecruiter() {
                       gap: "16px",
                     }}
                   >
-                    
                     <StyledButton
                       style={{ background: "inherit" }}
                       onClick={() => {
-                        setSteps(steps + 1)
-                        values.company_url = ""
-                        values.about = ""
+                        setSteps(steps + 1);
+                        values.company_url = "";
+                        values.about = "";
                       }}
                       type="submit"
                     >
                       {" "}
                       skip this{" "}
                     </StyledButton>
-                    {values.company_url ||
-                    values.about ? (
+                    {values.company_url || values.about ? (
                       <StyledButton
                         style={{ background: "#F48FB1", color: "white" }}
                         type="submit"
