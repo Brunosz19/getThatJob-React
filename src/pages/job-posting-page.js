@@ -1,7 +1,6 @@
 import styled from "@emotion/styled";
 import { useEffect, useState } from "react";
 import JobPostingComponent from "../components/job-posting-component";
-import { GetAppliedJobs } from "../services/job-services";
 import { getJobs } from "../services/professional-service";
 
 const ApplicationFilterTitle = styled("p")`
@@ -81,6 +80,13 @@ const StyledRadio = styled("input")`
 
 export default function JobPosting() {
   const [jobs, setJobs] = useState();
+  const [filter, setFilter] = useState("all");
+  const options = ["all", "with candidates on track", "closed"];
+  const filteredJobs = jobs?.filter((job) => {
+    if (filter === "all") return true;
+
+    return job.status === filter;
+  });
 
   useEffect(() => {
     getJobs().then(setJobs).catch(console.log);
@@ -93,21 +99,34 @@ export default function JobPosting() {
         <ApplicationFilterTitle>
           FILTER YOUR JOB POSTINGS
         </ApplicationFilterTitle>
-        <ApplicationFilterConteiner>
-          <StyledRadio type="checkbox" />
-          <ApplicationText style={{ color: "#616161" }}>ALL</ApplicationText>
-          <StyledRadio type="checkbox" />
-          <ApplicationText style={{ color: "#616161" }}>
-            With candidates on track
-          </ApplicationText>
-          <StyledRadio type="checkbox" />
-          <ApplicationText style={{ color: "#616161" }}>Closed</ApplicationText>
+
+        <ApplicationFilterConteiner
+          onChange={(event) => setFilter(event.target.value)}
+        >
+          {options.map((option, index) => (
+            <>
+              <StyledRadio
+                key={index}
+                type="radio"
+                id={`option${index}`}
+                name="jobPostingType"
+                value={option}
+                onClick={(event) => setFilter(event.target.value)}
+                checked={option === filter}
+              />
+              <ApplicationText style={{ color: "#616161" }} for={`option${index}`}>
+                {option.charAt(0).toUpperCase() + option.slice(1)}
+              </ApplicationText>
+            </>
+          ))}
         </ApplicationFilterConteiner>
+
         <ApplicationsFound style={{ marginTop: "16px" }}>
-          {jobs?.length} {(jobs?.length === 1) ? "job" : "jobs" } postings found
+          {filteredJobs?.length} {filteredJobs?.length === 1 ? "job" : "jobs"}{" "}
+          postings found
         </ApplicationsFound>
       </div>
-      {jobs?.map(function (job) {
+      {filteredJobs?.map(function (job) {
         return <JobPostingComponent key={`${job.id}${job}`} job={job} />;
       })}
     </div>
