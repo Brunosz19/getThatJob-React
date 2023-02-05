@@ -22,6 +22,7 @@ function ApplicationCard({ job, experience, why, status }) {
             job_type={job?.job_type}
             min_salary={job?.min_salary}
             max_salary={job?.max_salary}
+            date={job?.created_at}
           />
           <JobStatus onClick={ExpandedButton} />
         </S.InfoContainer>
