@@ -30,7 +30,7 @@ function ApplicationCard({ job, experience, why, status }) {
             max_salary={job?.max_salary}
             date={job?.created_at}
           />
-          <JobStatus onClick={ExpandedButton} />
+          <JobStatus onClick={ExpandedButton} status={status} />
         </S.InfoContainer>
         <ModalList
           detailsOpen={detailsOpen}
