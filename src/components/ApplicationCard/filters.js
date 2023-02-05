@@ -21,37 +21,38 @@ const StyledRadio = styled("input")`
   }
 
   &:active {
-  background-color: white;
-  color: black;
-  outline: 1px solid black;
-}
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+  }
 `;
 
-function FilterCheckboxs() {
+function FilterCheckboxs({ filter, setFilter }) {
+  const options = ["all", "waiting", "in progress", "finished", "declined"];
+
   return (
     <>
       <S.ApplicationFilterTitle>
         FILTER YOUR APPLICATIONS
       </S.ApplicationFilterTitle>
-      <S.ApplicationFilterConteiner>
-        <StyledRadio type="checkbox" />
-        <S.ApplicationText style={{ color: "#616161" }}>ALL</S.ApplicationText>
-        <StyledRadio type="checkbox" />
-        <S.ApplicationText style={{ color: "#616161" }}>
-          Waiting
-        </S.ApplicationText>
-        <StyledRadio type="checkbox" />
-        <S.ApplicationText style={{ color: "#616161" }}>
-          In progress
-        </S.ApplicationText>
-        <StyledRadio type="checkbox" />
-        <S.ApplicationText style={{ color: "#616161" }}>
-          Finished
-        </S.ApplicationText>
-        <StyledRadio type="checkbox" />
-        <S.ApplicationText style={{ color: "#616161" }}>
-          Declined
-        </S.ApplicationText>
+      <S.ApplicationFilterConteiner
+        onChange={(event) => setFilter(event.target.value)}
+      >
+        {options.map((option, index) => (
+          <>
+            <StyledRadio
+              type="radio"
+              id={`option${index}`}
+              name="jobPostingType"
+              value={option}
+              onClick={(event) => setFilter(event.target.value)}
+              checked={option === filter}
+            />
+            <S.ApplicationText style={{ color: "#616161" }} for="option1">
+              {option.charAt(0).toUpperCase() + option.slice(1)}
+            </S.ApplicationText>
+          </>
+        ))}
       </S.ApplicationFilterConteiner>
     </>
   );
