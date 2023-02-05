@@ -10,23 +10,49 @@ import { useState } from "react";
 export default function RecruiterProfilePage() {
   const { user } = useAuth();
   const [file, setFile] = useState();
-  // const navigate = useNavigate()
+  const [showModal, setShowModal] = useState(false);
 
   function handleChangeFile(values) {
     const formData1 = new FormData();
     if (file) {
-      formData1.append("logo", file)
+      formData1.append("logo", file);
     }
     formData1.append("company", values.company);
     formData1.append("email", values.email);
     formData1.append("company_url", values.company_url);
     formData1.append("about", values.about);
+    const keys = ["company", "email", "company_url", "about"];
+    for (const key of keys) {
+      if (values[key] && values[key] !== "") {
+        formData1.append(key, values[key]);
+      }
+    }
 
     updateRecruiter(formData1);
-    // navigate("/recruiter/profile")
+    setShowModal(true);
+
+    setTimeout(() => {
+      window.location.reload();
+      setShowModal(false);
+    }, 1500);
   }
   return (
     <>
+      {showModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "lightgray",
+            padding: "1rem",
+            textAlign: "center",
+          }}
+        >
+          Actualizando perfil de usuario...
+        </div>
+      )}
       <Title>Profile</Title>
       <Formik
         initialValues={{
@@ -37,7 +63,7 @@ export default function RecruiterProfilePage() {
           file: user.logo,
         }}
         onSubmit={(values) => {
-          console.log(values)
+          console.log(values);
           handleChangeFile(values);
         }}
       >
