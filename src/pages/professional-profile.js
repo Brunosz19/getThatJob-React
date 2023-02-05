@@ -17,7 +17,6 @@ export default function ProfessionalProfilePage() {
   const [showModal, setShowModal] = useState(false);
   const [file, setFile] = useState();
 
-
   function handleChangeFile(values) {
     const formData1 = new FormData();
     if (file) {
@@ -47,7 +46,6 @@ export default function ProfessionalProfilePage() {
     setTimeout(() => {
       window.location.reload();
       setShowModal(false);
-
     }, 1500);
   }
 
@@ -82,7 +80,18 @@ export default function ProfessionalProfilePage() {
         }}
         validate={(values) => {
           const errors = {};
-          
+          const fields = [
+            "email",
+            "name",
+            "phone",
+            "birthday",
+            "link",
+            "title",
+            "experience",
+            "education",
+          ];
+          const hasChanges = fields.some(field => user[field] !== values[field]);
+
           if (!values.email) {
             errors.email = "Required";
           } else if (
@@ -91,41 +100,22 @@ export default function ProfessionalProfilePage() {
             errors.email = "Invalid email address";
           }
 
-          if (user.email && values.email === user.email) {
-            errors.email = "No change registered";
-          }
-
-          if (user.name && values.name === user.name) {
-            errors.name = "No change registered";
-          }
-
-          if (user.birthday && values.birthday === user.birthday) {
-            errors.birthday = "No change registered";
-          }
-
-          if (user.link && values.link === user.link) {
-            errors.link = "No change registered";
-          }
-
-          if (user.title && values.title === user.title) {
-            errors.title = "No change registered";
-          }
-
-          if (user.experience && values.experience === user.experience) {
-            errors.experience = "No change registered";
-          }
-
-          if (user.education && values.education === user.education) {
-            errors.education = "No change registered";
-          }
-          if (user.phone && values.phone === user.phone) {
-            errors.phone = "No change registered";
-          }
-
           if (values.phone && /\s/i.test(values.phone)) {
             errors.phone = "Whitespace is not allowed";
           } else if (values.phone && !/^\+\d{8,15}$/i.test(values.phone)) {
             errors.phone = "Invalid phone";
+          }
+
+          for (const field of fields) {
+            if (user[field] && values[field] === user[field]) {
+              errors[field] = "No change registered";
+            }
+          }
+
+          if (hasChanges) {
+            for (const field of fields) {
+              delete errors[field]
+            }
           }
 
           return errors;
