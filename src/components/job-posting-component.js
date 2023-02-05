@@ -81,7 +81,6 @@ const MorDetailsButton = styled("button")`
 export default function JobPostingComponent({ job }) {
   const [detailsOpen, setDetailsOpen] = useState("none");
   const [jobStatus, setJobStatus] = useState(job?.status)
-  console.log(job?.created_at)
   function ExpandedButton(id) {
     if (id === detailsOpen) {
       return setDetailsOpen("none");
