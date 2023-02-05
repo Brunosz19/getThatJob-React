@@ -5,12 +5,18 @@ import JobCompany from "./JobCompany";
 import JobInfo from "./JobInfo";
 import JobStatus from "./JobStatus";
 import ModalList from "../ModalList";
+import { format } from 'date-fns';
 
 function ApplicationCard({ job, experience, why, status }) {
   const [detailsOpen, setDetailsOpen] = useState(false);
   function ExpandedButton() {
     setDetailsOpen(!detailsOpen);
   }
+
+  const date = format(new Date(job?.created_at), 'dd/MM/yy')
+  //const now = new Date().toLocaleDateString()
+  //const parseNow =  format(new Date(now), 'dd/MM/yy')
+  //console.log(parseNow)
 
   return (
     <div>

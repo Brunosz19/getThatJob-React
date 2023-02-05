@@ -91,7 +91,7 @@ export default function JobPostingDetails() {
         <div>
             <ApplicationsTitle>Show Job Postings</ApplicationsTitle>
             <JobPostingComponent job={job}/>
-            <ApplicationsTitle>5 candidates found</ApplicationsTitle>
+            <ApplicationsTitle>{job?.applied_jobs.length} {(job?.applied_jobs.length === 1) ? "candidate" : "candidates" } found</ApplicationsTitle>
             <div>
                 <ApplicationFilterTitle>FILTER YOUR JOB POSTINGS</ApplicationFilterTitle>
                 <ApplicationFilterConteiner>
@@ -106,7 +106,9 @@ export default function JobPostingDetails() {
                 </ApplicationFilterConteiner>
                 <ApplicationsFound style={{marginTop: "16px"}}>4 job postings found</ApplicationsFound>
             </div>
-            <CandidatesComponent/>
+            {job?.applied_jobs.map(function(candidate){
+                return <CandidatesComponent key={`${candidate.id}${candidate}`} candidate={candidate}/>
+            })}
         </div>
     )
 }
