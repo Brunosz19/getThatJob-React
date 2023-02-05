@@ -16,7 +16,7 @@ const MorDetailsButton = styled("button")`
   align-items: center;
 `;
 
-export default function JobStatus({onClick}){
+export default function JobStatus({onClick, status}){
   return (<div style={{ display: "flex" }}>
   <S.ApplicationsmmLetter
     style={{ width: "80px", textAlign: "center" }}
@@ -26,7 +26,10 @@ export default function JobStatus({onClick}){
   <S.ApplicationsmmLetter
     style={{ width: "80px", textAlign: "center" }}
   >
-    Waiting for review
+    {status === "waiting" && "Waiting for review"}
+    {status === "inProgress" && "Review in progress"}
+    {status === "finished" && "Review finished"}
+    {status === "declined" && "Declined on 07/11/20"}
   </S.ApplicationsmmLetter>
   <MorDetailsButton
       onClick={onClick}
