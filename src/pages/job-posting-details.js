@@ -86,7 +86,7 @@ export default function JobPostingDetails() {
 
     useEffect(() => {
         getJob(id).then(setJob).catch(console.log)
-    }, []);
+    }, [id]);
     return (
         <div>
             <ApplicationsTitle>Show Job Postings</ApplicationsTitle>
