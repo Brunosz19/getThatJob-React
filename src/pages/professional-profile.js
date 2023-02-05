@@ -34,7 +34,7 @@ export default function ProfessionalProfilePage() {
       "education",
     ];
     for (const key of keys) {
-      if (values[key] && values[key] !== "") {
+      if (values[key] && !(key === "phone" && values[key] !== "")) {
         formData1.append(key, values[key]);
       }
     }
@@ -82,8 +82,8 @@ export default function ProfessionalProfilePage() {
           const errors = {};
           const fields = [
             "email",
-            "name",
             "phone",
+            "name",
             "birthday",
             "link",
             "title",
@@ -91,6 +91,18 @@ export default function ProfessionalProfilePage() {
             "education",
           ];
           const hasChanges = fields.some(field => user[field] !== values[field]);
+          
+          for (const field of fields) {
+            if (user[field] && values[field] === user[field]) {
+              errors[field] = "No change registered";
+            }
+          }
+
+          if (hasChanges) {
+            for (const field of fields) {
+              delete errors[field]
+            }
+          }
 
           if (!values.email) {
             errors.email = "Required";
@@ -102,20 +114,8 @@ export default function ProfessionalProfilePage() {
 
           if (values.phone && /\s/i.test(values.phone)) {
             errors.phone = "Whitespace is not allowed";
-          } else if (values.phone && !/^\+\d{8,15}$/i.test(values.phone)) {
+          } else if (values.phone && !/^\d{8,15}$/i.test(values.phone)) {
             errors.phone = "Invalid phone";
-          }
-
-          for (const field of fields) {
-            if (user[field] && values[field] === user[field]) {
-              errors[field] = "No change registered";
-            }
-          }
-
-          if (hasChanges) {
-            for (const field of fields) {
-              delete errors[field]
-            }
           }
 
           return errors;
