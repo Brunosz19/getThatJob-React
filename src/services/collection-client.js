@@ -52,7 +52,7 @@ export default async function collectionClient(
       throw new Error("Email " + data.errors.email);
     } else {
       throw new Error(data.errors);
-      }
+    }
   }
 
   try {
