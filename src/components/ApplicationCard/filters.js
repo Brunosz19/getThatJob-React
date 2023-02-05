@@ -41,6 +41,7 @@ function FilterCheckboxs({ filter, setFilter }) {
         {options.map((option, index) => (
           <>
             <StyledRadio
+              key={index}
               type="radio"
               id={`option${index}`}
               name="jobPostingType"
@@ -48,7 +49,7 @@ function FilterCheckboxs({ filter, setFilter }) {
               onClick={(event) => setFilter(event.target.value)}
               checked={option === filter}
             />
-            <S.ApplicationText style={{ color: "#616161" }} for="option1">
+            <S.ApplicationText style={{ color: "#616161" }} for={`option${index}`}>
               {option.charAt(0).toUpperCase() + option.slice(1)}
             </S.ApplicationText>
           </>
