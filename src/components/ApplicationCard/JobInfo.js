@@ -1,4 +1,5 @@
 import * as S from "./styles";
+import * as U from "../utils/utils-date"
 
 export default function JobInfo({
   category,
@@ -19,7 +20,7 @@ export default function JobInfo({
         <S.ApplicationsmmLetter style={{ marginRight: "10px" }}>
           {(min_salary / 1000).toFixed(1)}k - {(max_salary / 1000).toFixed(1)}k
         </S.ApplicationsmmLetter>
-        <S.ApplicationsmmLetter>Posted on {date}</S.ApplicationsmmLetter>
+        <S.ApplicationsmmLetter>Posted {U.getDaysAgo(date)}</S.ApplicationsmmLetter>
       </div>
     </S.JobDataAndSalary>
   );

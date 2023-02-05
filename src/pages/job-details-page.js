@@ -7,7 +7,7 @@ import { useNavigate, useParams } from "react-router";
 import { getJob } from "../services/job-services";
 import { Link } from "react-router-dom";
 import { getFollowings } from "../services/following-services";
-
+import * as U from "../components/utils/utils-date"
 
 const BackButton = styled("button")`
     font-family: 'Inter';
@@ -78,22 +78,22 @@ const JobData = styled("h4")`
 
 
 export default function JobDetails(){
-
-
     const navigate = useNavigate();
     const [job, setJob] = useState();
     const [followings, setFollowings] = useState();
     const { id } = useParams();
-
     function ApplicationJon(job){
-      navigate(`/professional/job/application/${job.id}`)
+        navigate(`/professional/job/application/${job.id}`)
     }
-
+    
     useEffect(() => {
         getFollowings().then(setFollowings)
         getJob(id).then(setJob).catch(console.log)
-    }, []);
-
+    }, [id]);
+    // const dateJob = Date.parse(job?.created_at) || 0
+    // const timeAgo = formatDistance((dateJob), new Date(Date.now()), {
+    //     addSuffix: true
+    //   })
     const isFollow = followings?.some(follows => follows.job_id === job?.id)
 
     return (
@@ -116,7 +116,7 @@ export default function JobDetails(){
             </div>
             <section style={{display: "flex", flexDirection: "column", alignItems: "center"}}>
                 <JobTitle>{job?.title}</JobTitle>
-                <JobCreateDate><AiOutlineClockCircle/>Posted 2 days ago</JobCreateDate>
+                <JobCreateDate><AiOutlineClockCircle/>Posted {U.getDaysAgo(job?.created_at)}</JobCreateDate>
                 <div style={{display: "flex", gap: "32px",}}>
                     <div style={{display: "flex", flexDirection: "column", alignItems: "center", border: "1px solid #F48FB1", borderRadius: "8px"}}>
                         <JobData style={{paddingTop: "8px"}}>Category</JobData>
@@ -132,8 +132,8 @@ export default function JobDetails(){
                     </div>
                 </div>
                 <div style={{width: "800px", marginTop: "30px"}}>
-                    <JobSubTitle>About The company name SA</JobSubTitle>
-                    <JobData>ABOUT THE COMPANY</JobData>
+                    <JobSubTitle>About {job?.company_info.name}</JobSubTitle>
+                    <JobData>{job?.company_info.about_comp}</JobData>
                     <JobSubTitle>About the job position</JobSubTitle>
                     <JobData>{job?.about}</JobData>
                     <JobSubTitle>Mandatory Requirements</JobSubTitle>

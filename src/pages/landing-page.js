@@ -200,7 +200,6 @@ export default function LandingPage() {
           </ProgrammersProfile>
         </div>
       </section>
-      <Link to="/jobapp">To Job</Link>
     </section>
   );
 }
