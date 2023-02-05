@@ -19,18 +19,18 @@ function Footer() {
       <Text>Codeable - Cohort 8 Final Project</Text>
       <S.Members>
         <Text>Build with ❤ by:</Text>
-        <S.WrapperIcon>
+        <a href="https://github.com/Brunosz19" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><S.WrapperIcon>
           <AiOutlineGithub />
           <Text>Bruno Saenz</Text>
-        </S.WrapperIcon>
-        <S.WrapperIcon>
+        </S.WrapperIcon></a>
+        <a href="https://github.com/minanodiego" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><S.WrapperIcon>
           <AiOutlineGithub />
           <Text>Diego Miñano</Text>
-        </S.WrapperIcon>
-        <S.WrapperIcon>
+        </S.WrapperIcon></a>
+        <a href="https://github.com/TyrUmbra" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><S.WrapperIcon>
           <AiOutlineGithub />
           <Text>Carlos Mendoza</Text>
-        </S.WrapperIcon>
+        </S.WrapperIcon></a>
       </S.Members>
       <S.SourceCode>
         <S.WrapperIcon>

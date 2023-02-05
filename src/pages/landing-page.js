@@ -3,9 +3,9 @@ import styled from "@emotion/styled";
 import { Link, useNavigate } from "react-router-dom";
 
 import Group from "../styles/img/groupImg.svg";
-import Person_4 from "../styles/img/persona-4.svg";
-import Person_2 from "../styles/img/persona-2.svg";
-import Person_3 from "../styles/img/persona-3.svg";
+import Person_4 from "../styles/img/io.jpg";
+import Person_2 from "../styles/img/diego.jpg";
+import Person_3 from "../styles/img/t1.png";
 import magnifyingGlass from "../styles/img/lopa.svg";
 
 const Text = styled("p")`
@@ -155,8 +155,8 @@ export default function LandingPage() {
           <ProgrammersProfile>
             <img
               src={Person_4}
-              alt="person 4"
-              style={{ width: "180px", height: "180px" }}
+              alt="Bruno Sáenz"
+              style={{ width: "180px", height: "180px", borderRadius: "50%" }}
             />
             <Text>Bruno Sáenz</Text>
             <div
@@ -166,12 +166,16 @@ export default function LandingPage() {
                 justifyContent: "space-between",
               }}
             >
-              <AiFillGithub style={{ width: "20px" }} />
-              <AiOutlineLinkedin style={{ width: "20px" }} />
+              <a href="https://github.com/Brunosz19" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><AiFillGithub style={{ width: "20px" }} /></a>
+              <a href="https://www.linkedin.com/in/brunosz19/" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><AiOutlineLinkedin style={{ width: "20px" }} /></a>
             </div>
           </ProgrammersProfile>
           <ProgrammersProfile>
-            <img src={Person_2} alt="person 2" />
+            <img 
+            src={Person_2} 
+            alt="Diego Miñano"
+            style={{ width: "180px", height: "180px", borderRadius: "50%" }} 
+            />
             <Text>Diego Miñano</Text>
             <div
               style={{
@@ -180,12 +184,16 @@ export default function LandingPage() {
                 justifyContent: "space-between",
               }}
             >
-              <AiFillGithub style={{ width: "20px" }} />
-              <AiOutlineLinkedin style={{ width: "20px" }} />
+              <a href="https://github.com/minanodiego" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><AiFillGithub style={{ width: "20px" }} /></a>
+              <a href="https://www.linkedin.com/in/minanodiego/" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><AiOutlineLinkedin style={{ width: "20px" }} /></a>
             </div>
           </ProgrammersProfile>
           <ProgrammersProfile>
-            <img src={Person_3} alt="person 3" />
+            <img 
+            src={Person_3} 
+            alt="Carlos Mendoza" 
+            style={{ width: "180px", height: "180px", borderRadius: "50%" }}
+            />
             <Text>Carlos Mendoza</Text>
             <div
               style={{
@@ -194,8 +202,8 @@ export default function LandingPage() {
                 justifyContent: "space-between",
               }}
             >
-              <AiFillGithub style={{ width: "20px" }} />
-              <AiOutlineLinkedin style={{ width: "20px" }} />
+              <a href="https://github.com/TyrUmbra" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><AiFillGithub style={{ width: "20px" }} /></a>
+              <a href="https://www.linkedin.com/in/carlosaamm" target="_BLANK" style={{textDecoration: "none", color: "black"}} rel="noreferrer"><AiOutlineLinkedin style={{ width: "20px" }} /></a>
             </div>
           </ProgrammersProfile>
         </div>
