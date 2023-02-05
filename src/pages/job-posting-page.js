@@ -104,7 +104,7 @@ export default function JobPosting() {
           <ApplicationText style={{ color: "#616161" }}>Closed</ApplicationText>
         </ApplicationFilterConteiner>
         <ApplicationsFound style={{ marginTop: "16px" }}>
-          4 job postings found
+          {jobs?.length} {(jobs?.length === 1) ? "job" : "jobs" } postings found
         </ApplicationsFound>
       </div>
       {jobs?.map(function(job){
