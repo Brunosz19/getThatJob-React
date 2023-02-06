@@ -19,7 +19,7 @@ export const ApplicationsTitle = styled("h1")`
   letter-spacing: 0.25px;
 `;
 
-export const ApplicationFilterConteiner = styled("div")`
+export const ApplicationFilterConteiner = styled("form")`
   display: flex;
   align-items: center;
   font-family: "Inter";
@@ -69,7 +69,7 @@ export const ApplicationSubTitle = styled("h3")`
   margin: 10px 0 16px;
 `;
 
-export const ApplicationText = styled("p")`
+export const ApplicationText = styled("label")`
   font-family: "Inter";
   font-style: normal;
   font-weight: 400;
@@ -77,6 +77,7 @@ export const ApplicationText = styled("p")`
   line-height: 20px;
   letter-spacing: 0.25px;
   margin-right: 10px;
+  margin-left: 3px;
 `;
 
 export const DeclineButton = styled("button")`
