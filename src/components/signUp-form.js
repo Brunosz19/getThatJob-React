@@ -3,9 +3,12 @@ import { Title, Container, LoginText } from "./utils";
 import SignUpProfessional from "./signUpProfessional";
 import SignUpRecruiter from "./signUpRecruiter";
 import Girl from "../styles/img/girlSignUp.svg";
+import { useAuth } from "../context/auth-context";
 
 function SignUpForm() {
+  const { setLoginError, setSignUpError } = useAuth();
   const [formType, setFormType] = useState("professional");
+
 
   return (
     <Container>
@@ -32,13 +35,21 @@ function SignUpForm() {
             >
               <div
                 style={{ borderBottom: "3px solid #F48FB1" }}
-                onClick={() => setFormType("professional")}
+                onClick={() => {
+                  setFormType("professional")
+                  setLoginError(null)
+                  setSignUpError(null)
+                }}
               >
                 PROFESSIONAL
               </div>
               <div
                 style={{ borderBottom: "3px solid #BDBDBD", color: "#8E8E8E" }}
-                onClick={() => setFormType("recruiter")}
+                onClick={() => {
+                  setFormType("recruiter")
+                  setLoginError(null)
+                  setSignUpError(null)
+                }}
               >
                 RECRUITER
               </div>
@@ -54,13 +65,21 @@ function SignUpForm() {
             >
               <div
                 style={{ borderBottom: "3px solid #BDBDBD", color: "#8E8E8E" }}
-                onClick={() => setFormType("professional")}
+                onClick={() => {
+                  setFormType("professional")
+                  setLoginError(null)
+                  setSignUpError(null)
+                }}
               >
                 PROFESSIONAL
               </div>
               <div
                 style={{ borderBottom: "3px solid #F48FB1" }}
-                onClick={() => setFormType("recruiter")}
+                onClick={() => {
+                  setFormType("recruiter")
+                  setLoginError(null)
+                  setSignUpError(null)
+                }}
               >
                 RECRUITER
               </div>

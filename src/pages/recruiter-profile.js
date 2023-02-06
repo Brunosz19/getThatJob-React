@@ -5,28 +5,50 @@ import { Advice, Note, StyledFileButton, Title } from "../components/utils";
 import { updateRecruiter } from "../services/professional-service";
 import { RiUploadLine } from "react-icons/ri";
 import { useState } from "react";
-// import { useNavigate } from "react-router-dom";
 
 export default function RecruiterProfilePage() {
   const { user } = useAuth();
+  const [showModal, setShowModal] = useState(false);
   const [file, setFile] = useState();
-  // const navigate = useNavigate()
 
   function handleChangeFile(values) {
     const formData1 = new FormData();
     if (file) {
-      formData1.append("logo", file)
+      formData1.append("logo", file);
     }
-    formData1.append("company", values.company);
-    formData1.append("email", values.email);
-    formData1.append("company_url", values.company_url);
-    formData1.append("about", values.about);
+
+    const keys = ["company", "email", "company_url", "about"];
+    for (const key of keys) {
+      if (values[key] !== "" || values[key] !== user[key]) {
+        formData1.append(key, values[key]);
+      }
+    }
 
     updateRecruiter(formData1);
-    // navigate("/recruiter/profile")
+    setShowModal(true);
+
+    setTimeout(() => {
+      window.location.reload();
+      setShowModal(false);
+    }, 1500);
   }
   return (
     <>
+      {showModal && (
+        <div
+          style={{
+            position: "fixed",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            backgroundColor: "lightgray",
+            padding: "1rem",
+            textAlign: "center",
+          }}
+        >
+          Actualizando perfil de usuario...
+        </div>
+      )}
       <Title>Profile</Title>
       <Formik
         initialValues={{
@@ -36,12 +58,47 @@ export default function RecruiterProfilePage() {
           about: user.about,
           file: user.logo,
         }}
+        validate={(values) => {
+          const errors = {};
+          const fields = ["company", "email", "company_url", "about"];
+          const hasChanges = fields.some(
+            (field) => user[field] !== values[field]
+          );
+
+          if (!values.email) {
+            errors.email = "Required";
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = "Invalid email address";
+          }
+
+          for (const field of fields) {
+            if (user[field] && values[field] === user[field]) {
+              errors[field] = "No change registered";
+            }
+          }
+
+          if (hasChanges) {
+            for (const field of fields) {
+              delete errors[field];
+            }
+          }
+
+          return errors;
+        }}
         onSubmit={(values) => {
-          console.log(values)
           handleChangeFile(values);
         }}
       >
-        {({ values, errors, touched, handleChange, handleSubmit }) => (
+        {({
+          values,
+          errors,
+          touched,
+          handleChange,
+          handleSubmit,
+          handleBlur,
+        }) => (
           <StyledForm
             style={{ gap: "8px", padding: "0 120px" }}
             onSubmit={handleSubmit}
@@ -117,39 +174,51 @@ export default function RecruiterProfilePage() {
             <Input
               name="email"
               type="filename"
+              onBlur={handleBlur}
               value={values.email}
               onChange={handleChange}
               placeholder="my_mail@mail.com"
               label="Email"
             />
-            {errors.email && touched.email && errors.email}
+            <span style={{ color: "#BF5F82" }}>
+              {errors.email && touched.email && errors.email}
+            </span>
             <Input
               name="company"
               type="text"
+              onBlur={handleBlur}
               value={values.company}
               onChange={handleChange}
               placeholder="My Company Name"
               label="My Company Name"
             />
-            {errors.company && touched.company && errors.company}
+            <span style={{ color: "#BF5F82" }}>
+              {errors.company && touched.company && errors.company}
+            </span>
             <Input
               name="company_url"
               type="text"
+              onBlur={handleBlur}
               value={values.company_url}
               onChange={handleChange}
               placeholder="www.webworks.com"
               label="company website"
             />
-            {errors.company_url && touched.company_url && errors.company_url}
+            <span style={{ color: "#BF5F82" }}>
+              {errors.company_url && touched.company_url && errors.company_url}
+            </span>
             <Input
               name="about"
               type="textarea"
+              onBlur={handleBlur}
               value={values.about}
               onChange={handleChange}
               placeholder="www.webworks.com"
               label="about the company"
             />
-            {errors.about && touched.about && errors.about}
+            <span style={{ color: "#BF5F82" }}>
+              {errors.about && touched.about && errors.about}
+            </span>
             <StyledButton
               style={{
                 width: "165px",

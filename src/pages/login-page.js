@@ -1,6 +1,7 @@
 import styled from "@emotion/styled";
 import { useState } from "react";
 import LoginForm from "../components/login-form";
+import { useAuth } from "../context/auth-context";
 import PersonWithPlant from "../styles/img/personWithPlant.svg";
 
 const LoginTitle = styled("h1")`
@@ -23,6 +24,7 @@ const LoginText = styled("p")`
 `;
 
 export default function LoginPage() {
+  const { setLoginError } = useAuth();
   const [loginType, setLoginType] = useState("professional");
 
   return (
@@ -51,13 +53,19 @@ export default function LoginPage() {
             >
               <div
                 style={{ borderBottom: "3px solid #F48FB1" }}
-                onClick={() => setLoginType("professional")}
+                onClick={() => {
+                  setLoginError(null);
+                  setLoginType("professional");
+                }}
               >
                 PROFESSIONAL
               </div>
               <div
                 style={{ borderBottom: "3px solid #BDBDBD", color: "#8E8E8E" }}
-                onClick={() => setLoginType("recruiter")}
+                onClick={() =>{
+                  setLoginError(null);
+                  setLoginType("recruiter");
+                }}
               >
                 RECRUITER
               </div>
@@ -73,13 +81,19 @@ export default function LoginPage() {
             >
               <div
                 style={{ borderBottom: "3px solid #BDBDBD", color: "#8E8E8E" }}
-                onClick={() => setLoginType("professional")}
+                onClick={() => {
+                  setLoginError(null);
+                  setLoginType("professional");
+                }}
               >
                 PROFESSIONAL
               </div>
               <div
                 style={{ borderBottom: "3px solid #F48FB1" }}
-                onClick={() => setLoginType("recruiter")}
+                onClick={() =>{
+                  setLoginError(null);
+                  setLoginType("recruiter");
+                }}
               >
                 RECRUITER
               </div>
