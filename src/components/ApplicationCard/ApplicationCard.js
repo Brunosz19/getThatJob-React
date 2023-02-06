@@ -17,7 +17,7 @@ function ApplicationCard({ job, experience, why, status }) {
   //const now = new Date().toLocaleDateString()
   //const parseNow =  format(new Date(now), 'dd/MM/yy')
   //console.log(parseNow)
-
+  console.log(job)
   return (
     <div>
       <S.ShadowBox>
@@ -30,7 +30,7 @@ function ApplicationCard({ job, experience, why, status }) {
             max_salary={job?.max_salary}
             date={job?.created_at}
           />
-          <JobStatus onClick={ExpandedButton} />
+          <JobStatus onClick={ExpandedButton} status={status} declined={job?.updated_at}/>
         </S.InfoContainer>
         <ModalList
           detailsOpen={detailsOpen}
