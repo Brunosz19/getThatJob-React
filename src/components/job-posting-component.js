@@ -2,6 +2,7 @@ import styled from "@emotion/styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { RiArrowDownSLine } from "react-icons/ri";
+import { parseDate } from "./utils/utils-date";
 // import { format } from 'date-fns';
 
 const ApplicationsFound = styled("h2")`
@@ -80,7 +81,7 @@ const MorDetailsButton = styled("button")`
 export default function JobPostingComponent({ job }) {
   const [detailsOpen, setDetailsOpen] = useState("none");
   const [jobStatus, setJobStatus] = useState(job?.status)
-
+  console.log(job?.created_at)
   function ExpandedButton(id) {
     if (id === detailsOpen) {
       return setDetailsOpen("none");
@@ -148,12 +149,12 @@ export default function JobPostingComponent({ job }) {
             <ApplicationsmmLetter
               style={{ width: "80px", textAlign: "center" }}
             >
-              Open on<br/>
+              Open on {parseDate(job?.created_at)}<br/>
             </ApplicationsmmLetter>
             <ApplicationsmmLetter
               style={{ width: "80px", textAlign: "center" }}
             >
-              Total Candidates
+              Total Candidates {job?.applied_jobs.length}
             </ApplicationsmmLetter>
             <ApplicationsmmLetter
               style={{ width: "80px", textAlign: "center", color: "#F48FB1" }}

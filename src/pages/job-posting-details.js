@@ -82,7 +82,7 @@ const StyledRadio = styled("input")`
 export default function JobPostingDetails() {
   const [job, setJob] = useState();
   const { id } = useParams();
-
+  
   useEffect(() => {
     getJob(id).then(setJob).catch(console.log);
     // eslint-disable-next-line

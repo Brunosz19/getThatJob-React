@@ -16,6 +16,8 @@ import { Formik } from "formik";
 import { Input, StyledButton, StyledForm } from "../components/input";
 import { getFollowings } from "../services/following-services";
 import { Navigate, useNavigate } from "react-router";
+import * as U from "../components/utils/utils-date";
+import { createAppliedJob } from "../services/applied-job-services";
 
 const BackButton = styled("button")`
   font-family: "Inter";
@@ -116,10 +118,10 @@ const StyledRadio = styled("input")`
   }
 
   &:active {
-  background-color: white;
-  color: black;
-  outline: 1px solid black;
-}
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+  }
 `;
 
 export default function ApplicationJob() {
@@ -128,19 +130,23 @@ export default function ApplicationJob() {
   const { id } = useParams();
   const { user } = useAuth();
   useEffect(() => {
-    getFollowings().then(setFollowings)
-    getJob(id).then(setJob).catch(console.log)
-  }, []);
-  
-  const isFollow = followings?.some(follows => follows.job_id === job?.id)
+    getFollowings().then(setFollowings);
+    getJob(id).then(setJob).catch(console.log);
+  }, [id]);
+
+  const isFollow = followings?.some((follows) => follows.job_id === job?.id);
   const navigate = useNavigate();
-  function HandleNavigate(id){
-    navigate(`/professional/job/${id}`)
+  function HandleNavigate(id) {
+    navigate(`/professional/job/${id}`);
   }
 
   return (
     <div>
-      <BackButton onClick={()=> {HandleNavigate(job.id)}}>
+      <BackButton
+        onClick={() => {
+          HandleNavigate(job.id);
+        }}
+      >
         <IoIosArrowBack />
         BACK
       </BackButton>
@@ -176,11 +182,11 @@ export default function ApplicationJob() {
                     borderRadius: "50%",
                     width: "20px",
                     height: "20px",
-                    background: (isFollow) ? "#F48FB1" : "white",
+                    background: isFollow ? "#F48FB1" : "white",
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    color: (isFollow) ? "white" : "#616161",
+                    color: isFollow ? "white" : "#616161",
                   }}
                 >
                   <RiFocus3Line />
@@ -205,7 +211,7 @@ export default function ApplicationJob() {
         <JobTitle>{job?.title}</JobTitle>
         <JobCreateDate>
           <AiOutlineClockCircle />
-          Posted 2 days ago
+          Posted {U.getDaysAgo(job?.created_at)}
         </JobCreateDate>
         <div style={{ display: "flex", gap: "32px" }}>
           <div
@@ -266,10 +272,11 @@ export default function ApplicationJob() {
           <Formik
             initialValues={{
               experience: user.experience,
-              cv: user.cv_url
+              cv: user.cv_url,
             }}
             onSubmit={(values) => {
-              console.log(values);
+              // console.log(values);
+              createAppliedJob({...values, professional_id: user.id, job_id: id})
             }}
           >
             {({ values, errors, touched, handleChange, handleSubmit }) => (
@@ -277,22 +284,22 @@ export default function ApplicationJob() {
                 style={{ gap: "16px", padding: "0 20px" }}
                 onSubmit={handleSubmit}
               >
-                <div style={{display: "flex", gap: "10px"}} >
-                    <StyledRadio
-                      type="radio"
-                      id="myCV"
-                      name="myCV"
-                      value={user.cv_url}
-                      checked
-                    ></StyledRadio>
-                    <label for="huey">Use current CV</label>
-                    <StyledRadio
-                      type="radio"
-                      id="newCV"
-                      name="newCV"
-                      value="user_cv_update"
-                    ></StyledRadio>
-                    <label for="dewey">Upload new CV</label>
+                <div style={{ display: "flex", gap: "10px" }}>
+                  <StyledRadio
+                    type="radio"
+                    id="myCV"
+                    name="myCV"
+                    value={user.cv_url}
+                    checked
+                  ></StyledRadio>
+                  <label for="huey">Use current CV</label>
+                  <StyledRadio
+                    type="radio"
+                    id="newCV"
+                    name="newCV"
+                    value="user_cv_update"
+                  ></StyledRadio>
+                  <label for="dewey">Upload new CV</label>
                 </div>
                 <Input
                   name="experience"
@@ -305,14 +312,14 @@ export default function ApplicationJob() {
                 {errors.experience && touched.experience && errors.experience}
                 <JobCreateDate>Between 50 and 1000 characters</JobCreateDate>
                 <Input
-                  name="interested"
+                  name="why"
                   type="textarea"
-                  value={""}
+                  // value={}
                   onChange={handleChange}
                   placeholder="Mention things about The Company Name SA that excite you. Why would you be a good candidate?"
                   label="Why are you interested in working at The company name SA"
                 />
-                {errors.interested && touched.interested && errors.interested}
+                {errors.why && touched.why && errors.why}
                 <JobCreateDate>Between 50 and 1000 characters</JobCreateDate>
                 <StyledButton
                   style={{
@@ -326,7 +333,7 @@ export default function ApplicationJob() {
                   type="submit"
                 >
                   <RiMailLine style={{ width: "20px", height: "20px" }} />
-                  APPLI NOW
+                  APPLY NOW
                 </StyledButton>
               </StyledForm>
             )}

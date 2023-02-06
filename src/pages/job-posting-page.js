@@ -73,17 +73,17 @@ const StyledRadio = styled("input")`
   }
 
   &:active {
-  background-color: white;
-  color: black;
-  outline: 1px solid black;
-}
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+  }
 `;
 
 export default function JobPosting() {
   const [jobs, setJobs] = useState();
 
   useEffect(() => {
-    getJobs().then(setJobs).catch(console.log)
+    getJobs().then(setJobs).catch(console.log);
   }, []);
 
   return (
@@ -94,21 +94,21 @@ export default function JobPosting() {
           FILTER YOUR JOB POSTINGS
         </ApplicationFilterTitle>
         <ApplicationFilterConteiner>
-          <StyledRadio type="checkbox"/>
+          <StyledRadio type="checkbox" />
           <ApplicationText style={{ color: "#616161" }}>ALL</ApplicationText>
-          <StyledRadio type="checkbox"/>
+          <StyledRadio type="checkbox" />
           <ApplicationText style={{ color: "#616161" }}>
-            Whit candidates on track
+            With candidates on track
           </ApplicationText>
-          <StyledRadio type="checkbox"/>
+          <StyledRadio type="checkbox" />
           <ApplicationText style={{ color: "#616161" }}>Closed</ApplicationText>
         </ApplicationFilterConteiner>
         <ApplicationsFound style={{ marginTop: "16px" }}>
-          4 job postings found
+          {jobs?.length} {(jobs?.length === 1) ? "job" : "jobs" } postings found
         </ApplicationsFound>
       </div>
-      {jobs?.map(function(job){
-        return <JobPostingComponent key={`${job.id}${job}`} job={job} />
+      {jobs?.map(function (job) {
+        return <JobPostingComponent key={`${job.id}${job}`} job={job} />;
       })}
     </div>
   );
