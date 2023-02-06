@@ -6,52 +6,51 @@ import JobPostingComponent from "../components/job-posting-component";
 import { getJob } from "../services/job-services";
 
 const ApplicationFilterTitle = styled("p")`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    margin-top: 24px;
-    letter-spacing: 1.5px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  margin-top: 24px;
+  letter-spacing: 1.5px;
 `;
 
 const ApplicationsTitle = styled("h1")`
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 34px;
-    line-height: 41px;
-    letter-spacing: 0.25px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 34px;
+  line-height: 41px;
+  letter-spacing: 0.25px;
 `;
 
 const ApplicationFilterConteiner = styled("div")`
-    display: flex;
-    align-items: center;
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 10px;
-    line-height: 12px;
-    letter-spacing: 1.5px;
+  display: flex;
+  align-items: center;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 1.5px;
 `;
 
 const ApplicationsFound = styled("h2")`
-    font-family: 'Montserrat';
-    font-style: normal;
-    font-weight: 500;
-    font-size: 20px;
-    line-height: 28px;
+  font-family: "Montserrat";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 28px;
 `;
 
-
 const ApplicationText = styled("p")`
-    font-family: 'Inter';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 14px;
-    line-height: 20px;
-    letter-spacing: 0.25px;
-    margin-right: 10px;
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  letter-spacing: 0.25px;
+  margin-right: 10px;
 `;
 
 const StyledRadio = styled("input")`
@@ -74,43 +73,52 @@ const StyledRadio = styled("input")`
   }
 
   &:active {
-  background-color: white;
-  color: black;
-  outline: 1px solid black;
-}
+    background-color: white;
+    color: black;
+    outline: 1px solid black;
+  }
 `;
 
 export default function JobPostingDetails() {
-    const [job, setJob] = useState();
-    const { id } = useParams();
-
-    useEffect(() => {
-        getJob(id).then(setJob).catch(console.log)
-    }, [id]);
-    return (
-        <div>
-            <ApplicationsTitle>Show Job Postings</ApplicationsTitle>
-            <JobPostingComponent job={job}/>
-            <ApplicationsTitle>{job?.applied_jobs.length} {(job?.applied_jobs.length === 1) ? "candidate" : "candidates" } found</ApplicationsTitle>
-            <div>
-                <ApplicationFilterTitle>FILTER YOUR JOB POSTINGS</ApplicationFilterTitle>
-                <ApplicationFilterConteiner>
-                    <StyledRadio type="checkbox"/>
-                    <ApplicationText style={{color: "#616161"}}>ALL</ApplicationText>
-                    <StyledRadio type="checkbox"/>
-                    <ApplicationText style={{color: "#616161"}}>Waiting</ApplicationText>
-                    <StyledRadio type="checkbox"/>
-                    <ApplicationText style={{color: "#616161"}}>In progress</ApplicationText>
-                    <StyledRadio type="checkbox"/>
-                    <ApplicationText style={{color: "#616161"}}>Finished</ApplicationText>
-                </ApplicationFilterConteiner>
-                <ApplicationsFound style={{marginTop: "16px"}}>4 job postings found</ApplicationsFound>
-            </div>
-            {job?.applied_jobs.map(function(candidate){
-                return <CandidatesComponent key={`${candidate.id}${candidate}`} candidate={candidate}/>
-            })}
-        </div>
-    )
+  const [job, setJob] = useState();
+  const { id } = useParams();
+  
+  useEffect(() => {
+    getJob(id).then(setJob).catch(console.log);
+    // eslint-disable-next-line
+  }, []);
+  return (
+    <div>
+      <ApplicationsTitle>Show Job Postings</ApplicationsTitle>
+      <JobPostingComponent job={job} />
+      <ApplicationsTitle>5 candidates found</ApplicationsTitle>
+      <div>
+        <ApplicationFilterTitle>
+          FILTER YOUR JOB POSTINGS
+        </ApplicationFilterTitle>
+        <ApplicationFilterConteiner>
+          <StyledRadio type="checkbox" />
+          <ApplicationText style={{ color: "#616161" }}>ALL</ApplicationText>
+          <StyledRadio type="checkbox" />
+          <ApplicationText style={{ color: "#616161" }}>
+            Waiting
+          </ApplicationText>
+          <StyledRadio type="checkbox" />
+          <ApplicationText style={{ color: "#616161" }}>
+            In progress
+          </ApplicationText>
+          <StyledRadio type="checkbox" />
+          <ApplicationText style={{ color: "#616161" }}>
+            Finished
+          </ApplicationText>
+        </ApplicationFilterConteiner>
+        <ApplicationsFound style={{ marginTop: "16px" }}>
+          4 job postings found
+        </ApplicationsFound>
+      </div>
+      <CandidatesComponent />
+    </div>
+  );
 }
 
 //<JobPostingComponent/>
