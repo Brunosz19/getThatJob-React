@@ -35,6 +35,43 @@ export default function CreateJob() {
           requeriments: "",
           opt_requeriments: "",
         }}
+        validate={(values) => {
+          const errors = {};
+
+          if (!values.title) {
+            errors.title = "Required";
+          }
+
+          if (!values.category) {
+            errors.category = "Required";
+          }
+
+          if (!values.job_type) {
+            errors.job_type = "Required";
+          }
+
+          if (!values.min_salary) {
+            errors.min_salary = "Required";
+          }
+
+          if (!values.max_salary) {
+            errors.max_salary = "Required";
+          }
+
+          if (!values.about) {
+            errors.about = "Required";
+          }
+
+          if (!values.requeriments) {
+            errors.requeriments = "Required";
+          }
+          
+          if (!values.opt_requeriments) {
+            errors.opt_requeriments = "Required";
+          }
+
+          return errors;
+        }}
         onSubmit={(values) => {
           console.log(values);
           createJob(values)
