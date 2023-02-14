@@ -42,37 +42,39 @@ export default function CreateJob() {
         }}
         validate={(values) => {
           const errors = {};
+          const fields = [
+            "title",
+            "category",
+            "job_type",
+            "min_salary",
+            "max_salary",
+            "about",
+            "requeriments",
+            "opt_requeriments",
+          ];
 
-          if (!values.title) {
-            errors.title = "Required";
+          if (values.min_salary < 0) {
+            errors.salary = "Cannot be less than 0";
           }
 
-          if (!values.category) {
-            errors.category = "Required";
+          if (values.min_salary > values.max_salary) {
+            errors.salary = "Cannot be less than min salary";
           }
 
-          if (!values.job_type) {
-            errors.job_type = "Required";
+          if (values.min_salary === values.max_salary) {
+            errors.salary = "Cannot be equal";
           }
 
-          if (!values.min_salary) {
-            errors.min_salary = "Required";
+          for (const field of fields) {
+            if (!values[field]) {
+              errors[field] = "Required";
+            }
           }
 
-          if (!values.max_salary) {
-            errors.max_salary = "Required";
-          }
-
-          if (!values.about) {
-            errors.about = "Required";
-          }
-
-          if (!values.requeriments) {
-            errors.requeriments = "Required";
-          }
-
-          if (!values.opt_requeriments) {
-            errors.opt_requeriments = "Required";
+          for (const field of fields) {
+            if (errors[field] === "") {
+              delete errors[field];
+            }
           }
 
           return errors;
@@ -134,28 +136,45 @@ export default function CreateJob() {
               {errors.job_type && touched.job_type && errors.job_type}
             </span>
             <StyledLabel>salary range</StyledLabel>
+
             <div style={{ display: "flex", alignItems: "center" }}>
-              <RiMoneyDollarCircleFill
-                style={{ position: "absolute", marginLeft: "10px" }}
-              />
-              <Input
-                name="min_salary"
-                type="number"
-                value={values.min_salary}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                placeholder="min"
-                label=""
-                width={"102px"}
-                height={"36px"}
-              />
-              <span style={{ color: "#BF5F82" }}>
-                {errors.min_salary && touched.min_salary && errors.min_salary}
-              </span>
-              <h1 style={{ color: "#8E8E8E", margin: "0 8px" }}> - </h1>
-              <div style={{ display: "flex", alignItems: "center" }}>
+              <div style={{ display: "flex", flexDirection: "column" }}>
                 <RiMoneyDollarCircleFill
-                  style={{ position: "absolute", marginLeft: "10px" }}
+                  style={{
+                    position: "absolute",
+                    marginLeft: "10px",
+                    marginTop: "10px",
+                  }}
+                />
+                <Input
+                  name="min_salary"
+                  type="number"
+                  value={values.min_salary}
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  placeholder="min"
+                  label=""
+                  width={"102px"}
+                  height={"36px"}
+                />
+                <span
+                  style={{
+                    color: "#BF5F82",
+                    marginLeft: "12px",
+                    marginTop: "10px",
+                  }}
+                >
+                  {errors.min_salary && touched.min_salary && errors.min_salary}
+                </span>
+              </div>
+              <h1 style={{ color: "#8E8E8E", margin: "0 8px" }}> - </h1>
+              <div style={{ display: "flex", flexDirection: "column" }}>
+                <RiMoneyDollarCircleFill
+                  style={{
+                    position: "absolute",
+                    marginLeft: "10px",
+                    marginTop: "10px",
+                  }}
                 />
                 <Input
                   name="max_salary"
@@ -168,11 +187,19 @@ export default function CreateJob() {
                   width={"102px"}
                   height={"36px"}
                 />
-                <span style={{ color: "#BF5F82" }}>
+                <span
+                  style={{
+                    color: "#BF5F82",
+                    marginLeft: "12px",
+                    marginTop: "10px",
+                  }}
+                >
                   {errors.max_salary && touched.max_salary && errors.max_salary}
                 </span>
               </div>
             </div>
+            <span style={{ color: "#BF5F82" }}>{errors.salary}</span>
+
             <SubTitle>Additional information</SubTitle>
             <Input
               name="about"
@@ -214,35 +241,34 @@ export default function CreateJob() {
                 touched.opt_requeriments &&
                 errors.opt_requeriments}
             </span>
-            <StyledButton
-              style={{
-                width: "165px",
-                height: "40px",
-                color: "white",
-                background: "#F48FB1",
-                padding: "8px 16px",
-                gap: "8px",
-              }}
-              type="submit"
-            >
-              post this job
-            </StyledButton>
-            { errors.length === 0 ? (
+            { Object.values(errors).length === 0 ? (
               <StyledButton
-                style={{ background: "#F48FB1", color: "white" }}
+                style={{
+                  width: "165px",
+                  height: "40px",
+                  color: "white",
+                  background: "#F48FB1",
+                  padding: "8px 16px",
+                  gap: "8px",
+                }}
                 type="submit"
               >
-                {" "}
-                next
+                post this job
               </StyledButton>
             ) : (
               <span style={{ opacity: "65%" }}>
                 <StyledButton
-                  style={{ background: "#F48FB1", color: "white" }}
-                  type="button"
+                  style={{
+                    width: "165px",
+                    height: "40px",
+                    color: "white",
+                    background: "#F48FB1",
+                    padding: "8px 16px",
+                    gap: "8px",
+                  }}
+                  type="submit"
                 >
-                  {" "}
-                  finish
+                  post this job
                 </StyledButton>
               </span>
             )}
