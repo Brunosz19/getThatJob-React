@@ -227,6 +227,25 @@ export default function CreateJob() {
             >
               post this job
             </StyledButton>
+            { errors.length === 0 ? (
+              <StyledButton
+                style={{ background: "#F48FB1", color: "white" }}
+                type="submit"
+              >
+                {" "}
+                next
+              </StyledButton>
+            ) : (
+              <span style={{ opacity: "65%" }}>
+                <StyledButton
+                  style={{ background: "#F48FB1", color: "white" }}
+                  type="button"
+                >
+                  {" "}
+                  finish
+                </StyledButton>
+              </span>
+            )}
           </StyledForm>
         )}
       </Formik>
